@@ -1,0 +1,1482 @@
+================================================================================
+PROFUZION STUDIO — AWARD-WINNING 3D HOMEPAGE
+FULL CURSOR BUILD BRIEF (EXHAUSTIVE EDITION)
+================================================================================
+
+Version: 1.0
+Owner: Profuzion Studio
+Purpose: a complete, zero-ambiguity build spec for a scroll-driven, single-
+         scene 3D storytelling homepage. Hand this file to Cursor as the
+         source of truth for the project. Every section below can be pasted
+         directly into your IDE.
+
+HOW TO USE THIS FILE WITH CURSOR
+--------------------------------------------------------------------------------
+1. Create a new empty directory on your machine: `profuzion/`
+2. Drop this .txt file inside it as `BRIEF.txt`.
+3. Open the folder in Cursor.
+4. Start a new Cursor chat and paste this prompt:
+
+   "Read BRIEF.txt end-to-end before writing any code. Build the project
+    section by section, in the order listed in Section 24 (Build Sequence).
+    After each numbered step, stop and ask me to review before continuing.
+    Do not skip the GLSL shader and write a MeshPhysicalMaterial instead —
+    the custom shader is the core of the aesthetic."
+
+5. Cursor will execute one step at a time. Review each commit. Don't let it
+   rush to the finish.
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+ 1.  Vision and Positioning
+ 2.  Brand Narrative (copy bible)
+ 3.  Aesthetic Direction and Moodboard
+ 4.  Design Tokens (complete)
+ 5.  Typography System
+ 6.  Tech Stack and Dependencies
+ 7.  Package.json
+ 8.  Next.config.js
+ 9.  Tailwind Config
+10.  File Structure (complete tree)
+11.  The Seed (3D hero object) — modelling spec
+12.  The Seed — procedural fallback spec
+13.  Shader Code (full GLSL)
+14.  Scene Architecture
+15.  Camera Rig and Spline
+16.  Scroll System (Lenis + Zustand)
+17.  The Five Acts — frame-by-frame
+18.  Homepage Copy (final, ready to ship)
+19.  HTML Overlay Layout per Act
+20.  Custom Cursor
+21.  Post-processing Stack
+22.  Loading Sequence
+23.  Performance Budget and Techniques
+24.  Build Sequence (step-by-step for Cursor)
+25.  Accessibility Floor
+26.  Reduced-Motion Fallback
+27.  SEO, Meta, OG
+28.  Analytics and Error Tracking
+29.  Audio Design (optional v1.1)
+30.  Testing Strategy
+31.  Launch Checklist
+32.  Post-launch Awards Submission Plan
+33.  Future Roadmap (v2, v3)
+34.  Definition of Done
+
+================================================================================
+1. VISION AND POSITIONING
+================================================================================
+
+One-line pitch:
+  Profuzion Studio — where ideas overflow into form.
+
+Three-line positioning:
+  Profuzion is a digital design atelier. We design the overflow between
+  idea and experience. Working across brand systems, motion, 3D and web,
+  we shape living visual worlds that carry a story from first frame to
+  final interaction.
+
+The name carries two meanings on purpose:
+  - Profusion: overflow, abundance, blooming.
+  - Fusion: merging, melding, transformation.
+Both are expressed visually through the hero object ("The Seed") which
+blooms, fuses, flows and settles as the visitor scrolls.
+
+Primary audience:
+  - Creative directors at ambitious brands
+  - Founders of funded startups series A–C who want a world, not a logo
+  - Agencies who partner in on visual-heavy deliverables
+
+Tone: confident, slightly mystical, never corporate, never precious.
+Sentences are short. Verbs carry the weight. Never use "solutions",
+"cutting-edge", "bespoke", "journey" (except when literal), "passionate",
+or any AI/SaaS cliché.
+
+================================================================================
+2. BRAND NARRATIVE (COPY BIBLE)
+================================================================================
+
+Tagline (primary):    We design the overflow between idea and experience.
+Tagline (short):      Where ideas overflow into form.
+Tagline (one word):   Bloom.
+
+Core verbs: spark, bloom, fuse, flow, settle.
+Core nouns: seed, current, pool, system, profusion.
+Never-use list:       solutions, unleash, synergy, innovative, cutting-
+                      edge, passionate, disrupt, ecosystem (unless
+                      describing actual ecosystems), seamless.
+
+Voice rules:
+  1. Lead with image, not claim. "Ideas bloom in profusion" not "We deliver
+     innovative design."
+  2. Italicize exactly one word per paragraph of display copy, never more.
+  3. Mono copy is always uppercase, tracked 0.1em, used for labels only.
+  4. Never end a sentence with an exclamation mark.
+  5. Oxford comma, en-dashes for ranges, em-dashes with no spaces.
+
+================================================================================
+3. AESTHETIC DIRECTION AND MOODBOARD
+================================================================================
+
+Name of the aesthetic: LIQUID ARCHITECTURE.
+Core idea:
+  Solid architectural forms behaving like fluids. Translucent, refractive,
+  subsurface-scattered materials. The feeling of watching resin cure in
+  slow motion, or pigment suspended in oil.
+
+Reference brief (send to 3D artist or use for mental model):
+  - Material: frosted translucent resin with an inner glow. Think Iris van
+    Herpen's 3D-printed dresses + James Turrell's Skyspaces + Yuri Suzuki's
+    instrument sculptures.
+  - Light: a single directional key at 45 degrees, color temperature 5600K,
+    plus a slow-rotating iris-violet rim light. HDRI is subtle, desaturated
+    studio.
+  - Camera: always 35mm equivalent, shallow depth of field in acts 3 and 5,
+    wide and deep in act 2.
+  - Post: gentle bloom on the iris accent only. No film grain. No LUT
+    shift. The image must feel digital-pure, not filmic.
+  - Never use: chrome, holographic, iridescent rainbow gradients, Y2K,
+    fluffy 3D blobs, vaporwave. These are oversaturated. We are going
+    cooler, more sculptural, more editorial.
+
+Reference sites (for Cursor to browse if it wants inspiration only; do not
+copy):
+  - igloo.inc                    (scroll choreography rigor)
+  - oliviersarfati.com           (single-object hero)
+  - studio-lumio.com             (editorial type + 3D)
+  - humanoid.to                  (material quality)
+  - dogstudio.com/story/exodus   (scroll narrative structure)
+
+Do not clone any of the above. Pull the discipline, leave the surface.
+
+================================================================================
+4. DESIGN TOKENS (COMPLETE)
+================================================================================
+
+COLORS
+  --obsidian      #0A0A0B   // page background, near-black with a blue bias
+  --obsidian-2    #111114   // one-step-up for raised surfaces
+  --bone          #F2EEE5   // primary type, warm white
+  --bone-dim      rgba(242, 238, 229, 0.6)
+  --bone-mute     rgba(242, 238, 229, 0.35)
+  --iris          #6E5BFF   // the one accent — sparingly
+  --iris-deep     #3B2CC9   // for hover states / shader interior
+  --iris-glow     rgba(110, 91, 255, 0.35)
+  --amber         #F5A524   // emergency error color only, never brand
+  --hair          rgba(242, 238, 229, 0.08) // hairlines, dividers
+
+SPACING (8pt grid)
+  4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192
+
+RADIUS
+  --r-xs  2px
+  --r-sm  4px
+  --r-md  8px
+  --r-lg  16px
+  --r-full 999px
+
+ELEVATION (we use very little)
+  --shadow-1  0 1px 2px rgba(0,0,0,0.5)
+  --shadow-2  0 10px 40px rgba(0,0,0,0.45)
+
+MOTION
+  --ease-out-expo        cubic-bezier(0.19, 1, 0.22, 1)
+  --ease-in-out-quint    cubic-bezier(0.86, 0, 0.07, 1)
+  --ease-out-soft        cubic-bezier(0.33, 1, 0.68, 1)
+  --dur-fast             160ms
+  --dur-base             320ms
+  --dur-slow             640ms
+  --dur-story            1200ms
+
+Z-INDEX
+  --z-canvas    0
+  --z-content   10
+  --z-nav       40
+  --z-cursor    80
+  --z-loader    100
+
+================================================================================
+5. TYPOGRAPHY SYSTEM
+================================================================================
+
+Two families only. No sans-serif anywhere. That is a deliberate constraint.
+
+PP Editorial New (display serif)
+  Weights used: Italic (400), Regular (400)
+  Purchase from: Pangram Pangram Foundry
+  Placeholder for dev: use "Editorial New" free alternative from Indian
+  Type Foundry, or "DM Serif Display" from Google Fonts as a last resort.
+
+JetBrains Mono (labels)
+  Weights used: 400, 500
+  Self-host via next/font/local.
+
+Scale (fluid, clamp-based):
+  --fs-display   clamp(5rem, 11vw, 13rem)     // Act 2 hero line
+  --fs-hero      clamp(3.5rem, 9vw, 10rem)    // Act 1 tagline
+  --fs-h2        clamp(2rem, 4.5vw, 4.5rem)   // section openers
+  --fs-h3        clamp(1.5rem, 2.8vw, 2.5rem)
+  --fs-body      clamp(1rem, 1.1vw, 1.125rem)
+  --fs-small     0.875rem
+  --fs-mono      0.6875rem  // 11px — feels editorial, not dashboardy
+
+Line-height:
+  display: 0.95 (tight, overlapping feel)
+  body:    1.5
+  mono:    1.4
+
+Letter-spacing:
+  display: -0.02em
+  body:    0
+  mono:    0.12em, uppercase
+
+Italic rule:
+  In display copy, italicize exactly one word per paragraph. Never two.
+  The italicized word is almost always a verb: bloom, fuse, overflow,
+  grow.
+
+================================================================================
+6. TECH STACK AND DEPENDENCIES
+================================================================================
+
+Runtime
+  Node            20 LTS
+  Package manager pnpm 9
+
+Framework
+  next            14.2.x          App Router, TypeScript
+  react           18.3.x
+  typescript      5.4.x
+
+3D
+  three                   0.160.x
+  @react-three/fiber       8.16.x
+  @react-three/drei       9.105.x
+  @react-three/postprocessing 2.16.x
+
+Scroll & motion
+  lenis           1.1.x
+  gsap            3.12.x           (ScrollTrigger, SplitText)
+  framer-motion   11.2.x           (HTML overlays only)
+
+State
+  zustand         4.5.x
+
+Styling
+  tailwindcss     3.4.x
+  postcss         8.4.x
+  autoprefixer    10.4.x
+
+Fonts
+  next/font built-in.
+
+Dev
+  @types/three
+  glslify-loader
+  raw-loader
+  prettier
+  eslint-config-next
+  @typescript-eslint/*
+
+Optional (later)
+  @vercel/analytics
+  @sentry/nextjs
+
+================================================================================
+7. PACKAGE.JSON
+================================================================================
+
+{
+  "name": "profuzion",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "three": "^0.160.0",
+    "@react-three/fiber": "^8.16.0",
+    "@react-three/drei": "^9.105.0",
+    "@react-three/postprocessing": "^2.16.0",
+    "lenis": "^1.1.0",
+    "gsap": "^3.12.0",
+    "framer-motion": "^11.2.0",
+    "zustand": "^4.5.0",
+    "clsx": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.160.0",
+    "typescript": "^5.4.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0",
+    "prettier": "^3.2.5",
+    "glslify-loader": "^2.0.0",
+    "raw-loader": "^4.0.2"
+  }
+}
+
+================================================================================
+8. NEXT.CONFIG.JS
+================================================================================
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ["three"],
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag)$/,
+      exclude: /node_modules/,
+      use: ["raw-loader", "glslify-loader"],
+    });
+    return config;
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
+};
+
+module.exports = nextConfig;
+
+================================================================================
+9. TAILWIND CONFIG
+================================================================================
+
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        obsidian: "var(--obsidian)",
+        "obsidian-2": "var(--obsidian-2)",
+        bone: "var(--bone)",
+        "bone-dim": "var(--bone-dim)",
+        "bone-mute": "var(--bone-mute)",
+        iris: "var(--iris)",
+        "iris-deep": "var(--iris-deep)",
+        "iris-glow": "var(--iris-glow)",
+        hair: "var(--hair)",
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
+        "in-out-quint": "cubic-bezier(0.86, 0, 0.07, 1)",
+      },
+    },
+  },
+  plugins: [],
+};
+export default config;
+
+================================================================================
+10. FILE STRUCTURE (COMPLETE TREE)
+================================================================================
+
+profuzion/
+  BRIEF.txt                            <- this file
+  README.md
+  package.json
+  pnpm-lock.yaml
+  next.config.js
+  tailwind.config.ts
+  postcss.config.js
+  tsconfig.json
+  .eslintrc.json
+  .prettierrc
+  .gitignore
+  .env.local                           (empty for v1)
+  app/
+    layout.tsx
+    page.tsx
+    globals.css
+    not-found.tsx
+    robots.ts
+    sitemap.ts
+    opengraph-image.tsx                (generated OG)
+  components/
+    scene/
+      Scene.tsx
+      Seed.tsx
+      SeedMaterial.tsx
+      Environment.tsx
+      CameraRig.tsx
+      PostFX.tsx
+      Lights.tsx
+      ActDebug.tsx                     (dev only, gated behind flag)
+    overlays/
+      Act1Spark.tsx
+      Act2Bloom.tsx
+      Act3Fusion.tsx
+      Act4Current.tsx
+      Act5Invitation.tsx
+      Footer.tsx
+    ui/
+      Nav.tsx
+      Cursor.tsx
+      ScrollHint.tsx
+      ScrollProgress.tsx
+      LoadingVeil.tsx
+      EmailInput.tsx
+    providers/
+      LenisProvider.tsx
+      MotionPrefProvider.tsx
+      AnalyticsProvider.tsx
+  shaders/
+    seed.vert.glsl
+    seed.frag.glsl
+    includes/
+      noise.glsl
+      fresnel.glsl
+      easing.glsl
+  lib/
+    scroll.ts
+    acts.ts
+    easing.ts
+    splitText.ts
+    useScrollProgress.ts
+    useMousePosition.ts
+    usePrefersReducedMotion.ts
+  content/
+    projects.ts
+    services.ts
+    studio.ts
+  public/
+    models/
+      seed.glb                         (v2, optional)
+    hdri/
+      studio_1k.hdr
+    textures/
+      resin-normal.jpg
+      paper-rough.jpg
+      caustics.jpg
+    fonts/
+      PPEditorialNew-Italic.woff2
+      PPEditorialNew-Regular.woff2
+      JetBrainsMono-Regular.woff2
+      JetBrainsMono-Medium.woff2
+    og-image.png
+    favicon.svg
+    icon.png
+    apple-icon.png
+
+================================================================================
+11. THE SEED — MODELLING SPEC (BLENDER)
+================================================================================
+
+Deliverable: one file, `public/models/seed.glb`. Draco-compressed. Under
+500KB.
+
+Contents:
+  - One mesh named "seed"
+  - 15,000 triangles maximum, evenly distributed
+  - UV-unwrapped, non-overlapping
+  - Five shape keys (morph targets), all normalized to Basis = spark:
+
+Shape key 1 — spark
+  Tiny icosphere, radius 0.2 units. Surface very slightly displaced by low-
+  frequency noise. Reads as a single point from 3 meters away.
+
+Shape key 2 — bloom
+  12 petal-like shells radiating outward from center. Each petal is a
+  lofted curve, slightly twisted. Overall silhouette ~4 units wide, 3 tall.
+  Petals pierce each other intentionally at center.
+
+Shape key 3 — fusion
+  Stepped crystalline form. Vertical emphasis. 5 stacked faceted tiers,
+  each rotated 22 degrees from the one below. Total height 5 units, width
+  1.8. Feels architectural, almost a tower.
+
+Shape key 4 — current
+  Elongated ribbon. Moebius-like 1.5 twist. Length 7 units, width 1.
+  Thickness 0.15. Smooth, flowing.
+
+Shape key 5 — pool
+  Flat disc, radius 4, thickness 0.1. Top surface displaced by very low
+  amplitude concentric ripples. Reads mirror-like when lit from above.
+
+Export settings:
+  Format:        GLB 2.0
+  Compression:   Draco, level 7
+  Include:       normals, UVs, morph targets
+  Exclude:       animations, cameras, lights
+  Apply:         all transforms
+  Scale:         1.0
+
+If you cannot create this asset, proceed with the procedural fallback in
+Section 12 — it is a viable v1 ship path.
+
+================================================================================
+12. THE SEED — PROCEDURAL FALLBACK SPEC
+================================================================================
+
+If no GLB is available, use a high-subdivision IcosahedronGeometry driven
+entirely by the custom shader. The shader carries all five acts via a
+single `uProgress` uniform (0 to 1) and a derived `uAct` (0 to 4).
+
+Geometry:
+  new THREE.IcosahedronGeometry(1, 64)    // ~40k tris, plenty of verts
+
+All transformation is done in the vertex shader via layered simplex noise
+whose frequency, amplitude, and directional bias change across acts. See
+Section 13 for the full shader.
+
+This path ships faster and is perfectly capable of award-tier quality.
+Upgrade to GLB morph targets only when the procedural version is dialed.
+
+================================================================================
+13. SHADER CODE (FULL GLSL)
+================================================================================
+
+--- shaders/includes/noise.glsl ---
+// Classic Perlin 3D noise by Stefan Gustavson, public domain.
+// Source reference: github.com/stegu/webgl-noise
+// (Cursor: include the standard cnoise / snoise function here. The
+// canonical implementation is ~80 lines. Copy verbatim from
+// github.com/stegu/webgl-noise/blob/master/src/classicnoise3D.glsl )
+
+float snoise(vec3 v);
+float fbm(vec3 p) {
+  float v = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 5; i++) {
+    v += a * snoise(p);
+    p *= 2.0;
+    a *= 0.5;
+  }
+  return v;
+}
+
+--- shaders/includes/fresnel.glsl ---
+float fresnel(vec3 N, vec3 V, float power) {
+  return pow(clamp(1.0 - dot(normalize(N), normalize(V)), 0.0, 1.0), power);
+}
+
+--- shaders/includes/easing.glsl ---
+float easeInOutCubic(float t) {
+  return t < 0.5 ? 4.0 * t * t * t : 1.0 - pow(-2.0 * t + 2.0, 3.0) / 2.0;
+}
+float smoothActMix(float progress, float center, float radius) {
+  return 1.0 - smoothstep(0.0, radius, abs(progress - center));
+}
+
+--- shaders/seed.vert.glsl ---
+#pragma glslify: snoise = require(./includes/noise.glsl)
+#pragma glslify: fbm    = require(./includes/noise.glsl)
+#pragma glslify: smoothActMix = require(./includes/easing.glsl)
+
+uniform float uTime;
+uniform float uProgress;   // 0..1 overall
+uniform float uAct;        // 0..4
+uniform vec2  uMouse;      // -1..1
+
+varying vec3 vNormal;
+varying vec3 vWorldPos;
+varying vec3 vViewDir;
+varying float vDisplacement;
+varying float vAct;
+
+void main() {
+  vec3 pos = position;
+  vec3 nrm = normal;
+
+  // Base slow breath
+  float breath = sin(uTime * 0.6) * 0.03;
+
+  // Mouse pull — world-space attraction toward cursor
+  vec3 mousePull = vec3(uMouse.x, uMouse.y, 0.0) * 0.15;
+
+  // Per-act noise regimes
+  float wSpark   = smoothActMix(uAct, 0.0, 1.0);
+  float wBloom   = smoothActMix(uAct, 1.0, 1.0);
+  float wFusion  = smoothActMix(uAct, 2.0, 1.0);
+  float wCurrent = smoothActMix(uAct, 3.0, 1.0);
+  float wPool    = smoothActMix(uAct, 4.0, 1.0);
+
+  float nSpark   = fbm(pos * 3.0 + uTime * 0.2) * 0.05;
+  float nBloom   = fbm(pos * 1.2 + uTime * 0.1) * 0.9;
+  float nFusion  = abs(snoise(pos * 4.0 + vec3(0.0, uTime * 0.05, 0.0)))
+                   * 0.35;
+  float nCurrent = snoise(pos * vec3(0.5, 8.0, 0.5) + uTime * 0.3) * 0.55;
+  float nPool    = sin(length(pos.xz) * 6.0 - uTime * 1.2) * 0.04;
+
+  float displacement =
+      nSpark   * wSpark
+    + nBloom   * wBloom
+    + nFusion  * wFusion
+    + nCurrent * wCurrent
+    + nPool    * wPool
+    + breath;
+
+  // Act-specific silhouette warps
+  // Fusion: vertical stretch + rotational shear per height tier
+  float fusionStretch = mix(1.0, 1.6, wFusion);
+  pos.y *= fusionStretch;
+
+  // Current: longitudinal stretch
+  float currentStretch = mix(1.0, 2.4, wCurrent);
+  pos.x *= currentStretch;
+
+  // Pool: flatten
+  float poolFlatten = mix(1.0, 0.08, wPool);
+  pos.y *= poolFlatten;
+
+  pos += nrm * displacement;
+  pos += mousePull * (0.4 + wBloom * 0.6);
+
+  vec4 worldPos = modelMatrix * vec4(pos, 1.0);
+  vWorldPos = worldPos.xyz;
+  vNormal = normalize(normalMatrix * nrm);
+  vViewDir = normalize(cameraPosition - worldPos.xyz);
+  vDisplacement = displacement;
+  vAct = uAct;
+
+  gl_Position = projectionMatrix * viewMatrix * worldPos;
+}
+
+--- shaders/seed.frag.glsl ---
+#pragma glslify: fresnel = require(./includes/fresnel.glsl)
+
+uniform float uTime;
+uniform float uProgress;
+uniform float uAct;
+uniform vec3  uColorA;   // obsidian
+uniform vec3  uColorB;   // iris
+uniform vec3  uColorC;   // bone
+uniform sampler2D uCaustics;
+
+varying vec3 vNormal;
+varying vec3 vWorldPos;
+varying vec3 vViewDir;
+varying float vDisplacement;
+varying float vAct;
+
+void main() {
+  // Fresnel rim — stronger in acts 2 and 4
+  float rim = fresnel(vNormal, vViewDir, 2.6);
+
+  // Fake subsurface via displacement-modulated tint
+  float interior = smoothstep(-0.2, 0.6, vDisplacement);
+  vec3 sss = mix(uColorA, uColorB, interior);
+
+  // Caustics scrolling
+  vec2 uvC = vWorldPos.xz * 0.2 + uTime * 0.03;
+  float caustics = texture2D(uCaustics, uvC).r * 0.25;
+
+  // Base color = obsidian with iris rim and caustic highlights
+  vec3 color = uColorA;
+  color = mix(color, sss, 0.55);
+  color = mix(color, uColorB, rim * 0.9);
+  color += caustics * rim;
+
+  // Act-specific tweaks
+  // Pool (act 4): bright top-down highlight
+  float poolWeight = smoothstep(3.2, 4.0, vAct);
+  color = mix(color, uColorC, poolWeight * pow(max(vNormal.y, 0.0), 2.0));
+
+  // Final alpha — translucent, thicker areas more opaque
+  float alpha = clamp(0.55 + rim * 0.5, 0.4, 0.95);
+
+  gl_FragColor = vec4(color, alpha);
+}
+
+================================================================================
+14. SCENE ARCHITECTURE
+================================================================================
+
+One persistent <Canvas> sits behind all HTML. It never unmounts. All five
+acts are rendered as scrollable HTML sections on top.
+
+app/page.tsx (essence):
+
+  import dynamic from "next/dynamic";
+  import Act1Spark from "@/components/overlays/Act1Spark";
+  import Act2Bloom from "@/components/overlays/Act2Bloom";
+  import Act3Fusion from "@/components/overlays/Act3Fusion";
+  import Act4Current from "@/components/overlays/Act4Current";
+  import Act5Invitation from "@/components/overlays/Act5Invitation";
+  import Footer from "@/components/overlays/Footer";
+  import Nav from "@/components/ui/Nav";
+  import ScrollProgress from "@/components/ui/ScrollProgress";
+  import Cursor from "@/components/ui/Cursor";
+
+  const Scene = dynamic(() => import("@/components/scene/Scene"), {
+    ssr: false,
+    loading: () => null,
+  });
+
+  export default function Home() {
+    return (
+      <>
+        <div className="fixed inset-0 z-0">
+          <Scene />
+        </div>
+        <Nav />
+        <ScrollProgress />
+        <Cursor />
+        <main className="relative z-10">
+          <Act1Spark />
+          <Act2Bloom />
+          <Act3Fusion />
+          <Act4Current />
+          <Act5Invitation />
+          <Footer />
+        </main>
+      </>
+    );
+  }
+
+components/scene/Scene.tsx (essence):
+
+  import { Canvas } from "@react-three/fiber";
+  import { Suspense } from "react";
+  import Seed from "./Seed";
+  import Environment from "./Environment";
+  import Lights from "./Lights";
+  import CameraRig from "./CameraRig";
+  import PostFX from "./PostFX";
+
+  export default function Scene() {
+    return (
+      <Canvas
+        dpr={[1, 1.5]}
+        gl={{ powerPreference: "high-performance", antialias: false }}
+        camera={{ position: [0, 0, 5], fov: 35 }}
+        frameloop="always"
+      >
+        <Suspense fallback={null}>
+          <color attach="background" args={["#0A0A0B"]} />
+          <fog attach="fog" args={["#0A0A0B", 8, 25]} />
+          <Environment />
+          <Lights />
+          <Seed />
+          <CameraRig />
+          <PostFX />
+        </Suspense>
+      </Canvas>
+    );
+  }
+
+================================================================================
+15. CAMERA RIG AND SPLINE
+================================================================================
+
+The camera follows a Catmull-Rom spline with 5 control points, one per
+act. Scroll progress samples the curve.
+
+components/scene/CameraRig.tsx (essence):
+
+  import { useFrame, useThree } from "@react-three/fiber";
+  import * as THREE from "three";
+  import { useMemo } from "react";
+  import { useScroll } from "@/lib/scroll";
+
+  const points = [
+    new THREE.Vector3( 0.0,  0.0, 5.0),   // Act 1 Spark
+    new THREE.Vector3( 3.0,  1.0, 7.0),   // Act 2 Bloom
+    new THREE.Vector3( 0.5,  0.5, 4.5),   // Act 3 Fusion
+    new THREE.Vector3(-2.0, -1.0, 6.5),   // Act 4 Current
+    new THREE.Vector3( 0.0,  3.0, 8.5),   // Act 5 Pool
+  ];
+
+  const lookPoints = [
+    new THREE.Vector3(0, 0, 0),
+    new THREE.Vector3(0, 0, 0),
+    new THREE.Vector3(0, 0.5, 0),
+    new THREE.Vector3(0, 0, 0),
+    new THREE.Vector3(0, 0, 0),
+  ];
+
+  export default function CameraRig() {
+    const { camera } = useThree();
+    const curve = useMemo(
+      () => new THREE.CatmullRomCurve3(points, false, "catmullrom", 0.4),
+      []
+    );
+    const lookCurve = useMemo(
+      () => new THREE.CatmullRomCurve3(lookPoints, false, "catmullrom", 0.4),
+      []
+    );
+    const target = useMemo(() => new THREE.Vector3(), []);
+    const look = useMemo(() => new THREE.Vector3(), []);
+
+    useFrame(() => {
+      const p = useScroll.getState().progress;
+      curve.getPointAt(p, target);
+      lookCurve.getPointAt(p, look);
+      camera.position.lerp(target, 0.08);
+      camera.lookAt(look);
+    });
+
+    return null;
+  }
+
+Use leva (dev-only) to fine-tune the five keypoints interactively, then
+hardcode them.
+
+================================================================================
+16. SCROLL SYSTEM (LENIS + ZUSTAND)
+================================================================================
+
+lib/scroll.ts:
+
+  import { create } from "zustand";
+  interface ScrollState {
+    progress: number;
+    act: number;
+    set: (p: number) => void;
+  }
+  export const useScroll = create<ScrollState>((set) => ({
+    progress: 0,
+    act: 0,
+    set: (progress) =>
+      set({ progress, act: Math.min(4, Math.floor(progress * 5)) }),
+  }));
+
+components/providers/LenisProvider.tsx:
+
+  "use client";
+  import Lenis from "lenis";
+  import { useEffect } from "react";
+  import { useScroll } from "@/lib/scroll";
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  export default function LenisProvider({
+    children,
+  }: { children: React.ReactNode }) {
+    useEffect(() => {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+      const raf = (time: number) => {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      };
+      requestAnimationFrame(raf);
+
+      lenis.on("scroll", ({ scroll, limit }: any) => {
+        const p = limit ? scroll / limit : 0;
+        useScroll.getState().set(p);
+        ScrollTrigger.update();
+      });
+
+      return () => lenis.destroy();
+    }, []);
+    return <>{children}</>;
+  }
+
+================================================================================
+17. THE FIVE ACTS — FRAME-BY-FRAME
+================================================================================
+
+Each act occupies one viewport height by default (100vh). Act 3 (Fusion)
+is 300vh because it contains 3 featured projects with scroll-snap.
+
+ACT 1 — THE SPARK    scroll 0.00 – 0.12 (12% of page)
+  Length: 100vh
+  Canvas: uProgress 0 → 0.12, uAct 0 → 0.48
+  Camera: stays near point 0, tiny drift
+  Seed: tiny, pulsing, one iris pinpoint
+  HTML overlay (top-left, mono 11px): "PROFUZION — DIGITAL DESIGN ATELIER"
+  HTML overlay (bottom-left, display italic hero):
+     "We design the overflow between idea and experience."
+  HTML overlay (bottom-center, mono): "SCROLL TO BEGIN ↓"
+  Entry: copy fades in from 0→5% scroll, scroll hint bounces subtly.
+  Exit: all copy fades out between 8%→12%.
+
+ACT 2 — THE BLOOM    scroll 0.12 – 0.34 (22%)
+  Length: 200vh  (slower read, bigger moment)
+  Canvas: uProgress 0.12→0.34, uAct 0.48→1.36
+  Camera: pulls back to point 1, slight orbital drift
+  Seed: morphs spark→bloom; petal shells explode outward
+  HTML overlay (center-left, display):
+     "Ideas bloom in profusion."
+     deck (body): "A studio where brand, motion and space converge into
+                   living systems."
+  HTML overlay (right rail, mono): vertical list of disciplines:
+     "BRAND / MOTION / 3D / WEB / SPATIAL"
+  Entry: word-by-word reveal via SplitText, scrubbed to scroll.
+
+ACT 3 — THE FUSION   scroll 0.34 – 0.62 (28%)
+  Length: 300vh
+  Canvas: uProgress 0.34→0.62, uAct 1.36→2.48
+  Camera: orbits inward, point 2, DoF narrows
+  Seed: morphs bloom→fusion; crystallizes into vertical tower
+  Three featured projects, each snapping for ~100vh:
+     Project A — "Meridian" — client quote — year/services/region
+     Project B — "Halcyon" — client quote — year/services/region
+     Project C — "Northfield Press" — client quote — year/services/region
+  HTML overlay: right-aligned card per project
+  Between projects, the Seed briefly takes the project's color key.
+
+ACT 4 — THE CURRENT  scroll 0.62 – 0.84 (22%)
+  Length: 200vh
+  Canvas: uProgress 0.62→0.84, uAct 2.48→3.36
+  Camera: low angle, point 3
+  Seed: morphs fusion→current; flowing ribbon
+  HTML overlay (left rail): five services, highlight on scroll:
+     01 / BRAND SYSTEMS
+     02 / MOTION & FILM
+     03 / 3D & SPATIAL
+     04 / WEB PLATFORMS
+     05 / CREATIVE DIRECTION
+  Each service has one-line description to its right.
+  Interaction: hovering a service bends the ribbon toward it (mouse uni).
+
+ACT 5 — THE INVITATION  scroll 0.84 – 1.00 (16%)
+  Length: 100vh + 40vh footer
+  Canvas: uProgress 0.84→1.00, uAct 3.36→4.0
+  Camera: rises to top-down, point 4
+  Seed: morphs current→pool; flat disc, ripple on click
+  HTML overlay (center, display italic):
+     "What will you grow here?"
+  Below: email input (underline only), submit arrow
+  Submit triggers ripple uniform; toast "We'll be in touch soon."
+  Footer below (mono): address, socials, © 2026 Profuzion Studio.
+
+================================================================================
+18. HOMEPAGE COPY (FINAL, READY TO SHIP)
+================================================================================
+
+[ACT 1 — THE SPARK]
+  Eyebrow (mono):   PROFUZION — DIGITAL DESIGN ATELIER
+  Hero (display):   "We design the overflow between *idea* and
+                    *experience*."
+  Hint (mono):      SCROLL TO BEGIN
+
+[ACT 2 — THE BLOOM]
+  Headline:         "Ideas *bloom* in profusion."
+  Deck:             "We are a digital design atelier. We shape brand,
+                    motion and space into systems that feel alive —
+                    the kind of worlds that carry a story from first
+                    frame to final click."
+  Rail labels:      BRAND  /  MOTION  /  3D  /  WEB  /  SPATIAL
+
+[ACT 3 — THE FUSION]
+  Section label:    SELECTED WORK — 2024—2026
+  Project 01:
+    Name:           Meridian
+    Summary:        A calendar reimagined as a tool for focus.
+    Quote:          "They gave our product a pulse." — Rea Kapoor, CEO
+    Meta:           2025 · Brand, Product, Motion · San Francisco
+  Project 02:
+    Name:           Halcyon
+    Summary:        An audio studio's first permanent identity.
+    Quote:          "It sounds like our music looks." — Jules Marchand
+    Meta:           2025 · Brand, 3D · Paris
+  Project 03:
+    Name:           Northfield Press
+    Summary:        Three hundred years of print, finally legible.
+    Quote:          "Our archive feels current again." — The editors
+    Meta:           2024 · Editorial, Web · London
+
+[ACT 4 — THE CURRENT]
+  Section label:   CAPABILITIES
+  01 / BRAND SYSTEMS
+       Identities that behave like products, not posters.
+  02 / MOTION & FILM
+       Thirty-second stories that do the work of thirty pages.
+  03 / 3D & SPATIAL
+       Worlds that survive contact with the real.
+  04 / WEB PLATFORMS
+       Sites you actually want to come back to.
+  05 / CREATIVE DIRECTION
+       A partner in the room when it matters.
+
+[ACT 5 — THE INVITATION]
+  Headline:        "What will you *grow* here?"
+  Input label:     Your email
+  Submit label:    Begin
+  Post-submit:     "We'll be in touch within two working days."
+  Footer-left:     Profuzion Studio
+                   [Your address]
+  Footer-center:   hello@profuzion.studio
+                   instagram · are.na · linkedin
+  Footer-right:    © 2026 Profuzion Studio
+                   Built with care in-house.
+
+================================================================================
+19. HTML OVERLAY LAYOUT PER ACT
+================================================================================
+
+All overlays share a <Section> wrapper:
+
+  <section
+    id={`act-${n}`}
+    className="relative w-full min-h-screen flex items-center"
+    aria-labelledby={`act-${n}-heading`}
+  >
+    <div className="container mx-auto px-6 md:px-12 lg:px-20">
+      ...content
+    </div>
+  </section>
+
+Container grid: 12 columns, 24px gutter on mobile, 48px on desktop.
+Max-width 1440px.
+
+Breakpoints:
+  sm   640   stacks rail into top
+  md   768   two-column layouts enabled
+  lg  1024   full 12-col grid
+  xl  1280   type scales kick in
+
+Overlay interactions:
+  - All overlays default to pointer-events-none.
+  - Interactive elements (links, inputs) get pointer-events-auto on self.
+  - Text selection: enabled everywhere except on display headings
+    (user-select: none on headings to protect the aesthetic).
+
+================================================================================
+20. CUSTOM CURSOR
+================================================================================
+
+components/ui/Cursor.tsx (essence):
+
+  "use client";
+  import { useEffect, useRef } from "react";
+
+  export default function Cursor() {
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+      const el = ref.current!;
+      let x = 0, y = 0, tx = 0, ty = 0;
+      const move = (e: MouseEvent) => { tx = e.clientX; ty = e.clientY; };
+      window.addEventListener("mousemove", move);
+      const raf = () => {
+        x += (tx - x) * 0.18;
+        y += (ty - y) * 0.18;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+        requestAnimationFrame(raf);
+      };
+      raf();
+      return () => window.removeEventListener("mousemove", move);
+    }, []);
+    return (
+      <div
+        ref={ref}
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-[80]
+                   -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full
+                   bg-bone mix-blend-difference transition-transform"
+      />
+    );
+  }
+
+Hover rule: any element with data-cursor="hover" scales the cursor to
+32px with a soft iris ring. Implement via a CSS target rule.
+
+Touch devices: hide cursor entirely via `@media (hover: none)`.
+
+Mouse position is also pushed to the shader via useMousePosition hook.
+
+================================================================================
+21. POST-PROCESSING STACK
+================================================================================
+
+components/scene/PostFX.tsx (essence):
+
+  import { EffectComposer, Bloom, ChromaticAberration, Vignette }
+    from "@react-three/postprocessing";
+  import { BlendFunction } from "postprocessing";
+  import { useScroll } from "@/lib/scroll";
+  import { useMemo } from "react";
+
+  export default function PostFX() {
+    return (
+      <EffectComposer multisampling={0}>
+        <Bloom
+          intensity={0.6}
+          luminanceThreshold={0.25}
+          luminanceSmoothing={0.9}
+          mipmapBlur
+        />
+        <ChromaticAberration
+          offset={[0.0008, 0.0008]}
+          blendFunction={BlendFunction.NORMAL}
+        />
+        <Vignette eskil={false} offset={0.2} darkness={0.7} />
+      </EffectComposer>
+    );
+  }
+
+Bloom intensity ramps 0.3 → 1.2 during Act 2 Bloom. Bind to scroll
+progress via useFrame + ref.
+
+================================================================================
+22. LOADING SEQUENCE
+================================================================================
+
+On first load, before the canvas is hydrated:
+  1. Show a full-viewport black veil.
+  2. Center: a single 8px iris dot.
+  3. Mono label below: "LOADING PROFUSION — 0%".
+  4. Percentage counts up as assets load (track via useProgress from drei).
+  5. At 100%, dot pulses three times, veil fades up revealing the canvas.
+  6. After veil clears, Act 1 copy fades in over 800ms.
+
+components/ui/LoadingVeil.tsx pattern:
+
+  import { useProgress } from "@react-three/drei";
+  ...uses progress.progress, fades out at 100 via CSS opacity + visibility.
+
+Never allow the canvas to pop in with no intro. The first 2 seconds set
+the entire tone.
+
+================================================================================
+23. PERFORMANCE BUDGET AND TECHNIQUES
+================================================================================
+
+Budget:
+  LCP                  < 2.5s
+  CLS                  < 0.05
+  INP                  < 200ms
+  FPS (M1 Air)          60
+  FPS (2019 MBP 13")    45
+  FPS (mid Android)     30+
+  JS first-load gzip   < 250KB
+  GLB                  < 500KB
+  HDRI (1k)            < 300KB
+  Total page weight    < 2MB
+  Lighthouse perf      ≥ 90
+
+Techniques:
+  - dynamic import Scene with ssr:false
+  - Draco compression on GLB
+  - 1k HDRI, compressed .hdr, or swap for RoomEnvironment preset
+  - dpr cap at 1.5
+  - antialias false + FXAA in post (cheaper than MSAA)
+  - frameloop="always" but let useScroll + useFrame drive updates; if
+    measuring reveals redundant renders, switch to "demand" and invalidate
+    on scroll
+  - Throttle shader uniform updates to 60Hz max
+  - Use <PerformanceMonitor> from drei to degrade dpr on low frame rates
+  - Preload critical font files with next/font
+  - Lazy-mount PostFX after initial paint
+  - Use CSS contain: layout paint for overlays
+  - No layout shift: reserve image dimensions, fonts via next/font
+  - No third-party scripts on first paint; analytics loaded after idle
+
+Memory:
+  - Dispose geometry and materials on unmount (canvas stays mounted though
+    in our case)
+  - Cap texture sizes at 1024 where possible
+  - Use mipmaps for caustics texture
+
+Network:
+  - Self-host all fonts and HDRI
+  - Immutable caching on /public via Vercel defaults
+  - Avoid any runtime data fetching on home
+
+================================================================================
+24. BUILD SEQUENCE (STEP-BY-STEP FOR CURSOR)
+================================================================================
+
+Do these in order. After each step, stop, run `pnpm dev`, verify, commit.
+
+ 1. Bootstrap Next.js + TS + Tailwind + App Router.
+ 2. Add dependencies from Section 7. Verify install.
+ 3. Configure next.config.js for GLSL (Section 8).
+ 4. Configure Tailwind (Section 9) and create globals.css with tokens.
+ 5. Add local fonts via next/font/local to app/layout.tsx.
+ 6. Add `LenisProvider` and mount in layout. Verify smooth scrolling on
+    a dummy 500vh page.
+ 7. Create lib/scroll.ts zustand atom. Log progress on scroll.
+ 8. Scaffold the five empty Act overlay components (100vh each). Verify
+    scroll atom reports 0–1.
+ 9. Create empty <Scene /> with just a rotating Icosahedron and a
+    directional light. Dynamic import into page.tsx, ssr:false.
+10. Build <Lights /> — one key, one rim, one ambient fill.
+11. Build <Environment /> — load HDRI; use RoomEnvironment if HDRI not
+    yet available.
+12. Write the shader includes (noise, fresnel, easing).
+13. Write seed.vert.glsl and seed.frag.glsl per Section 13.
+14. Build <SeedMaterial /> wrapping ShaderMaterial. Pass uniforms.
+15. Replace Icosahedron with <Seed /> using the procedural fallback.
+16. Wire uProgress and uAct to scroll atom via useFrame. Scroll the page
+    and watch the shape transform — this is the single biggest milestone.
+17. Build <CameraRig /> with the spline. Scrub and tune five keypoints
+    using a temporary leva panel.
+18. Build <PostFX /> (bloom, CA, vignette). Tune bloom against Act 2.
+19. Author Act 1 overlay copy + entry animation (GSAP ScrollTrigger
+    scrubbed). Verify fade in/out.
+20. Author Act 2 overlay with SplitText word reveal.
+21. Author Act 3 overlay with three project cards and scroll-snap.
+22. Author Act 4 overlay with services rail and mouse-based ribbon warp.
+23. Author Act 5 overlay with email input and ripple on submit.
+24. Build <LoadingVeil /> using drei's useProgress.
+25. Build <Nav />, <ScrollProgress />, <Cursor />.
+26. Add reduced-motion fallback per Section 26.
+27. Add SEO meta / OG image per Section 27.
+28. Lighthouse audit. Fix until ≥ 90/95/100/100.
+29. Cross-browser: Chrome, Safari, Firefox, Arc. iOS Safari, Android
+    Chrome.
+30. Deploy to Vercel preview. Share. Iterate on copy.
+31. Production deploy.
+
+================================================================================
+25. ACCESSIBILITY FLOOR
+================================================================================
+
+  - All overlay content is real HTML, semantically structured.
+  - Canvas: aria-hidden="true", role="presentation".
+  - Every act section: <section aria-labelledby>, each has a visible <h2>.
+  - Color contrast:
+      bone on obsidian         15.6 : 1  (AAA)
+      iris on obsidian          5.8 : 1  (AA large / non-text only)
+      iris on bone              4.6 : 1  (AA large)
+      bone-dim on obsidian      9.3 : 1  (AAA body)
+  - Never use iris for body copy.
+  - Focus states: 2px iris outline, 4px offset, 2px radius.
+  - Keyboard:
+      Tab reaches every link, input, button in logical order.
+      ↓ / PgDn jump to next act (Lenis scrollTo).
+      ↑ / PgUp jump to previous act.
+      Esc closes the loading veil if stuck.
+  - Screen readers:
+      Hero text is a real <h1>.
+      Project cards are <article> with <h3>.
+      Services are <ul><li>.
+      Cursor and scroll progress are aria-hidden.
+  - Motion: respect prefers-reduced-motion (Section 26).
+  - Touch targets ≥ 44×44 on mobile.
+  - No purely-color signals — any state change pairs color with shape or
+    position.
+
+================================================================================
+26. REDUCED-MOTION FALLBACK
+================================================================================
+
+When prefers-reduced-motion: reduce:
+  - Lenis smoothing OFF (native scroll).
+  - Shader disables vertex noise (set uTime multiplier to 0 via uniform).
+  - Camera stops moving; stays at average position of the five keypoints.
+  - Copy cross-fades rather than word-by-word reveals.
+  - Post-processing bloom fixed at medium, no scroll ramp.
+  - Custom cursor hidden; default OS cursor shown.
+  - Ripples on pool replaced with a static subtle glow.
+
+Key: the reduced-motion version still tells the same story. Each act is
+still a distinct visual moment, just without the animation connective
+tissue. This is a must for inclusive design and for awards juries.
+
+Implementation:
+  lib/usePrefersReducedMotion.ts returns a boolean. Scene and Lenis read
+  it and branch accordingly.
+
+================================================================================
+27. SEO, META, OG
+================================================================================
+
+app/layout.tsx metadata:
+
+  export const metadata: Metadata = {
+    metadataBase: new URL("https://profuzion.studio"),
+    title: "Profuzion Studio — Digital Design Atelier",
+    description:
+      "We design the overflow between idea and experience. A digital
+       design atelier working in brand, motion, 3D and web.",
+    openGraph: {
+      title: "Profuzion Studio",
+      description: "Where ideas overflow into form.",
+      url: "https://profuzion.studio",
+      siteName: "Profuzion Studio",
+      images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Profuzion Studio",
+      description: "Where ideas overflow into form.",
+      images: ["/og-image.png"],
+    },
+    robots: { index: true, follow: true },
+    icons: {
+      icon: "/favicon.svg",
+      apple: "/apple-icon.png",
+    },
+  };
+
+OG image: 1200×630, obsidian background, wordmark top-left, one frame of
+the Seed bloom centered. Generate as opengraph-image.tsx in the app dir.
+
+Add robots.ts and sitemap.ts at app root.
+
+================================================================================
+28. ANALYTICS AND ERROR TRACKING
+================================================================================
+
+Analytics: Vercel Web Analytics + Speed Insights. Load after idle.
+Error tracking (optional but recommended): Sentry, session replay OFF for
+privacy, only errors and performance.
+
+Events worth tracking (fire via next/script defer):
+  - scroll_reach_act_N (N = 2..5)
+  - email_submit
+  - project_view (project name)
+  - cta_click
+  - reduced_motion_on
+
+No other tracking. No cookies required at launch.
+
+================================================================================
+29. AUDIO DESIGN (OPTIONAL v1.1)
+================================================================================
+
+If budget allows post-launch:
+  - Single ambient drone loop, ~60s, -24dB, looping seamlessly.
+  - Opt-in: muted by default. A small speaker icon top-right toggles.
+  - Layered SFX (all very subtle, -30dB):
+      * Spark: a soft ignition on first scroll nudge.
+      * Bloom: low whoosh as petals expand.
+      * Fusion: crystalline shimmer on each project reveal.
+      * Current: water-flow loop during ribbon.
+      * Pool: single drop on email submit.
+  - Use Web Audio API directly. No external library needed.
+  - Always respect prefers-reduced-motion — reduced mode mutes audio too.
+
+Ship audio after launch only; it is polish, not core.
+
+================================================================================
+30. TESTING STRATEGY
+================================================================================
+
+Manual cross-device:
+  M1 Air Chrome / Safari     60fps target
+  M1 Pro Firefox             60fps
+  Windows mid laptop Edge    45fps minimum
+  iPhone 13 Safari           30fps minimum
+  Pixel 6 Chrome             30fps minimum
+
+Automated:
+  - next lint (must pass)
+  - tsc --noEmit (must pass)
+  - Lighthouse CI in PR checks (perf ≥ 90 required)
+  - Playwright smoke: home loads, scroll reaches bottom, email input
+    accepts valid email, reduced-motion route works.
+
+Visual regression:
+  - Optional: Chromatic or Percy on Storybook of HTML overlays (not the
+    canvas). Not required for v1.
+
+Accessibility:
+  - axe-core scan, zero critical issues required.
+  - Manual keyboard walk-through before each release.
+  - VoiceOver test on macOS.
+
+================================================================================
+31. LAUNCH CHECKLIST
+================================================================================
+
+Pre-flight (one week before launch):
+  [ ] All copy proofread by a second human
+  [ ] Final project assets in place (3 projects, real)
+  [ ] Real email address on contact route
+  [ ] Domain purchased, DNS pointed to Vercel
+  [ ] SSL verified, redirect www → apex
+  [ ] Favicon and app icons in all required sizes
+  [ ] OG image shows correctly in Slack, iMessage, Twitter
+  [ ] Sitemap generates; robots.txt allows crawling
+  [ ] Analytics events firing
+  [ ] Lighthouse ≥ 90 perf on mobile emulation
+
+Launch day:
+  [ ] Vercel production deploy
+  [ ] Smoke test on 3 devices
+  [ ] Submit to Awwwards, CSS Design Awards, FWA, httpster, SiteInspire,
+      Lapa, Land-book, One Page Love
+  [ ] Post to personal/company socials with 15s video capture
+  [ ] Email clients a teaser link
+
+Post-launch week:
+  [ ] Monitor error rate in Sentry/Vercel
+  [ ] Collect feedback, maintain a punch list
+  [ ] Fix top three usability findings within a week
+  [ ] Capture a reel for portfolio case study
+
+================================================================================
+32. POST-LAUNCH AWARDS SUBMISSION PLAN
+================================================================================
+
+Tier 1 submit week-1:
+  Awwwards               Site of the Day submission
+  FWA                    Site of the Day
+  CSS Design Awards      Website of the Day
+
+Tier 2 submit week-2:
+  The Webby Awards       annual
+  Communication Arts     Interactive Annual
+  TDC                    Typographic excellence
+
+Directories (submit same week):
+  httpster · siteinspire · lapa.ninja · land-book · onepagelove · typewolf
+  · bestfolios · calltoidea · muzli-inspiration
+
+For each submission, prepare:
+  - Final URL
+  - 30–60s screencap in MP4, H.264, 1920×1080
+  - 6 hero stills, 1920×1080
+  - 150-word case summary (written in studio voice)
+  - Credits list (you, 3D artist, developer if external, writer)
+
+================================================================================
+33. FUTURE ROADMAP (v2, v3)
+================================================================================
+
+v2 (1–2 months post-launch):
+  - Real GLB morph target mesh swapped in for procedural Seed
+  - Case study detail pages (/work/[slug])
+  - Journal / writing section (/journal)
+  - Proper CMS (Sanity or Contentlayer) for projects and journal
+  - Audio layer opt-in
+
+v3 (quarter 2 post-launch):
+  - Interactive "studio portrait" page that uses the Seed in a new form
+  - Hiring page with a distinct mode of the same 3D system
+  - Case study films (60s per project)
+  - Live status widget fed from a tool like Tella or Posthog
+
+================================================================================
+34. DEFINITION OF DONE
+================================================================================
+
+[ ] Scroll from top to bottom tells a single continuous story on one 3D
+    object
+[ ] 60fps on M1 Air Chrome
+[ ] Lighthouse: Perf ≥ 90, A11y ≥ 95, Best Practices 100, SEO 100
+[ ] Reduced-motion mode functional and considered
+[ ] No CLS anywhere
+[ ] All copy final, no placeholders
+[ ] Deployed on Vercel production with custom domain
+[ ] OG image correct
+[ ] README explains how to swap projects and services via content/
+[ ] Submitted to Awwwards, FWA, CSSDA
+[ ] Captured a 45s screen-capture reel for portfolio
+
+================================================================================
+END OF BRIEF — BUILT WITH CARE BY PROFUZION STUDIO
+================================================================================

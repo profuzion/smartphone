@@ -1,0 +1,678 @@
+{
+  "content": [
+    {
+      "id": "pz-hero",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-hero-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "top",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§1 Hero (HTML ID: top)"
+    },
+    {
+      "id": "pz-hero-c",
+      "name": "container",
+      "parent": "pz-hero",
+      "children": [
+        "pz-hero-e0",
+        "pz-hero-e1",
+        "pz-hero-h1",
+        "pz-hero-lede",
+        "pz-hero-btns",
+        "pz-hero-strip"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Hero container"
+    },
+    {
+      "id": "pz-hero-e0",
+      "name": "text-basic",
+      "parent": "pz-hero-c",
+      "children": [],
+      "settings": {
+        "text": "Winkler, Manitoba · since 1999 · v2"
+      },
+      "label": "Eyebrow left"
+    },
+    {
+      "id": "pz-hero-e1",
+      "name": "text-basic",
+      "parent": "pz-hero-c",
+      "children": [],
+      "settings": {
+        "text": "now booking summer 2026"
+      },
+      "label": "Eyebrow right"
+    },
+    {
+      "id": "pz-hero-h1",
+      "name": "heading",
+      "parent": "pz-hero-c",
+      "children": [],
+      "settings": {
+        "tag": "h1",
+        "text": "Brand & Website design for owners who want to stand out.\n(Style “stand out” with accent in Bricks — split into spans if needed.)"
+      },
+      "label": "H1"
+    },
+    {
+      "id": "pz-hero-lede",
+      "name": "text-basic",
+      "parent": "pz-hero-c",
+      "children": [],
+      "settings": {
+        "text": "Profuzion is the quiet design studio in Winkler, Manitoba — the one local industry, construction, food production, and e-commerce send their best referrals to. Brands and websites built to read the way you sound across the desk."
+      },
+      "label": "Lede"
+    },
+    {
+      "id": "pz-hero-btns",
+      "name": "container",
+      "parent": "pz-hero-c",
+      "children": [
+        "pz-hero-b1",
+        "pz-hero-b2"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "CTA row"
+    },
+    {
+      "id": "pz-hero-b1",
+      "name": "button",
+      "parent": "pz-hero-btns",
+      "children": [],
+      "settings": {
+        "text": "Book a 30-min call"
+      },
+      "label": "→ #contact (set link in Bricks)"
+    },
+    {
+      "id": "pz-hero-b2",
+      "name": "button",
+      "parent": "pz-hero-btns",
+      "children": [],
+      "settings": {
+        "text": "See the work"
+      },
+      "label": "→ #branding (set link + ghost style)"
+    },
+    {
+      "id": "pz-hero-strip",
+      "name": "text-basic",
+      "parent": "pz-hero-c",
+      "children": [],
+      "settings": {
+        "text": "INDUSTRIAL · CONTRACTORS · FOOD PRODUCERS · E-COMMERCE SELLERS\n\nscroll ↓ · Brand & Website design for owners who want to stand out."
+      },
+      "label": "Bottom strip (mono in Bricks)"
+    },
+    {
+      "id": "pz-ind",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-ind-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "industries",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§2 Industries (HTML ID: industries)"
+    },
+    {
+      "id": "pz-ind-c",
+      "name": "container",
+      "parent": "pz-ind",
+      "children": [
+        "pz-ind-ey",
+        "pz-ind-h2",
+        "pz-ind-body"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Industries"
+    },
+    {
+      "id": "pz-ind-ey",
+      "name": "text-basic",
+      "parent": "pz-ind-c",
+      "children": [],
+      "settings": {
+        "text": "// who we are for"
+      },
+      "label": "Eyebrow"
+    },
+    {
+      "id": "pz-ind-h2",
+      "name": "heading",
+      "parent": "pz-ind-c",
+      "children": [],
+      "settings": {
+        "tag": "h2",
+        "text": "Four types of owners who keep coming back to us."
+      },
+      "label": "H2"
+    },
+    {
+      "id": "pz-ind-body",
+      "name": "text-basic",
+      "parent": "pz-ind-c",
+      "children": [],
+      "settings": {
+        "text": "We don't pretend to be every studio for every business. These four verticals share something we've spent twenty-five years getting right — trust, said quietly.\n\nINDUSTRIAL\nLead: Capability that shows up in the spec sheet.\nDeliverables: Tradeshow and facility systems · Product-line architecture for distributors · Audit-ready safety and quality narrative · Technical and catalog writing · Hiring and talent microsites\nProof: For plant managers and owners who get understood the first time.\n\nCONTRACTORS\nLead: Bids, crews, and a name on the side of the shop.\nDeliverables: Truck, yard, and crew apparel systems · Estimate and bid presentation templates · Local project galleries and case pages · Warranty and change-order clarity in writing · Trade school and hiring outreach\nProof: For firms that live and die on callbacks.\n\nFOOD PRODUCERS\nLead: Provenance people can read on the label.\nDeliverables: Label and case-pack design systems · Wholesale and distributor sheets · Origin, allergen, and compliance copy · Field-to-facility story on the site · Co-packer and export-facing PDFs\nProof: For teams who need trust before the first bite.\n\nE-COMMERCE SELLERS\nLead: A shop that doesn't feel like a template.\nDeliverables: DTC and marketplace listing strategy · Product and bundle page system · Email and post-purchase flows · Review and UGC in the right places · Return and policy copy that still sounds human\nProof: For owners who A/B test but don't sound like a help desk."
+      },
+      "label": "Verticals copy"
+    },
+    {
+      "id": "pz-cta",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-cta-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "contact",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§8 Contact (HTML ID: contact)"
+    },
+    {
+      "id": "pz-cta-c",
+      "name": "container",
+      "parent": "pz-cta",
+      "children": [
+        "pz-cta-ey",
+        "pz-cta-h2",
+        "pz-cta-p",
+        "pz-cta-dl",
+        "pz-cta-hint"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "CTA block"
+    },
+    {
+      "id": "pz-cta-ey",
+      "name": "text-basic",
+      "parent": "pz-cta-c",
+      "children": [],
+      "settings": {
+        "text": "// start a conversation"
+      },
+      "label": "Eyebrow"
+    },
+    {
+      "id": "pz-cta-h2",
+      "name": "heading",
+      "parent": "pz-cta-c",
+      "children": [],
+      "settings": {
+        "tag": "h2",
+        "text": "Ready when you are."
+      },
+      "label": "H2 (italic you in Bricks)"
+    },
+    {
+      "id": "pz-cta-p",
+      "name": "text-basic",
+      "parent": "pz-cta-c",
+      "children": [],
+      "settings": {
+        "text": "The fastest way to start is a 30-minute call. No pitch deck. We ask three questions, you ask three, we both leave with a clear next step."
+      },
+      "label": "Intro"
+    },
+    {
+      "id": "pz-cta-dl",
+      "name": "text-basic",
+      "parent": "pz-cta-c",
+      "children": [],
+      "settings": {
+        "text": "Direct: hello@profuzionstudio.com\nPhone: 204.362.6171\nStudio: Winkler, Manitoba · R6W 0P4\nHours: Mon–Thu, 9–5 CT · Friday, by appointment"
+      },
+      "label": "Contact list"
+    },
+    {
+      "id": "pz-cta-hint",
+      "name": "text-basic",
+      "parent": "pz-cta-c",
+      "children": [],
+      "settings": {
+        "text": "Add your Bricks / Pro Form here, or use native fields. Panel labels: new project intake · reply ≤ 1 day. Footer note: no automated reply · founder writes back."
+      },
+      "label": "Form placeholder"
+    },
+    {
+      "id": "pz-about",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-about-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "about",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§ About (HTML ID: about)"
+    },
+    {
+      "id": "pz-about-c",
+      "name": "container",
+      "parent": "pz-about",
+      "children": [
+        "pz-about-h2",
+        "pz-about-txt"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "About"
+    },
+    {
+      "id": "pz-about-h2",
+      "name": "heading",
+      "parent": "pz-about-c",
+      "children": [],
+      "settings": {
+        "tag": "h2",
+        "text": "One studio. One person on the call."
+      },
+      "label": "H2"
+    },
+    {
+      "id": "pz-about-txt",
+      "name": "text-basic",
+      "parent": "pz-about-c",
+      "children": [],
+      "settings": {
+        "text": "One studio. One person on the call.\n\nI founded Profuzion in 1999 at a single desk in Winkler — not to follow design trends, but to help owners who have to be understood the first time and trusted the second. Lawyers, agents, shop floors, and front desks: the work has always been about clarity, not volume.\n\nThe stack changes every few years. The promise doesn't: a brand and site you can hand to a new hire without a translation layer. When you hire the studio, you work with me from first call to launch — no account manager, no handoff to someone who wasn’t in the room for the brief.\n\n// what we believe\nMost websites for service businesses look like they were ordered from a catalogue. Same hero photo. Same testimonial slider. Same forgettable trust.\n\nWe build brands and sites that read the way you sound across the desk — calm, certain, unmistakeably yours. The kind a referral lands on and finishes the call.\n— Profuzion · since 1999"
+      },
+      "label": "Founder + manifesto"
+    },
+    {
+      "id": "pz-brand",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-brand-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "branding",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§ Branding (HTML ID: branding)"
+    },
+    {
+      "id": "pz-brand-c",
+      "name": "container",
+      "parent": "pz-brand",
+      "children": [
+        "pz-brand-txt"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Branding"
+    },
+    {
+      "id": "pz-brand-txt",
+      "name": "text-basic",
+      "parent": "pz-brand-c",
+      "children": [],
+      "settings": {
+        "text": "Branding — case studies (detail: ACF + Query Loop)\n\nAlumaReel — An engineered brand for an engineered product.\nBrovek — A brand built to wear work boots.\nNature's Knoll — A century of local memory, set in editorial type.\nKeystone & Co. (concept) — A law firm that writes the way it advises."
+      },
+      "label": "Branding list"
+    },
+    {
+      "id": "pz-web",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-web-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "websites",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§ Websites (HTML ID: websites)"
+    },
+    {
+      "id": "pz-web-c",
+      "name": "container",
+      "parent": "pz-web",
+      "children": [
+        "pz-web-txt"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Websites"
+    },
+    {
+      "id": "pz-web-txt",
+      "name": "text-basic",
+      "parent": "pz-web-c",
+      "children": [],
+      "settings": {
+        "text": "Website case studies — full cards via ACF + Bricks loop\n\nNature's Knoll Golf — A nine-hole story, shot like a film.\nAlumaReel — Catalogue product, finished site.\nKeystone & Co. — A firm site that reads like a partnership letter.\nPembina Realty — Listings that feel like the place.\nNorthpoint Fitness — Energy without the screaming."
+      },
+      "label": "Websites list"
+    },
+    {
+      "id": "pz-proc",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-proc-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "process",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§ Process (HTML ID: process)"
+    },
+    {
+      "id": "pz-proc-c",
+      "name": "container",
+      "parent": "pz-proc",
+      "children": [
+        "pz-proc-h2",
+        "pz-proc-txt"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Process"
+    },
+    {
+      "id": "pz-proc-h2",
+      "name": "heading",
+      "parent": "pz-proc-c",
+      "children": [],
+      "settings": {
+        "tag": "h2",
+        "text": "How we work"
+      },
+      "label": "H2 (replace with your H2)"
+    },
+    {
+      "id": "pz-proc-txt",
+      "name": "text-basic",
+      "parent": "pz-proc-c",
+      "children": [],
+      "settings": {
+        "text": "01 Listen (Week 1) — We start at the desk you actually work from.\n02 Frame (Weeks 2–3) — Positioning, voice, and the shape of the work.\n03 Design (Weeks 3–6) — Identity and screens — drawn together, not in series.\n04 Ship (Weeks 6–8) — Built, tested, indexed, handed over. (Stack: align with your Bricks/WordPress build.)\n05 Tend (ongoing) — Quarterly rounds keep the work earning its keep."
+      },
+      "label": "Phases"
+    },
+    {
+      "id": "pz-eng",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-eng-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "engagements",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§ Pricing (HTML ID: engagements)"
+    },
+    {
+      "id": "pz-eng-c",
+      "name": "container",
+      "parent": "pz-eng",
+      "children": [
+        "pz-eng-h2",
+        "pz-eng-txt"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Engagements"
+    },
+    {
+      "id": "pz-eng-h2",
+      "name": "heading",
+      "parent": "pz-eng-c",
+      "children": [],
+      "settings": {
+        "tag": "h2",
+        "text": "Engagements"
+      },
+      "label": "H2"
+    },
+    {
+      "id": "pz-eng-txt",
+      "name": "text-basic",
+      "parent": "pz-eng-c",
+      "children": [],
+      "settings": {
+        "text": "Brand system (4–6 weeks) — fixed-scope quote. Founder interview, positioning, mark, palette, typography, voice document, and a one-page studio brief.\n\nBrand & website (8–10 weeks) — PRIMARY. Brand system + website built to perform. Most owners start here.\n\nTend (retainer) — Monthly. Quarterly content, SEO, performance, direct line to the founder."
+      },
+      "label": "Three tiers — refine in Bricks cards"
+    },
+    {
+      "id": "pz-quote",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-quote-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "quote",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "§ Pull quote (HTML ID: quote)"
+    },
+    {
+      "id": "pz-quote-c",
+      "name": "container",
+      "parent": "pz-quote",
+      "children": [
+        "pz-quote-ey",
+        "pz-quote-txt",
+        "pz-quote-src"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Quote"
+    },
+    {
+      "id": "pz-quote-ey",
+      "name": "text-basic",
+      "parent": "pz-quote-c",
+      "children": [],
+      "settings": {
+        "text": "// founder voice"
+      },
+      "label": "Eyebrow"
+    },
+    {
+      "id": "pz-quote-txt",
+      "name": "text-basic",
+      "parent": "pz-quote-c",
+      "children": [],
+      "settings": {
+        "text": "“We don't sell websites. We design the version of you that earns the next call — and then we make sure the site is the easy part.”"
+      },
+      "label": "Blockquote (style italic serif in Bricks)"
+    },
+    {
+      "id": "pz-quote-src",
+      "name": "text-basic",
+      "parent": "pz-quote-c",
+      "children": [],
+      "settings": {
+        "text": "Profuzion · founder voice doc, v3"
+      },
+      "label": "Source"
+    },
+    {
+      "id": "pz-halo",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-halo-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "hero-bg-note",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "Hero shader (optional)"
+    },
+    {
+      "id": "pz-halo-c",
+      "name": "container",
+      "parent": "pz-halo",
+      "children": [
+        "pz-halo-txt"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Note"
+    },
+    {
+      "id": "pz-halo-txt",
+      "name": "text-basic",
+      "parent": "pz-halo-c",
+      "children": [],
+      "settings": {
+        "text": "Next v2 used a WebGL halftone in the hero. In WordPress: use a static gradient/image, a Bricks background video, or enqueue the profuzion-brick-child script bundle when you add a canvas (see tools/wordpress/WORDPRESS-PARITY.md)."
+      },
+      "label": "Dev note — delete in production"
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "version": "1.12.4",
+  "globalClasses": [],
+  "globalElements": []
+}

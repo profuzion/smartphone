@@ -1,0 +1,348 @@
+/**
+ * Halftone — route-scoped tokens and primitives.
+ *
+ * Everything lives under .halftone so the concept demo's palette
+ * never collides with Profuzion Studio's brand tokens.
+ *
+ * Strategy:
+ *   • CSS custom properties for the palette, redeclared inside .halftone
+ *   • Tailwind utilities + arbitrary values reference these via var(--ht-*)
+ *   • Two reusable primitives: .ht-grid (1px hairline grid) and .ht-rule
+ */
+
+.halftone {
+  /* Palette */
+  --ht-ink: #0a0a0b;
+  --ht-void: #050507;
+  --ht-panel: #111114;
+  --ht-panel-2: #161619;
+  --ht-seam: #1b1b22;
+  --ht-seam-2: #25252e;
+  --ht-bone: #e8e8ea;
+  --ht-bone-mute: #b8b8bd;
+  --ht-dust: #8a8a91;
+  --ht-dust-low: #5a5a61;
+  --ht-signal: #b6ff38;
+  --ht-signal-glow: rgba(182, 255, 56, 0.55);
+  --ht-amber: #f4b95a;
+  --ht-pink: #ff7a5c;
+
+  /* Type */
+  --ht-mono: var(--font-mono), ui-monospace, "Geist Mono", SFMono-Regular,
+    monospace;
+  --ht-sans: var(--font-sans), Inter, ui-sans-serif, system-ui, sans-serif;
+  --ht-serif: var(--font-display), "Instrument Serif", Georgia, serif;
+
+  /* Sizes — ragged display scale for asymmetric layouts */
+  --ht-d1: clamp(2.5rem, 8.5vw, 8.25rem);
+  --ht-d2: clamp(2rem, 5.5vw, 5rem);
+  --ht-d3: clamp(1.5rem, 3.5vw, 3rem);
+
+  /* Eases */
+  --ht-eo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ht-eq: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* Page chrome */
+  background: var(--ht-ink);
+  color: var(--ht-bone);
+  font-family: var(--ht-sans);
+  position: relative;
+  isolation: isolate;
+  /* Mono numerics throughout — feels operator-grade */
+  font-variant-numeric: tabular-nums;
+}
+
+/* Selection */
+.halftone ::selection {
+  background: var(--ht-signal);
+  color: var(--ht-ink);
+}
+
+/* Hide native cursor on pointer-fine devices — replaced by ht-cursor */
+@media (hover: hover) and (pointer: fine) {
+  .halftone--cursor-on,
+  .halftone--cursor-on a,
+  .halftone--cursor-on button,
+  .halftone--cursor-on [role="button"],
+  .halftone--cursor-on [data-cursor] {
+    cursor: none;
+  }
+}
+
+/* Hairline grid backdrop — used on hero + cta */
+.ht-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+}
+
+.ht-grid--fine {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+  background-size: 32px 32px;
+}
+
+/* Hairline horizontal rule */
+.ht-rule {
+  height: 1px;
+  background: var(--ht-seam);
+}
+
+/* Mono small caps eyebrow */
+.ht-eyebrow {
+  font-family: var(--ht-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ht-dust);
+}
+
+.ht-eyebrow--signal {
+  color: var(--ht-signal);
+}
+
+/* Display headline — mono, ragged-left */
+.ht-display {
+  font-family: var(--ht-mono);
+  font-weight: 400;
+  font-size: var(--ht-d1);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-transform: lowercase;
+  color: var(--ht-bone);
+}
+
+.ht-display--lg {
+  font-size: var(--ht-d2);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.ht-display--md {
+  font-size: var(--ht-d3);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+/* JSON-style highlighter */
+.ht-json {
+  font-family: var(--ht-mono);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--ht-bone-mute);
+}
+.ht-json .k {
+  color: var(--ht-bone);
+}
+.ht-json .p {
+  color: var(--ht-dust-low);
+}
+.ht-json .s {
+  color: var(--ht-signal);
+}
+.ht-json .n {
+  color: var(--ht-amber);
+}
+
+/* Status pill */
+.ht-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  font-family: var(--ht-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--ht-seam);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--ht-dust);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.ht-pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ht-signal);
+  box-shadow: 0 0 12px 2px var(--ht-signal-glow);
+  animation: ht-pulse 2.4s var(--ht-eo) infinite;
+}
+
+@keyframes ht-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+/* Buttons — single primary style ("probe") */
+.ht-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1.125rem;
+  font-family: var(--ht-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: var(--ht-signal);
+  color: var(--ht-ink);
+  border: 1px solid var(--ht-signal);
+  border-radius: 2px;
+  transition:
+    background 200ms var(--ht-eo),
+    box-shadow 200ms var(--ht-eo),
+    transform 200ms var(--ht-eo);
+}
+.ht-btn:hover {
+  box-shadow: 0 0 0 4px rgba(182, 255, 56, 0.16);
+  transform: translateY(-1px);
+}
+.ht-btn:active {
+  transform: translateY(0);
+}
+
+.ht-btn--ghost {
+  background: transparent;
+  color: var(--ht-bone);
+  border-color: var(--ht-seam);
+}
+.ht-btn--ghost:hover {
+  border-color: var(--ht-bone);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+/* Code editor window chrome */
+.ht-window {
+  position: relative;
+  border: 1px solid var(--ht-seam);
+  border-radius: 6px;
+  background: linear-gradient(
+    180deg,
+    var(--ht-panel) 0%,
+    var(--ht-panel-2) 100%
+  );
+  overflow: hidden;
+}
+.ht-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem 0.875rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--ht-seam);
+}
+.ht-window__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--ht-seam-2);
+}
+.ht-window__dot--live {
+  background: var(--ht-signal);
+  box-shadow: 0 0 10px 2px var(--ht-signal-glow);
+}
+.ht-window__name {
+  margin-left: auto;
+  font-family: var(--ht-mono);
+  font-size: 0.6875rem;
+  color: var(--ht-dust);
+  letter-spacing: 0.04em;
+}
+
+/* Caret blink */
+.ht-caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--ht-bone);
+  vertical-align: -0.1em;
+  margin-left: 0.1em;
+  animation: ht-caret 1.05s steps(2, jump-none) infinite;
+}
+.ht-caret--signal {
+  background: var(--ht-signal);
+}
+@keyframes ht-caret {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Hover-link arrow */
+.ht-arrow {
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform 180ms var(--ht-eo);
+}
+a:hover .ht-arrow,
+button:hover .ht-arrow {
+  transform: translateX(3px);
+}
+
+/* Fade-in for swapped previews and on-mount cards */
+.ht-fadein {
+  animation: ht-fadein 320ms var(--ht-eo) both;
+}
+@keyframes ht-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* JSON code-fold "type-in" reveal for §3 phases */
+.ht-fold-line {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: ht-fold 320ms var(--ht-eo) forwards;
+}
+@keyframes ht-fold {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion — turn off pulses + animations */
+@media (prefers-reduced-motion: reduce) {
+  .halftone *,
+  .halftone *::before,
+  .halftone *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

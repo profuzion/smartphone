@@ -1,0 +1,339 @@
+/* Profuzion · v2 — route-scoped tokens, type, and utilities.
+ *
+ * Visual: Halftone iteration — near-black field + bone type + chartreuse signal
+ * (aligned with /halftone). Content unchanged; tokens drive the look.
+ *
+ * Semantics on dark UI:
+ *   --p-paper   → main canvas (dark)
+ *   --p-ink     → primary foreground (bone / light)
+ *   --p-void    → deeper black for bars, primary cards, footer
+ *   --p-amber   → signal accent (chartreuse)
+ */
+
+.profuzion-v2 {
+  /* Surfaces (dark) */
+  --p-paper: #0a0a0b;
+  --p-paper-2: #111114;
+  --p-paper-3: #161619;
+  --p-paper-low: #4a4a52;
+
+  /* Foreground */
+  --p-ink: #e8e8ea;
+  --p-ink-2: #c4c4c8;
+  --p-ink-3: #9a9aa1;
+
+  /* Muted copy */
+  --p-stone: #8a8a91;
+  --p-stone-mid: #6b6b72;
+  --p-stone-low: #5a5a61;
+
+  /* Signal — chartreuse (Halftone /ht-signal) */
+  --p-amber: #b6ff38;
+  --p-amber-2: #c8ff5c;
+  --p-amber-glow: rgba(182, 255, 56, 0.45);
+  --p-on-signal: #0a0a0b;
+
+  /* Deep black strip */
+  --p-void: #050507;
+
+  /* Legacy aliases — sage unused; keep for any references */
+  --p-sage: #6a7a5c;
+  --p-sage-2: #87977b;
+
+  /* Rules */
+  --p-rule: rgba(255, 255, 255, 0.1);
+  --p-rule-strong: rgba(255, 255, 255, 0.16);
+  --p-rule-on-ink: rgba(255, 255, 255, 0.12);
+
+  /* Type */
+  --p-sans: var(--font-manrope), "Inter", system-ui, sans-serif;
+  --p-serif: var(--font-display), "Instrument Serif", serif;
+  --p-mono: var(--font-mono), "Geist Mono", ui-monospace, monospace;
+
+  /* Easing */
+  --p-eo: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --p-eo-strong: cubic-bezier(0.2, 0.95, 0.05, 1);
+
+  background: var(--p-paper);
+  color: var(--p-ink);
+  font-family: var(--p-sans);
+  font-feature-settings:
+    "ss01" on,
+    "cv11" on;
+  letter-spacing: -0.005em;
+}
+
+/* Hide native cursor anywhere a custom cursor is active. */
+@media (hover: hover) and (pointer: fine) {
+  .profuzion-v2,
+  .profuzion-v2 * {
+    cursor: none !important;
+  }
+}
+
+/* ───────────────────────── Typography ───────────────────────── */
+
+.profuzion-v2 .p-eyebrow {
+  font-family: var(--p-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--p-stone);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.profuzion-v2 .p-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 1px;
+  background: var(--p-stone-mid);
+}
+
+.profuzion-v2 .p-eyebrow--amber {
+  color: var(--p-amber);
+}
+.profuzion-v2 .p-eyebrow--amber::before {
+  background: var(--p-amber);
+}
+
+.profuzion-v2 .p-display {
+  font-family: var(--p-sans);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+  color: var(--p-ink);
+  font-feature-settings: "ss01" on;
+}
+.profuzion-v2 .p-display--xl {
+  font-size: clamp(3.25rem, 8.5vw, 8.5rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+.profuzion-v2 .p-display--lg {
+  font-size: clamp(2.25rem, 5.2vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+.profuzion-v2 .p-display--md {
+  font-size: clamp(1.625rem, 3vw, 2.625rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Editorial italic accent — Instrument Serif inside Manrope display */
+.profuzion-v2 .p-italic {
+  font-family: var(--p-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.profuzion-v2 .p-body {
+  font-family: var(--p-sans);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  line-height: 1.55;
+  color: var(--p-stone);
+}
+
+.profuzion-v2 .p-lede {
+  font-family: var(--p-sans);
+  font-weight: 400;
+  font-size: clamp(1.125rem, 1.5vw, 1.4rem);
+  line-height: 1.45;
+  color: var(--p-ink-2);
+  letter-spacing: -0.012em;
+}
+
+/* ───────────────────────── Buttons ───────────────────────── */
+
+.profuzion-v2 .p-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.85rem 1.35rem;
+  font-family: var(--p-sans);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  background: var(--p-ink);
+  color: var(--p-paper);
+  border: 1px solid var(--p-ink);
+  border-radius: 999px;
+  transition:
+    background 220ms var(--p-eo),
+    color 220ms var(--p-eo),
+    transform 220ms var(--p-eo),
+    box-shadow 220ms var(--p-eo);
+}
+.profuzion-v2 .p-btn:hover {
+  background: var(--p-amber);
+  border-color: var(--p-amber);
+  color: var(--p-on-signal);
+  box-shadow: 0 12px 28px -16px var(--p-amber-glow);
+  transform: translateY(-1px);
+}
+.profuzion-v2 .p-btn .p-arrow {
+  display: inline-block;
+  transition: transform 220ms var(--p-eo);
+}
+.profuzion-v2 .p-btn:hover .p-arrow {
+  transform: translateX(3px);
+}
+
+.profuzion-v2 .p-btn--ghost {
+  background: transparent;
+  color: var(--p-ink);
+  border-color: var(--p-rule-strong);
+}
+.profuzion-v2 .p-btn--ghost:hover {
+  background: var(--p-ink);
+  color: var(--p-paper);
+  border-color: var(--p-ink);
+  box-shadow: none;
+}
+
+.profuzion-v2 .p-btn--amber {
+  background: var(--p-amber);
+  border-color: var(--p-amber);
+  color: var(--p-on-signal);
+}
+.profuzion-v2 .p-btn--amber:hover {
+  background: var(--p-ink);
+  border-color: var(--p-ink);
+  color: var(--p-void);
+}
+
+/* ───────────────────────── Surfaces ───────────────────────── */
+
+.profuzion-v2 .p-card {
+  position: relative;
+  background: var(--p-paper-2);
+  border: 1px solid var(--p-rule);
+  border-radius: 18px;
+  transition:
+    background 280ms var(--p-eo),
+    border-color 280ms var(--p-eo),
+    transform 280ms var(--p-eo),
+    box-shadow 280ms var(--p-eo);
+}
+.profuzion-v2 .p-card:hover {
+  border-color: var(--p-rule-strong);
+  box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.55);
+  transform: translateY(-2px);
+}
+
+/* Hairline rule — used everywhere as a section break */
+.profuzion-v2 .p-rule {
+  height: 1px;
+  width: 100%;
+  background: var(--p-rule);
+}
+.profuzion-v2 .p-rule--ink {
+  background: var(--p-rule-on-ink);
+}
+
+/* Hero / feature lift — subtle cool highlight on void */
+.profuzion-v2 .p-paper-grad {
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(182, 255, 56, 0.04) 0%,
+      transparent 70%
+    ),
+    var(--p-paper);
+}
+
+/* ───────────────────────── Browser-frame mockup chrome ───────────────────────── */
+
+.profuzion-v2 .p-browser {
+  position: relative;
+  border: 1px solid var(--p-rule-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--p-paper);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 40px 80px -30px rgba(0, 0, 0, 0.6),
+    0 12px 24px -16px rgba(0, 0, 0, 0.45);
+}
+.profuzion-v2 .p-browser__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--p-paper-2);
+  border-bottom: 1px solid var(--p-rule);
+}
+.profuzion-v2 .p-browser__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--p-paper-low);
+}
+.profuzion-v2 .p-browser__url {
+  flex: 1;
+  margin-left: 1rem;
+  padding: 0.25rem 0.65rem;
+  font-family: var(--p-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--p-stone);
+  background: var(--p-paper);
+  border-radius: 6px;
+  border: 1px solid var(--p-rule);
+  text-align: center;
+}
+
+/* ───────────────────────── Inverted (ink) section — deep void + bone type ─ */
+
+.profuzion-v2 .p-section--ink {
+  background: var(--p-void);
+  color: var(--p-ink);
+}
+.profuzion-v2 .p-section--ink .p-eyebrow {
+  color: var(--p-stone);
+}
+.profuzion-v2 .p-section--ink .p-eyebrow::before {
+  background: var(--p-stone-mid);
+}
+.profuzion-v2 .p-section--ink .p-display {
+  color: var(--p-ink);
+}
+.profuzion-v2 .p-section--ink .p-body {
+  color: var(--p-stone);
+}
+
+/* ───────────────────────── Animations ───────────────────────── */
+
+@keyframes p-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.profuzion-v2 .p-fadeup {
+  animation: p-fade-up 700ms var(--p-eo) both;
+}
+
+@keyframes p-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .profuzion-v2,
+  .profuzion-v2 * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

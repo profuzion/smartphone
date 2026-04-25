@@ -1,0 +1,10 @@
+/*
+Theme Name: Profuzion (Bricks child)
+Description: Enqueues v2 design tokens/utility CSS, custom cursor, and optional GSAP scroll motion for the Profuzion Bricks build.
+Author: Profuzion Studio
+Version: 1.0.0
+Template: bricks
+Text Domain: profuzion-brick
+*/
+
+/* Parent Bricks + assets load from functions.php. This file is required for WordPress to recognize the child theme. */
