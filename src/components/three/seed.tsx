@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type ElementRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import {
   MeshTransmissionMaterial,
@@ -91,16 +91,9 @@ function samplePreset(actFloat: number) {
 export function Seed() {
   const group = useRef<THREE.Group>(null);
   const mesh = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<
-    THREE.Material & {
-      distortion?: number;
-      temporalDistortion?: number;
-      distortionScale?: number;
-      chromaticAberration?: number;
-      roughness?: number;
-      color?: THREE.Color;
-    }
-  >(null);
+  const materialRef = useRef<ElementRef<typeof MeshTransmissionMaterial> | null>(
+    null,
+  );
 
   const targets = useRef({
     scale: 1,
@@ -140,7 +133,9 @@ export function Seed() {
       if (typeof mat.roughness === "number") {
         mat.roughness = lerp(mat.roughness, p.roughness, 0.06);
       }
-      if (mat.color) mat.color.lerp(p.color, 0.06);
+      if (mat.color instanceof THREE.Color) {
+        mat.color.lerp(p.color, 0.06);
+      }
     }
   });
 
@@ -183,9 +178,7 @@ export function Seed() {
           <mesh ref={mesh}>
             <icosahedronGeometry args={[1.15, 6]} />
             <MeshTransmissionMaterial
-              ref={
-                materialRef as unknown as React.Ref<THREE.Material>
-              }
+              ref={materialRef}
               samples={8}
               thickness={0.85}
               chromaticAberration={0.08}

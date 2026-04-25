@@ -44,14 +44,18 @@ function buildFullText() {
   origin.breakdown.forEach((b) => L.push(`- **${b.fragment}** — ${b.meaning}`));
   L.push("");
 
-  // Act-by-act narrative.
+  // Act-by-act narrative. (act1 uses h1/keywordLine/subhead — not h2/headline.)
   const flow: [string, string, string][] = [
-    [acts.act1.h2, acts.act1.headline, acts.act1.subhead],
+    [
+      acts.act1.eyebrow,
+      acts.act1.h1,
+      `${acts.act1.keywordLine}\n\n${acts.act1.subhead}`,
+    ],
     [acts.act2.h2, acts.act2.headline, acts.act2.body],
     [acts.act3.h2, acts.act3.headline, acts.act3.body],
-    [acts.act4.h2, acts.act4.headline, `${acts.act4.body}\n\n${acts.act4.claim}`],
-    [acts.act5.h2, acts.act5.headline, `${acts.act5.body}\n\n${acts.act5.claim}`],
-    [acts.act6.h2, acts.act6.headline, `${acts.act6.body}\n\n${acts.act6.claim}`],
+    [acts.act4.h2, acts.act4.keywordLine, `${acts.act4.body}\n\n${acts.act4.claim}`],
+    [acts.act5.h2, acts.act5.keywordLine, `${acts.act5.body}\n\n${acts.act5.claim}`],
+    [acts.act6.h2, acts.act6.keywordLine, `${acts.act6.body}\n\n${acts.act6.claim}`],
   ];
   flow.forEach(([h2, head, body]) => {
     L.push(`## ${h2}`);
