@@ -1,14 +1,15 @@
 # Profuzion v2 → Bricks (copy-paste content)
 
-**You cannot paste React/TSX, Three.js, or GSAP from this repo into Bricks** — Bricks outputs HTML. Use this file to **paste plain text** into Bricks **Heading**, **Text**, **Button**, and **List** elements. Rebuild **layout and styling** in Bricks + ACSS; map **colors** to ACSS variables using `v2.css` tokens (e.g. void `#050507`, signal `#b6ff38`).
+**You cannot paste component source (TSX), Three.js scene code, or GSAP hook wiring from this repo into Bricks** — Bricks outputs HTML. Use this file to **paste plain text** into Bricks **Heading**, **Text**, **Button**, and **List** elements. Rebuild **layout and styling** in Bricks + ACSS; map **colors** to ACSS variables using `v2.css` tokens (e.g. void `#050507`, signal `#b6ff38`).
 
 **One-page anchors:** in Bricks, set each main section’s **HTML ID** (section or container) to match the `id` below so menu links work (`#industries`, etc.).
 
 ## Bricks JSON import (machine format)
 
 - **File:** `profuzion-v2-bricks-import.json` (same folder as this doc). It uses the `content` + `bricksCopiedElements`-style structure so Bricks can **Import template** (Bricks → **Templates** → import icon → choose the JSON) or, on some sites, **paste** copied Bricks JSON into the builder.
-- **Regenerate** from the repo: `node scripts/generate-bricks-import.mjs`
-- **What’s inside:** **Hero, Industries, Contact**, plus **About, Branding (summary), Websites (summary), Process, Engagements, Pull quote**, a short **halftone / dev note** block (delete in production), and the same CTA copy. Styling (ACSS, BEM) and **header/footer templates** you still set in Bricks. Case-study *cards* on the Next site are placeholders here — use **ACF + Query Loop** for full case layouts.
+- **Regenerate** from the repo: **`npm run bricks:import`** or **`npm run wp:handoff`**
+- **What’s inside:** **Hero, Industries, Contact**, plus **About, Branding (summary), Websites (summary), Process, Engagements, Pull quote**, a short **halftone / dev note** block (delete in production), and the same CTA copy. Styling (ACSS, BEM) and **header/footer templates** you still set in Bricks.
+- **Case study (full page):** **`profuzion-v2-bricks-case-import.json`** (same folder) — Flyte-style layout with **Nature's Knoll** sample copy. Regenerate with **`npm run bricks:import`** or **`npm run wp:handoff`**. After import, apply classes from **`tools/wordpress/GLOBAL-CLASSES-BRICKS.md`** and bind ACF fields (CPT **`pfz_case_study`** — see **`tools/wordpress/BRICKS-DEPLOY-KIT.md`**).
 - If import **fails** (version mismatch): in Bricks, build an empty **Section → Container → Heading** on a page, **export** that as JSON, and compare the wrapper keys to this file; adjust `version` or top-level shape to match your Bricks build.
 
 ---
@@ -175,7 +176,7 @@ One block per case (ACF or static):
 | 01 | Listen | Week 1 | We start at the desk you actually work from. | Two long conversations. We learn how you sound to a referral, what your worst client taught you, and what you want to be three years from now. |
 | 02 | Frame | Weeks 2–3 | Positioning, voice, and the shape of the work. | We write the studio brief — one page, no decks. It names the audience, the shape of the brand, and the three things the website has to earn. |
 | 03 | Design | Weeks 3–6 | Identity and screens — drawn together, not in series. | Brand system and website design happen on the same canvas. A wordmark earns its weight by working at 11pt in a footer and 110pt on a vehicle. |
-| 04 | Ship | Weeks 6–8 | Built, tested, indexed, handed over. | Built in Next.js, tuned for Core Web Vitals, structured for AI search and Google. We hand over a site you can update without us. **(In WordPress, change “Next.js” to your stack, e.g. Bricks/WordPress.)** |
+| 04 | Ship | Weeks 6–8 | Built, tested, indexed, handed over. | Built to modern performance standards, tuned for Core Web Vitals, structured for AI search and Google. We hand over a site you can update without us. |
 | 05 | Tend | Ongoing (optional) | Quarterly rounds keep the work earning its keep. | Most owners stay on a small monthly retainer for content updates, evergreen SEO, and a quarterly health check. No tickets, no surprise invoices. |
 
 **Bullets per phase (from code):**  
@@ -197,8 +198,8 @@ One block per case (ACF or static):
 
 2. **Brand & website** (primary)  
    - 8–10 weeks · fixed-scope quote · most owners start here  
-   - The full project. Brand system + a Next.js website built to perform — Core Web Vitals, AI search, Google Business, the works. **(In WP, say “WordPress/Bricks” or your actual stack.)**  
-   - Includes: Everything in Brand system · Sitemap + message hierarchy · Page-by-page art direction · Next.js build + CMS · Performance + SEO + AEO **(edit stack labels for reality)**  
+   - The full project. Brand system + a high-performance website built to perform — Core Web Vitals, AI search, Google Business, the works.  
+   - Includes: Everything in Brand system · Sitemap + message hierarchy · Page-by-page art direction · Production build + CMS · Performance + SEO + AEO  
    - CTA: `Book the project →`  
 
 3. **Tend (retainer)**  
@@ -251,7 +252,18 @@ We don't sell websites. We design the version of you that earns the next call �
 - **H3:** Got it. We'll write back within a day.  
 - **P:** Thanks for the note. The founder reads every intake personally — expect a real reply, not an automation, with a couple of dates for a 30-minute call.  
 
-*Or replace the form with your Bricks/Pro Forms + SMTP as discussed.*
+**Implementation — native Bricks Form (primary):**
+
+1. **Wrapper:** Outer **Container** → add CSS class `pfz-home__cta-form` (same card shell as the preview). Inside it, duplicate the two-line header: add **Text** or a small HTML block for `pfz-home__cta-form-bar` with `<span class="l">` and `.r` as in `pfz-v2-wp-preview.html`, or two Text elements styled to match.
+2. **Element:** Insert **Form** (Bricks → Form). Add **Email** action: send to `hello@profuzionstudio.com` (or your intake inbox); set **Reply to** from the email field.
+3. **Fields (same order / labels as v2):** Text **Your name** (required); **Email** (required); Text **Business · location** (optional); Textarea **What's the project? (optional)**. Optional **Hidden** field named e.g. `website` (honeypot); leave empty — most spam bots fill hidden fields.
+4. **Layout:** Put **Your name** and **Email** in a **2-column** row inside the Form (Bricks row/column layout) so they match the reference grid.
+5. **Submit:** Label `Send` — under **Advanced → CSS** on the button, add classes `btn--primary` (and append the arrow in a small **HTML** element after the form if you want `→`, same as preview).
+6. **Micro line:** Below fields, add **Text**: `no automated reply · founder writes back` with class `pfz-home__cta-form-micro` (or match typography in Bricks).
+7. **Success:** Use Bricks Form **Success message** to paste the two paragraphs above (H3 + body), or **Redirect** to a thank-you block on the page.
+8. **SMTP:** Use a WP SMTP plugin so the Email action delivers reliably.
+
+*Optional:* `section-cta.tsx` can still use an iframe or POST URL for the Next preview only — production Bricks stays on the native Form above.
 
 ---
 
@@ -276,11 +288,76 @@ We don't sell websites. We design the version of you that earns the next call �
 
 ---
 
-## ACF (reminder)
+## Case study single (HTML IDs + BEM)
 
-- **CPT** e.g. `case_study` with fields matching branding/website case rows above.  
-- **Brings:** load cards via Query Loop in Bricks + dynamic ACF.
+**Machine import:** `profuzion-v2-bricks-case-import.json` — sections include dev labels for **`pfz-case__*`** classes.
+
+**CPT (child theme):** `pfz_case_study` — URLs **`/work/{post-slug}/`** (flush permalinks after activate).
+
+**ACF field names** (bind in Bricks → dynamic data): `pfz_case_kicker`, `pfz_case_tagline`, `pfz_case_summary`, `pfz_case_live_url`, `pfz_case_challenge_heading`, `pfz_case_challenge_body`, `pfz_case_approach_heading`, `pfz_case_approach_body`, `pfz_case_outcome_heading`, `pfz_case_outcome_body`, `pfz_case_pull_quote`, `pfz_case_pull_cite`, `pfz_case_results_bullets`. Use **Post title** for client name and **Featured image** for hero.
+
+Optional section **`#case-masthead`**, **`#case-gallery`**, **`#case-related`** — match JSON `_cssId`s if you anchor a mini nav.
+
+### § Case — masthead (sample: Nature's Knoll)
+
+**H1 · `pfz-display` `pfz-display--lg` `pfz-case__title`:**  
+Nature's Knoll Golf Course**.** (period: span `pfz-display__accent`)
+
+**Kicker · `pfz-eyebrow` `pfz-eyebrow--primary` `pfz-eyebrow--bare` `pfz-eyebrow--lg`:**  
+Hospitality · brand & web · 2026
+
+**Tagline · `pfz-case-tagline` `pfz-case-tagline--trailing`:**  
+The hidden gem you haven't played yet.
+
+### § Case — lede
+
+**Summary · `pfz-lede` `pfz-case__lede-text`:**  
+A non-profit nine-hole course, a century of local memory, and a website that treats both with care. Editorial type, a three-minute course film, and a Lightspeed booking flow that members trust.
+
+**Button:** Visit the live site ↗ — `btn--base` `btn--outline` + `pfz-btn-arrow`; link = live URL field.
+
+### § Case — story band (`pfz-case__story` / `pfz-case__story-inner`)
+
+**Growth barrier** (label = `pfz-eyebrow` `pfz-eyebrow--primary` `pfz-eyebrow--lg` on `<p>`)  
+**H3 · `pfz-case__block-heading`:** A beloved course that kept getting missed.  
+**Body · `pfz-body` `pfz-body--story`:** *(see `projects.ts` challenge.body for Nature's Knoll)*
+
+**Evolution** (eyebrow)  
+**H3:** Write it like a story, design it like a film.  
+**Body:** *(approach.body)*
+
+**Pull quote · `pfz-case__pullquote`:**  
+“For the first time, our website actually sounds like the course.”  
+**Cite · `pfz-case__pullquote-cite`:** Course manager · Nature's Knoll Golf Course
+
+**Results** (eyebrow)  
+**H3 · `pfz-display` `pfz-display--md`:** A course that finally reads the way it plays.  
+**Body:** *(outcome.body)*  
+**Bullets · `pfz-case__results-list` / `pfz-case__results-item` / `pfz-case__results-mark`:** one `✦` line per deliverable/metric (see case import JSON for full list).
+
+### § Case — gallery
+
+Section **`pfz-case__gallery`**. Intro: eyebrow “Gallery”, **H2** “The work, *up close*.” (`pfz-italic` + `pfz-display--primary` on *up close*). Grid: `pfz-case__gallery-grid`; wide items: `pfz-case__gallery-span` `pfz-case__gallery-span--md`.
+
+### § Case — CTA strip
+
+**`pfz-section` `pfz-section--ink` `pfz-case__cta`** + optional noise div **`pfz-case__cta-noise`**.  
+**Shout · `pfz-case__cta-shout`:** WHAT GOT YOU HERE *won't* GET YOU THERE. (*won't:* `pfz-italic` `pfz-display--primary`)  
+**Sub · `pfz-body` `pfz-case__cta-lede`:** Not a traditional bloated agency — …  
+**Actions · `pfz-case__cta-actions`:** `btn--secondary` (Book a 30-min call → site `#contact`), `btn--base` `btn--outline` (mailto).
+
+### § Case — related
+
+**`pfz-case__related`** — H2 “Keep exploring.” Query Loop on **`pfz_case_study`** excluding current, or static cards. Card: **`pfz-case-card`** (`<a>`) with **`pfz-case-card__type`**, **`__title`**, **`__tagline`**, **`__cta`**.
 
 ---
 
-*Generated from the v2 Next codebase for Bricks handoff. Edited stack mentions (Next.js) may need one pass for a pure WordPress story.*
+## ACF (reminder)
+
+- **CPT** **`pfz_case_study`** ships in the child theme (`includes/cpt-case-study.php`); field group JSON in **`acf-json/group_pfz_case_study_2026.json`**.  
+- **Archive + singles:** `/work/` and `/work/{slug}/` after permalink flush.  
+- **Cards on homepage:** Bricks Query Loop + post type `pfz_case_study`.
+
+---
+
+*Generated from the v2 design preview codebase for Bricks handoff.*

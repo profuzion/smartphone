@@ -1541,12 +1541,18 @@
 /* ── §4 Branding (case wall + brand spreads) ── */
 
 .pfz .pfz-home__brand-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
   margin-bottom: 5rem;
 }
 
 .pfz .pfz-home__brand-wall {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  /* Match Next `gap-px`: gutters are the ink section, not `--border-on-dark` (that read as one gray slab). */
   gap: 1px;
   background: var(--base-ultra-dark);
   margin-bottom: 6rem;
@@ -1560,6 +1566,7 @@
   position: relative;
   aspect-ratio: 2/1;
   overflow: hidden;
+  /* Per-cell border like section-branding.tsx inline styles */
   border: 1px solid var(--border-on-dark);
   background: linear-gradient(
     180deg,
@@ -1591,6 +1598,11 @@
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.pfz .pfz-home__brand-wall-cell:hover .pfz-home__brand-wall-foot {
+  opacity: 1;
 }
 .pfz .pfz-home__brand-wall-foot-ind {
   color: var(--contrast-muted);
@@ -1988,6 +2000,7 @@
 }
 @media (min-width: 1024px) {
   .pfz .pfz-home__web-slot {
+    /* Tighter than v2 Tailwind min-h-[90vh] — less dead zone between cases */
     min-height: clamp(300px, 44vh, 500px);
     display: flex;
     flex-direction: column;
@@ -2074,6 +2087,7 @@
   color: var(--contrast-muted);
 }
 
+/* Crossfading procedural layers inside sticky browser (desktop). */
 .pfz [data-web-mock-layer] {
   position: absolute;
   inset: 0;
@@ -2186,6 +2200,7 @@
     background: var(--border);
     align-self: start;
   }
+  /* Filled by JS — matches GSAP ScrollTrigger scrub on [data-pr-rail] (scaleY, origin-top). */
   .pfz .pfz-home__proc-rail-fill {
     position: absolute;
     left: 0;
@@ -2289,6 +2304,7 @@
   background: var(--primary);
 }
 
+/* Process rows — scroll-driven stagger (parity with section-process.tsx / GSAP) */
 @media (prefers-reduced-motion: no-preference) {
   .pfz [data-pr-row] [data-pr-num] {
     opacity: 0;
@@ -3118,5 +3134,205 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ * Bricks / static preview — vanilla JS companions (no React)
+ * Source aesthetic + motion intent: src/app/v2
+ * ═══════════════════════════════════════════════════════════════════ */
+
+/* Nav: transparent at top, glass after scroll (JS toggles modifier) */
+.pfz .pfz-home__nav-wrap {
+  transition:
+    background 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+.pfz .pfz-home__nav-wrap--at-top {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.pfz .pfz-home__nav-wrap--at-top .pfz-home__nav-pills a::before {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Form fields keep text caret (hero uses cursor:none on .pfz) */
+.pfz input,
+.pfz textarea,
+.pfz select {
+  cursor: text !important;
+}
+
+/* CSS halftone hero fallback when WebGL is not mounted */
+.pfz .pfz-home__hero-halftone-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #050507;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(182, 255, 56, 0.09) 1px, transparent 1.35px),
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(182, 255, 56, 0.055), transparent 55%);
+  background-size:
+    14px 14px,
+    100% 100%;
+  animation: pfz-halftone-drift 18s linear infinite;
+}
+@keyframes pfz-halftone-drift {
+  to {
+    background-position:
+      14px 14px,
+      0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pfz .pfz-home__hero-halftone-fallback {
+    animation: none;
+  }
+}
+
+/* Scroll-driven fade-up (replaces GSAP scrollTrigger enter) — add [data-scroll-reveal] in Bricks */
+.pfz [data-scroll-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pfz [data-scroll-reveal].is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero headline stagger (replaces GSAP blur + y on [data-word]) */
+.pfz [data-hero-word] {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(10px);
+  animation: pfz-hero-word-in 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: calc(0.12s + var(--i, 0) * 0.055s);
+}
+@keyframes pfz-hero-word-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pfz [data-hero-word] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Site loader shell (markup from site-loader.tsx — no React) */
+.pfz .pz-site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--base-ultra-dark, #050507);
+  pointer-events: auto;
+  opacity: 1;
+  overflow: hidden;
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pfz .pz-site-loader.pz-site-loader--exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pfz .pz-site-loader__bar {
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: pzLoaderBar 2600ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pfz .pz-site-loader__bar {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
+/* Custom cursor nodes (Bricks: place once; JS positions) */
+.pfz-cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+  will-change: transform, width, height, background, border-color;
+  transition:
+    width 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: none;
+}
+.pfz-cursor-ring__label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--text-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--on-primary);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+.pfz-cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary);
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  .pfz-cursor-ring,
+  .pfz-cursor-dot {
+    display: block;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .pfz,
+  .pfz * {
+    cursor: auto !important;
+  }
+  .pfz-cursor-ring,
+  .pfz-cursor-dot {
+    display: none !important;
+  }
+}
+
+/* About grid (preview / Bricks markup helper) */
+.pfz .pfz-home__about-grid {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1024px) {
+  .pfz .pfz-home__about-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   }
 }

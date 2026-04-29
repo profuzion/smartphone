@@ -18,8 +18,9 @@ const contactActionUrl = getContactFormActionUrl();
  * Profuzion · v2 — Contact CTA (§8).
  *
  * Soft contact moment. No terminal aesthetic — this is the bookend
- * where intake fields connect to the Next mock, a WP iframe (Bricks / Pro Forms),
- * or an optional public POST URL. Friendly, calm, confident.
+ * where intake fields connect to the preview mock, a WP iframe (legacy embed),
+ * or an optional public POST URL. In production WordPress, prefer **native Bricks Form**
+ * (see `BRICKS-COPY-PASTE.md`). Friendly, calm, confident.
  *
  * Layout
  *   ┌──────────────────────────────────────────────────────────────┐
@@ -102,28 +103,28 @@ export function SectionCTA() {
       ref={root}
       id="contact"
       className="relative isolate"
-      style={{ background: "var(--p-paper)" }}
+      style={{ background: "var(--base)" }}
     >
-      <div className="p-rule" />
+      <div className="pfz-rule" />
       <div className="mx-auto max-w-[1480px] px-6 py-24 lg:px-10 lg:py-32">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           {/* LEFT — pitch */}
           <div>
-            <p className="p-eyebrow p-eyebrow--amber" data-cta-el>
+            <p className="pfz-eyebrow pfz-eyebrow--primary" data-cta-el>
               // start a conversation
             </p>
             <h2
-              className="p-display p-display--lg mt-3"
+              className="pfz-display pfz-display--lg mt-3"
               data-cta-el
               style={{ maxWidth: "12ch" }}
             >
               Ready when{" "}
-              <span className="p-italic" style={{ color: "var(--p-amber)" }}>
+              <span className="pfz-italic" style={{ color: "var(--primary)" }}>
                 you
               </span>{" "}
               are.
             </h2>
-            <p className="p-body mt-6 max-w-md" data-cta-el>
+            <p className="pfz-body mt-6 max-w-md" data-cta-el>
               The fastest way to start is a 30-minute call. No pitch deck. We
               ask three questions, you ask three, we both leave with a clear
               next step.
@@ -147,17 +148,17 @@ export function SectionCTA() {
                 aria-hidden
                 className="inline-block h-2 w-2 animate-pulse rounded-full"
                 style={{
-                  background: "var(--p-amber)",
-                  boxShadow: "0 0 14px 1px var(--p-amber-glow)",
+                  background: "var(--primary)",
+                  boxShadow: "0 0 14px 1px var(--primary-glow)",
                 }}
               />
               <span
                 style={{
-                  fontFamily: "var(--p-mono)",
+                  fontFamily: "var(--text-mono)",
                   fontSize: 11,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "var(--p-amber)",
+                  color: "var(--primary)",
                 }}
               >
                 now booking summer 2026
@@ -168,34 +169,34 @@ export function SectionCTA() {
           {/* RIGHT — form panel */}
           <div data-cta-el>
             <div
-              className="p-card relative p-8 lg:p-10"
+              className="pfz-card relative p-8 lg:p-10"
               style={{
-                background: "var(--p-paper-2)",
-                borderColor: "var(--p-rule-strong)",
+                background: "var(--base-light)",
+                borderColor: "var(--border-strong)",
               }}
             >
               <div
                 className="mb-6 flex items-center justify-between border-b pb-4"
-                style={{ borderColor: "var(--p-rule)" }}
+                style={{ borderColor: "var(--border)" }}
               >
                 <span
                   style={{
-                    fontFamily: "var(--p-mono)",
+                    fontFamily: "var(--text-mono)",
                     fontSize: 11,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "var(--p-stone-mid)",
+                    color: "var(--contrast-muted-mid)",
                   }}
                 >
                   → new project intake
                 </span>
                 <span
                   style={{
-                    fontFamily: "var(--p-mono)",
+                    fontFamily: "var(--text-mono)",
                     fontSize: 11,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "var(--p-amber)",
+                    color: "var(--primary)",
                   }}
                 >
                   reply ≤ 1 day
@@ -247,14 +248,14 @@ export function SectionCTA() {
                   {postError && (
                     <p
                       className="text-sm"
-                      style={{ color: "var(--p-amber-2)" }}
+                      style={{ color: "var(--primary-light)" }}
                       role="alert"
                     >
                       Couldn&apos;t send that just now. Please email
                       {" "}
                       <a
                         className="underline"
-                        style={{ color: "var(--p-ink)" }}
+                        style={{ color: "var(--contrast)" }}
                         href="mailto:hello@profuzionstudio.com"
                       >
                         hello@profuzionstudio.com
@@ -266,11 +267,11 @@ export function SectionCTA() {
                   <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
                     <p
                       style={{
-                        fontFamily: "var(--p-mono)",
+                        fontFamily: "var(--text-mono)",
                         fontSize: 11,
                         letterSpacing: "0.16em",
                         textTransform: "uppercase",
-                        color: "var(--p-stone-mid)",
+                        color: "var(--contrast-muted-mid)",
                       }}
                     >
                       {contactActionUrl
@@ -280,17 +281,15 @@ export function SectionCTA() {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="p-btn"
+                      className="btn--primary"
                       data-cursor
                       data-cursor-label={submitting ? "sending" : "send"}
                       style={{
                         opacity: submitting ? 0.65 : 1,
-                        background: "var(--p-amber)",
-                        borderColor: "var(--p-amber)",
                       }}
                     >
                       {submitting ? "Sending…" : "Send"}
-                      {!submitting && <span className="p-arrow">→</span>}
+                      {!submitting && <span className="pfz-btn-arrow">→</span>}
                     </button>
                   </div>
                 </form>
@@ -310,8 +309,8 @@ function WordPressFormEmbed({ src }: { src: string }) {
     <div
       className="overflow-hidden rounded-md"
       style={{
-        border: "1px solid var(--p-rule-strong)",
-        background: "var(--p-paper)",
+        border: "1px solid var(--border-strong)",
+        background: "var(--base)",
       }}
     >
       <iframe
@@ -321,7 +320,7 @@ function WordPressFormEmbed({ src }: { src: string }) {
         style={{
           minHeight: 520,
           height: "min(560px, 62vh)",
-          background: "var(--p-paper)",
+          background: "var(--base)",
         }}
         loading="lazy"
         sandbox="allow-forms allow-scripts allow-same-origin"
@@ -343,22 +342,22 @@ function ContactRow({
     <>
       <span
         style={{
-          fontFamily: "var(--p-mono)",
+          fontFamily: "var(--text-mono)",
           fontSize: 11,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "var(--p-stone-mid)",
+          color: "var(--contrast-muted-mid)",
         }}
       >
         {label}
       </span>
       <span
-        className={href ? "transition-colors duration-200 group-hover:text-[color:var(--p-amber)]" : ""}
+        className={href ? "transition-colors duration-200 group-hover:text-[color:var(--primary)]" : ""}
         style={{
-          fontFamily: "var(--p-sans)",
+          fontFamily: "var(--text-sans)",
           fontSize: 15,
           fontWeight: 500,
-          color: "var(--p-ink)",
+          color: "var(--contrast)",
           letterSpacing: "-0.005em",
         }}
       >
@@ -374,14 +373,14 @@ function ContactRow({
           data-cursor
           data-cursor-label={label.toLowerCase()}
           className="group flex items-baseline justify-between border-t pt-3 transition-colors duration-200"
-          style={{ borderColor: "var(--p-rule)" }}
+          style={{ borderColor: "var(--border)" }}
         >
           {text}
         </a>
       ) : (
         <div
           className="flex items-baseline justify-between border-t pt-3"
-          style={{ borderColor: "var(--p-rule)" }}
+          style={{ borderColor: "var(--border)" }}
         >
           {text}
         </div>
@@ -409,14 +408,14 @@ function Field({
     <label className="flex flex-col gap-2">
       <span
         style={{
-          fontFamily: "var(--p-mono)",
+          fontFamily: "var(--text-mono)",
           fontSize: 10,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "var(--p-stone-mid)",
+          color: "var(--contrast-muted-mid)",
         }}
       >
-        {label} {required && <span style={{ color: "var(--p-amber)" }}>*</span>}
+        {label} {required && <span style={{ color: "var(--primary)" }}>*</span>}
       </span>
       {multiline ? (
         <textarea
@@ -425,11 +424,11 @@ function Field({
           rows={4}
           className="resize-none rounded-md border bg-transparent px-3.5 py-3 transition-colors duration-200 focus:outline-none"
           style={{
-            fontFamily: "var(--p-sans)",
+            fontFamily: "var(--text-sans)",
             fontSize: 15,
-            color: "var(--p-ink)",
-            borderColor: "var(--p-rule-strong)",
-            background: "var(--p-paper-2)",
+            color: "var(--contrast)",
+            borderColor: "var(--border-strong)",
+            background: "var(--base-light)",
           }}
         />
       ) : (
@@ -440,11 +439,11 @@ function Field({
           placeholder={placeholder}
           className="rounded-md border bg-transparent px-3.5 py-3 transition-colors duration-200 focus:outline-none"
           style={{
-            fontFamily: "var(--p-sans)",
+            fontFamily: "var(--text-sans)",
             fontSize: 15,
-            color: "var(--p-ink)",
-            borderColor: "var(--p-rule-strong)",
-            background: "var(--p-paper-2)",
+            color: "var(--contrast)",
+            borderColor: "var(--border-strong)",
+            background: "var(--base-light)",
           }}
         />
       )}
@@ -459,27 +458,27 @@ function SuccessState() {
         aria-hidden
         className="grid h-12 w-12 place-items-center rounded-full"
         style={{
-          background: "var(--p-amber)",
-          color: "var(--p-on-signal)",
+          background: "var(--primary)",
+          color: "var(--on-primary)",
           fontSize: 18,
         }}
       >
         ✓
       </span>
       <h3
-        className="p-display"
+        className="pfz-display"
         style={{
           fontSize: "clamp(1.6rem, 2.6vw, 2.4rem)",
           fontWeight: 500,
           letterSpacing: "-0.025em",
           lineHeight: 1.05,
-          color: "var(--p-ink)",
+          color: "var(--contrast)",
         }}
       >
         Got it. We&apos;ll write back within a day.
       </h3>
       <p
-        className="p-body"
+        className="pfz-body"
         style={{ maxWidth: "44ch" }}
       >
         Thanks for the note. The founder reads every intake personally — expect
