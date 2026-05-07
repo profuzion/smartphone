@@ -1,0 +1,449 @@
+/**
+ * Profuzion Studio — v2 “Liquid Architecture” global classes
+ * -------------------------------------------------------------
+ * Maps BRIEF §13.B–§16 to paste-ready CSS for Bricks Class Manager.
+ * Prerequisite: ACSS (or theme) defines §13.A variables — obsidian, bone,
+ * iris, hair, fs-*, ease-*, dur-*, shadow-*, z-*, gap-* / space scale.
+ * Do not use Bricks element panels for these rules; stack classes only.
+ */
+
+/* ─── §13.B — Color ─────────────────────────────────────────── */
+
+.bg-obsidian {
+  background-color: var(--obsidian);
+}
+
+.bg-obsidian-2 {
+  background-color: var(--obsidian-2);
+}
+
+.bg-iris {
+  background-color: var(--iris);
+}
+
+.bg-bone {
+  background-color: var(--bone);
+}
+
+.text-bone {
+  color: var(--bone);
+}
+
+.text-bone-dim {
+  color: var(--bone-dim);
+}
+
+.text-bone-mute {
+  color: var(--bone-mute);
+}
+
+.text-iris {
+  color: var(--iris);
+}
+
+.border-hair {
+  border: 1px solid var(--hair);
+}
+
+/* ─── §13.C — Typography ─────────────────────────────────────── */
+
+.font-display {
+  font-family: "PP Editorial New", "Editorial New", "DM Serif Display", serif;
+  font-weight: 400;
+}
+
+.font-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 400;
+}
+
+.text-display {
+  font-size: var(--fs-display);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.text-hero {
+  font-size: var(--fs-hero);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.text-h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text-mono {
+  font-size: var(--fs-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.is-italic {
+  font-style: italic;
+}
+
+/* ─── §14 — Layout / structure ─────────────────────────────── */
+
+.section {
+  position: relative;
+  width: 100%;
+}
+
+.section--act {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.section--act-tall {
+  min-height: 200vh;
+}
+
+.section--act-extra {
+  min-height: 300vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--section-padding-inline, var(--space-m, 1.5rem));
+}
+
+.container--wide {
+  max-width: 1600px;
+}
+
+.container--text {
+  max-width: 680px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-12 {
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap-m, var(--space-m, 1.5rem));
+}
+
+.col-span-6 {
+  grid-column: span 6;
+}
+
+.col-span-12 {
+  grid-column: span 12;
+}
+
+/* ─── §15 — BEM components ───────────────────────────────────── */
+
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-canvas, 0);
+  pointer-events: none;
+}
+
+.stage__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: var(--z-content, 10);
+}
+
+.content > * {
+  pointer-events: none;
+}
+
+.content a,
+.content button,
+.content input,
+.content textarea,
+.content select,
+.content [role="button"],
+.content .u-pointer-auto,
+.content [data-cursor="hover"] {
+  pointer-events: auto;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav, 40);
+  pointer-events: none;
+}
+
+.nav a,
+.nav button,
+.nav .nav__cta,
+.nav .u-pointer-auto {
+  pointer-events: auto;
+}
+
+.nav__brand {
+  text-decoration: none;
+}
+
+.nav__cta {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: var(--z-cursor, 80);
+  will-change: transform;
+}
+
+.cursor__dot {
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  transform-origin: center;
+  transition:
+    transform var(--dur-base, 320ms) var(--ease-out-soft, cubic-bezier(0.33, 1, 0.68, 1)),
+    opacity var(--dur-fast, 160ms) ease;
+}
+
+.cursor--hover .cursor__dot {
+  transform: scale(1.85);
+  opacity: 0.9;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader, 100);
+  display: grid;
+  place-items: center;
+  transition:
+    opacity var(--dur-slow, 640ms) var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1)),
+    visibility 0s linear var(--dur-slow, 640ms);
+}
+
+.loader__dot {
+  width: 8px;
+  height: 8px;
+  animation: profuzion-loader-pulse 1.6s var(--ease-in-out-quint, cubic-bezier(0.86, 0, 0.07, 1))
+    infinite;
+}
+
+@keyframes profuzion-loader-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.5;
+  }
+}
+
+body.is-loaded .loader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.act__eyebrow {
+  max-width: 40ch;
+}
+
+.act__headline {
+  max-width: 22ch;
+}
+
+.project__name {
+  transition: color var(--dur-base, 320ms) ease;
+}
+
+.project--active .project__name {
+  color: var(--iris);
+}
+
+.service {
+  transition:
+    border-color var(--dur-base, 320ms) ease,
+    opacity var(--dur-base, 320ms) ease;
+  border-bottom: 1px solid transparent;
+  padding-block: var(--space-s, 0.75rem);
+}
+
+.service:hover,
+.service:focus-within,
+.service--active {
+  border-bottom-color: var(--hair);
+}
+
+.service__num {
+  min-width: 3.5rem;
+}
+
+.email {
+  width: 100%;
+  max-width: min(100%, 520px);
+}
+
+.email__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  border-bottom: 1px solid var(--hair);
+  border-radius: 0;
+  padding: var(--space-xs, 0.5rem) 0;
+  background: transparent;
+}
+
+.email__submit {
+  flex: 0 0 auto;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.email__feedback {
+  width: 100%;
+  text-align: center;
+}
+
+.footer__col {
+  min-width: 0;
+}
+
+/* ─── §16 — Utilities ───────────────────────────────────────── */
+
+.u-radius-sm {
+  border-radius: var(--r-sm, 4px);
+}
+
+.u-radius-md {
+  border-radius: var(--r-md, 8px);
+}
+
+.u-radius-lg {
+  border-radius: var(--r-lg, 16px);
+}
+
+.u-radius-full {
+  border-radius: var(--r-full, 999px);
+}
+
+.u-shadow-1 {
+  box-shadow: var(--shadow-1);
+}
+
+.u-shadow-2 {
+  box-shadow: var(--shadow-2);
+}
+
+.u-blend-difference {
+  mix-blend-mode: difference;
+}
+
+.u-pointer-none {
+  pointer-events: none;
+}
+
+.u-pointer-auto {
+  pointer-events: auto;
+}
+
+.u-fixed {
+  position: fixed;
+  inset: 0;
+}
+
+.u-relative {
+  position: relative;
+}
+
+.u-z-canvas {
+  z-index: var(--z-canvas, 0);
+}
+
+.u-z-content {
+  z-index: var(--z-content, 10);
+}
+
+.u-z-nav {
+  z-index: var(--z-nav, 40);
+}
+
+.u-z-cursor {
+  z-index: var(--z-cursor, 80);
+}
+
+.u-z-loader {
+  z-index: var(--z-loader, 100);
+}
+
+.u-fullbleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.u-no-select {
+  user-select: none;
+}
+
+/* §34 — touch / no-hover: hide custom cursor */
+@media (hover: none) {
+  .cursor {
+    display: none !important;
+  }
+}
+
+/* §37 — focus visible */
+:focus-visible {
+  outline: 2px solid var(--iris);
+  outline-offset: 4px;
+  border-radius: 2px;
+}

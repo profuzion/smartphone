@@ -1,5 +1,14 @@
 # Profuzion v2 → Bricks (copy-paste content)
 
+## Bricks-first workflow (production is not uploaded HTML chunks)
+
+- **Bricks owns structure.** Use native elements in the tree (Section → Container → Heading, Text, Image, Button, Nav Menu, etc.) and **Import template** from the generated JSON (**`profuzion-v6-bricks-*-import.json`** in `src/app/v6/` and `tools/wordpress/profuzion-brick-child/bricks-import/` after `npm run wp:handoff`). That is the “left sidebar” builder surface. Do **not** paste the contents of **`bricks-build/pfz-v2-wp-preview.html`** as your page body—that file is **offline visual QA only** (`npm run preview:design`); treating it as the Bricks page bypasses editable structure and hurts long-term maintenance.
+- **No React / no Next / no Tailwind in the WordPress handoff.** Production CSS is **`profuzion-v6-wp-bundled.css`** (mirror of `src/app/v2/v2.css`) plus **ACSS** and BEM classes on nodes. Those files are plain CSS with **`.pfz` / `pfz-*`** blocks—comments may mention Tailwind **only** as parity notes for authors, not as shipped utilities.
+- **Scripts** load from the **child theme** (`profuzion-brick-child/assets/js/` — see **`tools/wordpress/BRICKS-DEPLOY-KIT-V6.md`**). **`bricks-build/pfz-v2-wp.js`** is a **vanilla companion for the static preview**; enqueue the theme’s bundles in production instead of pasting large script blocks unless a single small **Code** element is intentionally used for a hook.
+- **Editor stability:** The supported path is **Bricks elements + theme CSS + Global Classes** (`tools/wordpress/GLOBAL-CLASSES-BRICKS.md`). That stack is what the design is tested against. A universal guarantee against every Bricks version, ACSS option, or third-party plugin is **not** possible—register custom BEM classes in Bricks **Global Classes** when the editor drops unknown class names.
+
+---
+
 **You cannot paste component source (TSX), Three.js scene code, or GSAP hook wiring from this repo into Bricks** — Bricks outputs HTML. Use this file to **paste plain text** into Bricks **Heading**, **Text**, **Button**, and **List** elements. Rebuild **layout and styling** in Bricks + ACSS; map **colors** to ACSS variables using `v2.css` tokens (e.g. void `#050507`, signal `#b6ff38`).
 
 **One-page anchors:** in Bricks, set each main section’s **HTML ID** (section or container) to match the `id` below so menu links work (`#industries`, etc.).
@@ -98,6 +107,7 @@ For each **vertical** (row + detail panel), use this copy:
 
 **From `founderIntro` + site:**
 
+- **Eyebrow:** `// the founder`  
 - **H2:** One studio. One person on the call.  
 - **P1:** I founded Profuzion in 1999 at a single desk in Winkler — not to follow design trends, but to help owners who have to be understood the first time and trusted the second. Lawyers, agents, shop floors, and front desks: the work has always been about clarity, not volume.  
 - **P2:** The stack changes every few years. The promise doesn't: a brand and site you can hand to a new hire without a translation layer. When you hire the studio, you work with me from first call to launch — no account manager, no handoff to someone who wasn’t in the room for the brief.  

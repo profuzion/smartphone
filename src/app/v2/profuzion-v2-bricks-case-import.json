@@ -1,0 +1,351 @@
+{
+  "content": [
+    {
+      "id": "pz-case-mh",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-case-mh-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "case-masthead",
+        "_padding": {
+          "top": "48",
+          "right": "24",
+          "bottom": "48",
+          "left": "24"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--section pfz-case__main"
+      },
+      "label": "Case · masthead"
+    },
+    {
+      "id": "pz-case-mh-c",
+      "name": "container",
+      "parent": "pz-case-mh",
+      "children": [
+        "pz-case-mh-code"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--container"
+      },
+      "label": "Masthead shell"
+    },
+    {
+      "id": "pz-case-mh-code",
+      "name": "html",
+      "parent": "pz-case-mh-c",
+      "children": [],
+      "settings": {
+        "html": "<header class=\"pfz-case__shell pfz-case__masthead\">\n  <div class=\"pfz-rule\" style=\"margin-bottom: 2.5rem;\" aria-hidden=\"true\"></div>\n  <div class=\"pfz-case__masthead-grid\">\n    <div class=\"pfz-case__title-stack\">\n      <h1 class=\"pfz-display pfz-display--lg pfz-case__title\">{post_title}<span class=\"pfz-display__accent\">.</span></h1>\n      <p class=\"pfz-eyebrow pfz-eyebrow--primary pfz-eyebrow--bare pfz-eyebrow--lg\">{acf_pfz_case_kicker}</p>\n    </div>\n    <p class=\"pfz-case-tagline pfz-case-tagline--trailing\">{acf_pfz_case_tagline}</p>\n  </div>\n</header>",
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--html"
+      },
+      "label": "Masthead content"
+    },
+    {
+      "id": "pz-case-hero-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-case-hero-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "case-hero",
+        "_padding": {
+          "top": "48",
+          "right": "24",
+          "bottom": "48",
+          "left": "24"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--section"
+      },
+      "label": "Case · hero image"
+    },
+    {
+      "id": "pz-case-hero-c",
+      "name": "container",
+      "parent": "pz-case-hero-s",
+      "children": [
+        "pz-case-hero-code"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--container"
+      },
+      "label": "Hero image shell"
+    },
+    {
+      "id": "pz-case-hero-code",
+      "name": "html",
+      "parent": "pz-case-hero-c",
+      "children": [],
+      "settings": {
+        "html": "<section class=\"pfz-case__shell pfz-case__hero\" aria-label=\"Project hero\">\n  <div data-pfz-case-hero></div>\n</section>",
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--html"
+      },
+      "label": "Hero image content"
+    },
+    {
+      "id": "pz-case-led-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-case-led-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "case-lede-sec",
+        "_padding": {
+          "top": "48",
+          "right": "24",
+          "bottom": "48",
+          "left": "24"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--section"
+      },
+      "label": "Case · lede"
+    },
+    {
+      "id": "pz-case-led-c",
+      "name": "container",
+      "parent": "pz-case-led-s",
+      "children": [
+        "pz-case-led-code"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--container"
+      },
+      "label": "Lede shell"
+    },
+    {
+      "id": "pz-case-led-code",
+      "name": "html",
+      "parent": "pz-case-led-c",
+      "children": [],
+      "settings": {
+        "html": "<section class=\"pfz-case__shell pfz-case__lede\" aria-labelledby=\"case-lede\">\n  <h2 id=\"case-lede\" class=\"sr-only\">Summary</h2>\n  <p class=\"pfz-lede pfz-case__lede-text\">{acf_pfz_case_summary}</p>\n  <p class=\"pfz-case__lede-actions\">\n    <a href=\"{acf_pfz_case_live_url}\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn--base btn--outline\" data-cursor data-cursor-label=\"live\">\n      Visit the live site <span class=\"pfz-btn-arrow\">↗</span>\n    </a>\n  </p>\n</section>",
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--html"
+      },
+      "label": "Lede content"
+    },
+    {
+      "id": "pz-case-st-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-case-st-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "case-story-sec",
+        "_padding": {
+          "top": "48",
+          "right": "24",
+          "bottom": "48",
+          "left": "24"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--section"
+      },
+      "label": "Case · story"
+    },
+    {
+      "id": "pz-case-st-c",
+      "name": "container",
+      "parent": "pz-case-st-s",
+      "children": [
+        "pz-case-st-code"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--container"
+      },
+      "label": "Story shell"
+    },
+    {
+      "id": "pz-case-st-code",
+      "name": "html",
+      "parent": "pz-case-st-c",
+      "children": [],
+      "settings": {
+        "html": "<section class=\"pfz-case__story\" aria-labelledby=\"case-story\">\n  <h2 id=\"case-story\" class=\"sr-only\">Challenge, approach, and outcome</h2>\n  <div class=\"pfz-case__story-inner\">\n    <div class=\"pfz-case__block\">\n      <p class=\"pfz-eyebrow pfz-eyebrow--primary pfz-eyebrow--lg\">Growth barrier</p>\n      <h3 class=\"pfz-case__block-heading\">{acf_pfz_case_challenge_heading}</h3>\n      <p class=\"pfz-body pfz-body--story\">{acf_pfz_case_challenge_body}</p>\n    </div>\n    <div class=\"pfz-case__block\">\n      <p class=\"pfz-eyebrow pfz-eyebrow--primary pfz-eyebrow--lg\">Evolution</p>\n      <h3 class=\"pfz-case__block-heading\">{acf_pfz_case_approach_heading}</h3>\n      <p class=\"pfz-body pfz-body--story\">{acf_pfz_case_approach_body}</p>\n    </div>\n\n    <figure class=\"pfz-case__pullquote\">\n      <blockquote class=\"pfz-case__pullquote-text\">&ldquo;{acf_pfz_case_pull_quote}&rdquo;</blockquote>\n      <figcaption class=\"pfz-case__pullquote-cite\">{acf_pfz_case_pull_cite}</figcaption>\n    </figure>\n\n    <div class=\"pfz-case__results\">\n      <p class=\"pfz-eyebrow pfz-eyebrow--primary pfz-eyebrow--lg\">Results</p>\n      <h3 class=\"pfz-display pfz-display--md\">{acf_pfz_case_outcome_heading}</h3>\n      <p class=\"pfz-body pfz-body--story\">{acf_pfz_case_outcome_body}</p>\n      <ul class=\"pfz-case__results-list\" data-pfz-case-results>\n        <!-- Filled at render time — splits {acf_pfz_case_results_bullets} on newlines.\n             Falls back to a single <li> if the field is short. -->\n      </ul>\n    </div>\n  </div>\n</section>",
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--html"
+      },
+      "label": "Story content"
+    },
+    {
+      "id": "pz-case-gal-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-case-gal-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "case-gallery-sec",
+        "_padding": {
+          "top": "48",
+          "right": "24",
+          "bottom": "48",
+          "left": "24"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--section"
+      },
+      "label": "Case · gallery"
+    },
+    {
+      "id": "pz-case-gal-c",
+      "name": "container",
+      "parent": "pz-case-gal-s",
+      "children": [
+        "pz-case-gal-code"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--container"
+      },
+      "label": "Gallery shell"
+    },
+    {
+      "id": "pz-case-gal-code",
+      "name": "html",
+      "parent": "pz-case-gal-c",
+      "children": [],
+      "settings": {
+        "html": "<section class=\"pfz-case__gallery\" aria-labelledby=\"case-gallery-h\">\n  <div class=\"pfz-case__gallery-inner\">\n    <div class=\"pfz-case__gallery-intro\">\n      <p class=\"pfz-eyebrow\">Gallery</p>\n      <h2 id=\"case-gallery-h\" class=\"pfz-display pfz-display--md\">\n        The work, <span class=\"pfz-italic pfz-display--primary\">up close</span>.\n      </h2>\n    </div>\n    <div class=\"pfz-case__gallery-grid\" data-pfz-case-gallery>\n      <!-- Painted at runtime from acf_pfz_case_gallery via REST. -->\n    </div>\n  </div>\n</section>",
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--html"
+      },
+      "label": "Gallery content"
+    },
+    {
+      "id": "pz-case-cta-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-case-cta-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "case-cta-sec",
+        "_padding": {
+          "top": "48",
+          "right": "24",
+          "bottom": "48",
+          "left": "24"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--section"
+      },
+      "label": "Case · CTA"
+    },
+    {
+      "id": "pz-case-cta-c",
+      "name": "container",
+      "parent": "pz-case-cta-s",
+      "children": [
+        "pz-case-cta-code"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--container"
+      },
+      "label": "CTA shell"
+    },
+    {
+      "id": "pz-case-cta-code",
+      "name": "html",
+      "parent": "pz-case-cta-c",
+      "children": [],
+      "settings": {
+        "html": "<section class=\"pfz-section pfz-section--ink pfz-case__cta\" aria-labelledby=\"case-cta-shout\">\n  <div class=\"pfz-case__cta-noise\" aria-hidden=\"true\"></div>\n  <div class=\"pfz-case__cta-inner\">\n    <p id=\"case-cta-shout\" class=\"pfz-case__cta-shout\">\n      WHAT GOT YOU HERE <span class=\"pfz-italic pfz-display--primary\">won't</span> GET YOU THERE.\n    </p>\n    <p class=\"pfz-body pfz-case__cta-lede\">\n      Not a traditional bloated agency — a founder-led studio for owners who need the work to read clearly the first time. Grab a call and we'll map the next evolution.\n    </p>\n    <div class=\"pfz-case__cta-actions\">\n      <a href=\"/#contact\" class=\"btn--secondary\" data-cursor data-cursor-label=\"book\">\n        Book a 30-min call <span class=\"pfz-btn-arrow\">→</span>\n      </a>\n      <a href=\"mailto:hello@profuzionstudio.com\" class=\"btn--base btn--outline\" data-cursor data-cursor-label=\"email\">\n        hello@profuzionstudio.com\n      </a>\n    </div>\n  </div>\n</section>",
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--html"
+      },
+      "label": "CTA content"
+    },
+    {
+      "id": "pz-case-rel-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-case-rel-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "case-related-sec",
+        "_padding": {
+          "top": "48",
+          "right": "24",
+          "bottom": "48",
+          "left": "24"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--section"
+      },
+      "label": "Case · related"
+    },
+    {
+      "id": "pz-case-rel-c",
+      "name": "container",
+      "parent": "pz-case-rel-s",
+      "children": [
+        "pz-case-rel-code"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        },
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--container"
+      },
+      "label": "Related shell"
+    },
+    {
+      "id": "pz-case-rel-code",
+      "name": "html",
+      "parent": "pz-case-rel-c",
+      "children": [],
+      "settings": {
+        "html": "<section class=\"pfz-case__related\" aria-labelledby=\"case-related-h\">\n  <div class=\"pfz-case__shell\">\n    <div class=\"pfz-case__related-head\">\n      <div>\n        <p class=\"pfz-eyebrow\">Selected work</p>\n        <h2 id=\"case-related-h\" class=\"pfz-display pfz-display--md pfz-case__related-title\">Keep exploring.</h2>\n      </div>\n      <a class=\"btn--base btn--outline pfz-case__related-back\" href=\"/\" data-cursor data-cursor-label=\"all\">\n        Back to home <span class=\"pfz-btn-arrow\">↑</span>\n      </a>\n    </div>\n    <ul class=\"pfz-case__related-grid\" data-pfz-case-related>\n      <!-- Painted at runtime from /wp-json/wp/v2/pfz_case_study?exclude=<id>. -->\n    </ul>\n  </div>\n</section>\n<script id=\"pfz-case-runtime\">\n(function () {\n  \"use strict\";\n  if (!document.body) return;\n\n  function init() {\n    var article = document.querySelector('main, body');\n    if (!article) return;\n    var bodyClass = document.body.className || '';\n    var m = bodyClass.match(/postid-(\\d+)/);\n    if (!m) return;\n    var postId = m[1];\n\n    var heroSlot = document.querySelector('[data-pfz-case-hero]');\n    var gallerySlot = document.querySelector('[data-pfz-case-gallery]');\n    var relatedSlot = document.querySelector('[data-pfz-case-related]');\n\n    function fetchPost(id) {\n      return fetch('/wp-json/wp/v2/pfz_case_study/' + id + '?_embed=1', {\n        headers: { Accept: 'application/json' },\n      }).then(function (r) { return r.ok ? r.json() : null; });\n    }\n    function fetchRelated(excludeId) {\n      return fetch('/wp-json/wp/v2/pfz_case_study?per_page=4&exclude=' + excludeId + '&_embed=1', {\n        headers: { Accept: 'application/json' },\n      }).then(function (r) { return r.ok ? r.json() : []; });\n    }\n    function imgUrl(post) {\n      try {\n        var media = post && post._embedded && post._embedded['wp:featuredmedia'];\n        if (media && media[0] && media[0].source_url) return media[0].source_url;\n      } catch (e) {}\n      return null;\n    }\n\n    fetchPost(postId).then(function (post) {\n      if (!post) return;\n      /* Hero image */\n      var heroSrc = imgUrl(post);\n      if (heroSrc && heroSlot) {\n        heroSlot.innerHTML =\n          '<img src=\"' + heroSrc + '\" alt=\"\" loading=\"eager\" decoding=\"async\" style=\"width:100%;height:auto;display:block;border-radius:18px;\">';\n      } else if (heroSlot) {\n        heroSlot.innerHTML = '';\n      }\n\n      /* Gallery — pfz_case_gallery field is an array of attachment IDs.\n         Resolve each by fetching the media item. */\n      if (gallerySlot) {\n        var galleryIds =\n          post.acf && Array.isArray(post.acf.pfz_case_gallery)\n            ? post.acf.pfz_case_gallery\n            : [];\n        if (galleryIds.length === 0) {\n          gallerySlot.parentElement && gallerySlot.parentElement.parentElement\n            ? (gallerySlot.parentElement.parentElement.style.display = 'none')\n            : null;\n        } else {\n          var fetches = galleryIds.map(function (id) {\n            var idVal = typeof id === 'object' && id ? (id.id || id.ID) : id;\n            return fetch('/wp-json/wp/v2/media/' + idVal, {\n              headers: { Accept: 'application/json' },\n            }).then(function (r) { return r.ok ? r.json() : null; });\n          });\n          Promise.all(fetches).then(function (items) {\n            gallerySlot.innerHTML = items\n              .filter(Boolean)\n              .map(function (it, i) {\n                var src = it.source_url;\n                var w = it.media_details && it.media_details.width;\n                var h = it.media_details && it.media_details.height;\n                var wide = w && h && w / h > 1.6;\n                var cls = wide\n                  ? 'pfz-case__gallery-span pfz-case__gallery-span--md'\n                  : 'pfz-case__gallery-span';\n                return (\n                  '<figure class=\"' + cls + '\">' +\n                    '<img src=\"' + src + '\" alt=\"' + (it.alt_text || '') + '\" loading=\"lazy\" decoding=\"async\" style=\"width:100%;height:auto;display:block;border-radius:12px;\">' +\n                  '</figure>'\n                );\n              })\n              .join('');\n          });\n        }\n      }\n    });\n\n    /* Related cards */\n    if (relatedSlot) {\n      fetchRelated(postId).then(function (posts) {\n        relatedSlot.innerHTML = posts\n          .map(function (p) {\n            var title = (p.title && p.title.rendered) || '';\n            var industry = (p.acf && p.acf.pfz_case_kicker) || '';\n            var tagline = (p.acf && p.acf.pfz_case_tagline) || '';\n            var url = p.link || '#';\n            var industryShort = industry.split('·')[0].trim() || 'Project';\n            return (\n              '<li>' +\n                '<a class=\"pfz-case-card\" href=\"' + url + '\" data-cursor data-cursor-label=\"' + esc(title.toLowerCase()) + '\">' +\n                  '<span class=\"pfz-case-card__type\">' + esc(industryShort) + '</span>' +\n                  '<span class=\"pfz-case-card__title\">' + title + '</span>' +\n                  '<span class=\"pfz-case-card__tagline\">' + esc(tagline) + '</span>' +\n                  '<span class=\"pfz-case-card__cta\">View case →</span>' +\n                '</a>' +\n              '</li>'\n            );\n          })\n          .join('');\n      });\n    }\n\n    function esc(s) {\n      return String(s)\n        .replace(/&/g, '&amp;')\n        .replace(/</g, '&lt;')\n        .replace(/>/g, '&gt;')\n        .replace(/\"/g, '&quot;');\n    }\n  }\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', init);\n  } else {\n    init();\n  }\n})();\n</script>",
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--html"
+      },
+      "label": "Related content + runtime script"
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "version": "1.15.0",
+  "globalClasses": [],
+  "globalElements": []
+}

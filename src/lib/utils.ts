@@ -2,7 +2,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 /**
- * Merge Tailwind classes intelligently while supporting conditional `clsx` input.
+ * Merge utility-oriented CSS class strings intelligently while supporting conditional `clsx` input.
  * Standard helper used across the codebase.
  */
 export function cn(...inputs: ClassValue[]) {

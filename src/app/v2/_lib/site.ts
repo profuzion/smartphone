@@ -15,7 +15,7 @@ import { featuredProjects } from "@/content/projects";
 export const studio = {
   name: "Profuzion",
   monogram: "PZ",
-  positioning: "Brand & Website design for owners who want to stand out.",
+  positioning: "Brand & Website design. Mastered.",
   founded: 1999,
   location: "Winkler, Manitoba · Pembina Valley",
   availability: "now booking summer 2026",

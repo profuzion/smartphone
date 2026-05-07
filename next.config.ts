@@ -1,4 +1,11 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+// Only for local `next dev` + Cloudflare wrangler/miniflare. Skipping on production
+// `next build` avoids pulling workerd (breaks Vercel/Linux builders — GLIBC mismatch).
+if (process.env.NODE_ENV !== "production") {
+  void initOpenNextCloudflareForDev();
+}
 
 /**
  * Next 16 config.
@@ -16,6 +23,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       // Vercel-hosted case-study preview (Nature's Knoll).
       { protocol: "https", hostname: "preview-pi-azure.vercel.app" },
+      // Smartphone landing — HD placeholders (Unsplash License).
+      { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
 

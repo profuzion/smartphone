@@ -29,7 +29,7 @@ if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
  *   │ └──────────────────┘ └────────────────────────────────────┘  │
  *   └──────────────────────────────────────────────────────────────┘
  *
- *   • Hovering / focusing a row sets `active`; the preview crossfades.
+ *   • Clicking a row sets `active`; the preview crossfades (matches WP Bricks script).
  *   • Mobile (< lg): rows + preview collapse into stacked cards.
  *   • The preview's procedural texture is built with a tinted radial
  *     halftone field colored by the industry's `hue`.
@@ -105,8 +105,6 @@ export function SectionIndustries() {
                   style={{ borderColor: "var(--p-rule)" }}
                 >
                   <button
-                    onPointerEnter={() => setActive(ind)}
-                    onFocus={() => setActive(ind)}
                     onClick={() => setActive(ind)}
                     data-cursor
                     data-cursor-label="reveal"

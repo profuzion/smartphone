@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
+import { SceneCanvas } from "@/components/three/scene-canvas";
 import { ProjectMedia } from "@/components/work/project-media";
 import {
   featuredProjects,
@@ -20,7 +21,7 @@ import {
  * /work/[slug] — dedicated case-study subpage.
  *
  * Each featured project lives at its own URL — /work/natures-knoll,
- * /work/alumareel, /work/brovek — rather than as a scroll anchor on
+ * /work/alumareel, /work/brovek, /work/avion — rather than as a scroll anchor on
  * the homepage. The reasons this matters:
  *
  *   1. SEO: each case study is a separate indexable page with its
@@ -32,6 +33,10 @@ import {
  *
  * All projects are statically generated via generateStaticParams
  * so the pages render instantly and the HTML is fully crawlable.
+ *
+ * Layout mirrors the homepage: the same fixed SceneCanvas sits behind
+ * content at z-0; Nav, main, and Footer sit in a relative z-10 column so
+ * the 3D seed reads as one continuous stage.
  */
 
 type Params = Promise<{ slug: string }>;
@@ -127,12 +132,13 @@ export default async function ProjectPage({ params }: { params: Params }) {
         dangerouslySetInnerHTML={{ __html: jsonLdCrumbs }}
       />
 
+      <SceneCanvas />
       <div className="relative z-10 flex min-h-full flex-col">
         <Nav />
 
         <main className="flex flex-1 flex-col pt-[var(--nav-h)]">
-          {/* ── Masthead ────────────────────────────────────── */}
-          <header className="relative pb-16 pt-12 md:pb-24 md:pt-20">
+          {/* ── Masthead (grain + isolate match homepage hero) ── */}
+          <header className="grain relative isolate pb-16 pt-12 md:pb-24 md:pt-20">
             <div className="container-shell space-y-8">
               <nav
                 aria-label="Breadcrumb"
@@ -214,7 +220,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           )}
 
           {/* ── Narrative: Challenge / Approach / Outcome ──── */}
-          <section className="pb-24 md:pb-32">
+          <section className="relative pb-24 md:pb-32">
             <div className="container-shell grid gap-16 md:grid-cols-[1fr_2fr] md:gap-20">
               <aside className="space-y-10">
                 <div className="space-y-2">
@@ -287,7 +293,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
           {/* ── Full gallery ────────────────────────────────── */}
           {restOfGallery.length > 0 && (
-            <section className="pb-24 md:pb-32">
+            <section className="relative border-y border-[var(--color-border)] bg-obsidian/60 py-24 md:py-32">
               <div className="container-shell space-y-14">
                 <div className="max-w-xl space-y-3">
                   <p className="eyebrow">Gallery</p>

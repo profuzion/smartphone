@@ -32,7 +32,7 @@ export const services: readonly Service[] = [
     oneLiner:
       "Fast, accessible, conversion-focused websites for Winkler and Pembina Valley businesses. Built for owners who answer their own phone.",
     bullets: [
-      "Next.js or WordPress — whichever fits your team.",
+      "Custom builds or WordPress — whichever fits your team.",
       "Core Web Vitals–grade performance on mobile.",
       "Content you can update without calling us.",
       "Local SEO structure baked in from the first wireframe.",

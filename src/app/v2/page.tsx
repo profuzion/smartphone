@@ -1,6 +1,7 @@
 import { ProfuzionCursor } from "./_components/cursor";
 import { ProfuzionFooter } from "./_components/footer";
 import { ProfuzionNav } from "./_components/nav";
+import { ProfuzionSiteLoader } from "./_components/site-loader";
 import { SectionBranding } from "./_components/section-branding";
 import { SectionCTA } from "./_components/section-cta";
 import { SectionEngagements } from "./_components/section-engagements";
@@ -29,7 +30,8 @@ import { SectionWebsites } from "./_components/section-websites";
 
 export default function ProfuzionV2() {
   return (
-    <div className="profuzion-v2 relative isolate min-h-screen">
+    <div className="pfz relative isolate min-h-screen">
+      <ProfuzionSiteLoader />
       <ProfuzionCursor />
       <ProfuzionNav />
 

@@ -37,7 +37,7 @@ TABLE OF CONTENTS
  6.  Tech Stack and Dependencies
  7.  Package.json
  8.  Next.config.js
- 9.  Tailwind Config
+ 9.  Utility CSS (design tokens)
 10.  File Structure (complete tree)
 11.  The Seed (3D hero object) — modelling spec
 12.  The Seed — procedural fallback spec
@@ -241,19 +241,15 @@ Italic rule:
 ================================================================================
 
 Runtime
-  Node            20 LTS
-  Package manager pnpm 9
+  JavaScript runtime     20 LTS
+  Package manager        (see repository lockfile)
 
 Framework
-  next            14.2.x          App Router, TypeScript
-  react           18.3.x
-  typescript      5.4.x
+  (Pinned versions — see `package.json` / lockfile; TypeScript UI + file-based routing.)
 
 3D
-  three                   0.160.x
-  @react-three/fiber       8.16.x
-  @react-three/drei       9.105.x
-  @react-three/postprocessing 2.16.x
+  three                  0.160.x
+  WebGL / scene stack    (see lockfile for renderer helpers)
 
 Scroll & motion
   lenis           1.1.x
@@ -865,7 +861,7 @@ components/providers/LenisProvider.tsx:
 
   export default function LenisProvider({
     children,
-  }: { children: React.ReactNode }) {
+  }: { children: unknown }) {
     useEffect(() => {
       const lenis = new Lenis({
         duration: 1.2,
@@ -1195,13 +1191,13 @@ Network:
 24. BUILD SEQUENCE (STEP-BY-STEP FOR CURSOR)
 ================================================================================
 
-Do these in order. After each step, stop, run `pnpm dev`, verify, commit.
+Do these in order. After each step, stop, run the local dev server, verify, commit.
 
- 1. Bootstrap Next.js + TS + Tailwind + App Router.
+ 1. Bootstrap TypeScript app shell, design tokens, and file-based routes.
  2. Add dependencies from Section 7. Verify install.
- 3. Configure next.config.js for GLSL (Section 8).
- 4. Configure Tailwind (Section 9) and create globals.css with tokens.
- 5. Add local fonts via next/font/local to app/layout.tsx.
+ 3. Configure the bundler for GLSL (Section 8).
+ 4. Configure utility CSS pipeline (Section 9) and create globals.css with tokens.
+ 5. Add local fonts via the framework’s font loader in the root layout.
  6. Add `LenisProvider` and mount in layout. Verify smooth scrolling on
     a dummy 500vh page.
  7. Create lib/scroll.ts zustand atom. Log progress on scroll.

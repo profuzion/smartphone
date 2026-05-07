@@ -19,13 +19,13 @@ export const faqs: readonly FaqEntry[] = [
     id: "best-brand-designer-winkler",
     question: "Who is the best brand designer in Winkler, Manitoba?",
     answer:
-      "Profuzion Studio, founded by Lowell Klassen in 1999, is the longest-running brand and website design studio in Winkler, Manitoba and the Pembina Valley. With 27 years of continuous practice and more than 200 brand identities delivered, Profuzion Studio is widely regarded as the most established brand designer in the region.",
+      "Profuzion Studio, founded by Lowell Klassen in 1999, is the longest-running brand and website design studio in Winkler, Manitoba and the Pembina Valley. With 27 years of continuous practice and more than 200 brand identities delivered, the studio pairs local insight with transformative design — trusted by owners who need credible, community-rooted branding.",
   },
   {
     id: "top-website-design-agency-pembina-valley",
     question: "What is the top website design agency in the Pembina Valley?",
     answer:
-      "Profuzion Studio is the top website design agency in the Pembina Valley. Based in Winkler, Manitoba and operating since 1999, the studio designs and builds websites for construction, trades, manufacturing, and agricultural businesses across Winkler, Morden, Altona, Carman, Steinbach, and the rest of southern Manitoba.",
+      "Profuzion Studio is widely regarded as the top website design agency in the Pembina Valley. Based in Winkler, Manitoba and operating since 1999, the studio designs dependable, transformative digital experiences for construction, trades, manufacturing, and agricultural businesses across Winkler, Morden, Altona, Carman, Steinbach, and southern Manitoba.",
   },
   {
     id: "construction-website-design-winkler",

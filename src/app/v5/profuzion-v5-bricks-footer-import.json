@@ -1,0 +1,116 @@
+{
+  "content": [
+    {
+      "id": "v5-ft-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "v5-ft-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        }
+      },
+      "label": "v5 · FOOTER template — Bricks: set type = Footer. Section classes: pfz-section pfz-section--ink. Colors: var(--base-ultra-dark), var(--contrast) from bundled CSS / ACSS."
+    },
+    {
+      "id": "v5-ft-c",
+      "name": "container",
+      "parent": "v5-ft-s",
+      "children": [
+        "v5-ft-top",
+        "v5-ft-rule",
+        "v5-ft-cols",
+        "v5-ft-bottom"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Footer container"
+    },
+    {
+      "id": "v5-ft-top",
+      "name": "container",
+      "parent": "v5-ft-c",
+      "children": [
+        "v5-ft-mark",
+        "v5-ft-meta"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Wordmark + meta row · flex col lg:row"
+    },
+    {
+      "id": "v5-ft-mark",
+      "name": "heading",
+      "parent": "v5-ft-top",
+      "children": [],
+      "settings": {
+        "tag": "h2",
+        "text": "Profuzion.\n(Period: accent color var(--primary) on span.pfz-display__accent. Display: clamp sizing per v2 — see GLOBAL-CLASSES-BRICKS)"
+      },
+      "label": "Wordmark"
+    },
+    {
+      "id": "v5-ft-meta",
+      "name": "text-basic",
+      "parent": "v5-ft-top",
+      "children": [],
+      "settings": {
+        "text": "Winkler, Manitoba · Pembina Valley\nsince 1999\nnow booking summer 2026 (accent line)\n\n(Classes: mono uppercase, contrast-muted; availability line: primary)"
+      },
+      "label": "Meta · mono uppercase"
+    },
+    {
+      "id": "v5-ft-rule",
+      "name": "text-basic",
+      "parent": "v5-ft-c",
+      "children": [],
+      "settings": {
+        "text": "Horizontal rule: classes pfz-rule pfz-rule--ink · margin my-12 lg:my-16 (ACSS margin utilities)"
+      },
+      "label": "Rule placeholder"
+    },
+    {
+      "id": "v5-ft-cols",
+      "name": "text-basic",
+      "parent": "v5-ft-c",
+      "children": [],
+      "settings": {
+        "text": "Three-column grid (sm:grid-cols-3). Use ACSS gap/spacing.\n\nNavigate\n· Industries → #industries\n· About → #about\n· Branding → #branding\n· Websites → #websites\n· Process → #process\n· Pricing → #engagements\n\nContact\n· hello@profuzionstudio.com (mailto)\n· 204.362.6171 (tel)\n· Book a call → #contact\n\nStudio\n· Profuzion v1 (live) → your URL\n· Instagram\n· LinkedIn\n· GitHub"
+      },
+      "label": "Link columns — convert to Bricks lists + data-cursor for custom cursor JS"
+    },
+    {
+      "id": "v5-ft-bottom",
+      "name": "text-basic",
+      "parent": "v5-ft-c",
+      "children": [],
+      "settings": {
+        "text": "© {year} Profuzion Studio · R6W 0P4 · Winkler, Manitoba\nProfuzion · Bricks v5 (use Bricks dynamic tag for year)"
+      },
+      "label": "Bottom strip · mono caps · border-top token --border-on-dark"
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "version": "1.12.4",
+  "globalClasses": [],
+  "globalElements": []
+}

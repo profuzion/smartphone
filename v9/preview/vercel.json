@@ -1,0 +1,7 @@
+{
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": ".",
+  "framework": null,
+  "rewrites": [{ "source": "/", "destination": "/pfz-v2-wp-preview.html" }]
+}

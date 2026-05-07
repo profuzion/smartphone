@@ -19,9 +19,8 @@ const HalftoneCanvas = dynamic(
  *   ┌──────────────────────────────────────────────────────────────┐
  *   │ [PZ] · WINKLER MB · v2 ───────────────── now booking · 2026  │
  *   │                                                              │
- *   │   Brand & Website design                                     │
- *   │   for owners who want to                                     │
- *   │   stand out.  ← 'stand / out' Instrument Serif + signal    │
+ *   │   Brand & Website design.                                    │
+ *   │   Mastered.  ← italic + chartreuse                           │
  *   │                                                              │
  *   │   Profuzion has been quietly building the brands and sites   │
  *   │   that local industrial, contractor, and producer teams send │
@@ -131,7 +130,13 @@ export function SectionHero() {
         }}
       />
 
-      <div className="relative z-[2] mx-auto flex min-h-[100svh] max-w-[1480px] flex-col px-6 pt-28 pb-16 lg:px-10 lg:pt-32 lg:pb-24">
+      <div
+        className="relative z-[2] mx-auto flex max-w-[1480px] flex-col px-6 pt-28 pb-16 lg:px-10 lg:pt-32 lg:pb-24"
+        style={{
+          minHeight:
+            "min(100svh, max(calc(min(100vw, 1920px) * 1280 / 1920), 38rem))",
+        }}
+      >
         {/* Top meta row */}
         <div
           className="flex flex-wrap items-center justify-between gap-4 pb-12"
@@ -163,26 +168,14 @@ export function SectionHero() {
             <span data-word className="inline-block">&amp;</span>{" "}
             <span data-word className="inline-block">Website</span>{" "}
             <span data-word className="inline-block">design</span>
-            <br />
-            <span data-word className="inline-block">for</span>{" "}
-            <span data-word className="inline-block">owners</span>{" "}
-            <span data-word className="inline-block">who</span>{" "}
-            <span data-word className="inline-block">want</span>{" "}
-            <span data-word className="inline-block">to</span>
+            <span data-word className="inline-block">.</span>
             <br />
             <span
               data-word
               className="p-italic inline-block"
               style={{ color: "var(--p-amber)" }}
             >
-              stand
-            </span>{" "}
-            <span
-              data-word
-              className="p-italic inline-block"
-              style={{ color: "var(--p-amber)" }}
-            >
-              out
+              Mastered
             </span>
             <span data-word className="inline-block">.</span>
           </h1>
@@ -205,21 +198,21 @@ export function SectionHero() {
           <div className="mt-10 flex flex-wrap items-center gap-3" data-hero-cta>
             <a
               href="#contact"
-              className="p-btn"
+              className="btn--secondary inline-flex"
               data-cursor
               data-cursor-label="book"
             >
               Book a 30-min call
-              <span className="p-arrow">→</span>
+              <span className="pfz-btn-arrow">→</span>
             </a>
             <a
               href="#branding"
-              className="p-btn p-btn--ghost"
+              className="btn--base btn--outline inline-flex"
               data-cursor
               data-cursor-label="see"
             >
               See the work
-              <span className="p-arrow">↓</span>
+              <span className="pfz-btn-arrow">↓</span>
             </a>
           </div>
         </div>

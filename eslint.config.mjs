@@ -9,9 +9,12 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    ".open-next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Minified vendor (GSAP, Three) — not authored in-repo
+    "tools/wordpress/**/vendor/**",
   ]),
 ]);
 

@@ -2,11 +2,28 @@
   "name": "project",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "dev:3044": "next dev -p 3044",
+    "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync-v2-wp-css": "node scripts/sync-v2-wp-css.mjs",
+    "sync-v5-wp-css": "node scripts/sync-v5-wp-css.mjs",
+    "sync-v6-wp-css": "node scripts/sync-v6-wp-css.mjs",
+    "sync-wp-vendor-js": "node scripts/sync-wp-vendor-js.mjs",
+    "bricks:import": "node scripts/generate-bricks-v6-header.mjs && node scripts/generate-bricks-v6-footer.mjs && node scripts/generate-bricks-v6-home.mjs && node scripts/generate-bricks-import.mjs && node scripts/generate-bricks-case-import.mjs && node scripts/generate-bricks-hero-prompt.mjs && node scripts/generate-bricks-v10-import.mjs",
+    "wp:handoff": "npm run sync-v6-wp-css && npm run sync-wp-vendor-js && npm run bricks:import && node scripts/sync-bricks-import-to-child.mjs",
+    "migrate-v2-acss": "node scripts/migrate-v2-acss.mjs",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "preview:design": "npx --yes serve bricks-build -l 3333 --no-clipboard",
+    "preview:v9": "npx --yes serve v9/preview -l 3339 --no-clipboard"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -27,6 +44,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.19.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -37,6 +55,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.0.0-insiders.f7d2598",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.86.0"
   }
 }

@@ -48,6 +48,11 @@ const PAGE_DESCRIPTION = `${site.name} is the longest-running brand and website 
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  icons: {
+    icon: [{ url: "/pfs-logo-mark.svg", type: "image/svg+xml" }],
+    shortcut: "/pfs-logo-mark.svg",
+    apple: "/pfs-logo-mark.svg",
+  },
   title: {
     default: PAGE_TITLE,
     template: `%s · ${site.name}`,

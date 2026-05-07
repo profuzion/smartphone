@@ -1,0 +1,55 @@
+{
+  "content": [
+    {
+      "id": "v6-ft-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "v6-ft-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "",
+        "_padding": {
+          "top": "60",
+          "right": "24",
+          "bottom": "60",
+          "left": "24"
+        },
+        "_cssClasses": "pfz-home__foot"
+      },
+      "label": "v6 · Footer"
+    },
+    {
+      "id": "v6-ft-c",
+      "name": "container",
+      "parent": "v6-ft-s",
+      "children": [
+        "v6-ft-code"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Footer shell"
+    },
+    {
+      "id": "v6-ft-code",
+      "name": "html",
+      "parent": "v6-ft-c",
+      "children": [],
+      "settings": {
+        "html": "<div class=\"pfz-home__foot-inner\">\n  <div class=\"pfz-home__foot-top\">\n    <h2 class=\"pfz-home__foot-mark\">Profuzion<span class=\"pfz-display__accent\">.</span></h2>\n    <ul class=\"pfz-home__foot-meta\">\n      <li>Winkler, Manitoba · Pembina Valley</li>\n      <li>since 1999</li>\n      <li class=\"is-availability\">now booking summer 2026</li>\n    </ul>\n  </div>\n\n  <div class=\"pfz-rule pfz-rule--ink\" aria-hidden=\"true\" style=\"margin-block: 3rem 0;\"></div>\n\n  <div class=\"pfz-home__foot-cols\">\n    \n<div class=\"pfz-home__foot-col\">\n  <p class=\"pfz-home__foot-col-label\">Navigate</p>\n  <ul>\n    <li><a href=\"#industries\" data-cursor data-cursor-label=\"navigate\">Industries</a></li><li><a href=\"#about\" data-cursor data-cursor-label=\"navigate\">About</a></li><li><a href=\"#branding\" data-cursor data-cursor-label=\"navigate\">Branding</a></li><li><a href=\"#websites\" data-cursor data-cursor-label=\"navigate\">Websites</a></li><li><a href=\"#process\" data-cursor data-cursor-label=\"navigate\">Process</a></li><li><a href=\"#engagements\" data-cursor data-cursor-label=\"navigate\">Pricing</a></li>\n  </ul>\n</div>\n    \n<div class=\"pfz-home__foot-col\">\n  <p class=\"pfz-home__foot-col-label\">Contact</p>\n  <ul>\n    <li><a href=\"mailto:hello@profuzionstudio.com\" data-cursor data-cursor-label=\"contact\">hello@profuzionstudio.com</a></li><li><a href=\"tel:+12043626171\" data-cursor data-cursor-label=\"contact\">204.362.6171</a></li><li><a href=\"#contact\" data-cursor data-cursor-label=\"contact\">Book a call →</a></li>\n  </ul>\n</div>\n    \n<div class=\"pfz-home__foot-col\">\n  <p class=\"pfz-home__foot-col-label\">Studio</p>\n  <ul>\n    <li><a href=\"/work/\" data-cursor data-cursor-label=\"studio\">Selected work</a></li><li><a href=\"https://instagram.com/profuzion\" data-cursor data-cursor-label=\"studio\">Instagram</a></li><li><a href=\"https://linkedin.com/in/lowellklassen\" data-cursor data-cursor-label=\"studio\">LinkedIn</a></li>\n  </ul>\n</div>\n  </div>\n\n  <div class=\"pfz-home__foot-bot\">\n    <p>© 2026 Profuzion Studio · R6W 0P4 · Winkler, Manitoba</p>\n  </div>\n</div>"
+      },
+      "label": "Footer content"
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "version": "1.12.4",
+  "globalClasses": [],
+  "globalElements": []
+}

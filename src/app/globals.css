@@ -138,11 +138,11 @@ html.lenis body {
   }
 }
 
-/* Respect reduced-motion */
+/* Respect reduced-motion — exclude `.pz-site-loader` subtree so the intro can fade visibly */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *:not(.pz-site-loader):not(.pz-site-loader *)::before,
+  *:not(.pz-site-loader):not(.pz-site-loader *)::after,
+  *:not(.pz-site-loader):not(.pz-site-loader *) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

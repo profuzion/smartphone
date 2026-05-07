@@ -114,7 +114,7 @@ function Plane() {
   const matRef = useRef<THREE.ShaderMaterial>(null);
   const { size } = useThree();
 
-  // Scroll value, updated outside the React tree to avoid re-renders.
+  // Scroll value, updated outside the component tree to avoid re-renders.
   const scrollRef = useRef(0);
   // Mouse in 0..1, defaulting to centre.
   const mouseRef = useRef(new THREE.Vector2(0.5, 0.5));

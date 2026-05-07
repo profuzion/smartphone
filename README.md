@@ -5,32 +5,32 @@ for cinematic scroll experiences, 3D, and editorial typography.
 
 ## Stack
 
-| Layer                | Tool                                                                    |
-| -------------------- | ----------------------------------------------------------------------- |
-| Framework            | **Next.js 16** (App Router) · **React 19** · **TypeScript**             |
-| Styling              | **Tailwind CSS v4** + custom design tokens (see `src/app/globals.css`)  |
-| Smooth scroll        | **Lenis** (synced with GSAP ticker)                                     |
-| Animation            | **GSAP 3** · `ScrollTrigger` · `SplitText` · `@gsap/react`              |
-| 3D / WebGL           | **Three.js** · `@react-three/fiber` · `drei` · `postprocessing`         |
-| UI motion            | **Motion** (Framer Motion successor) — for micro-interactions           |
-| Tooling              | ESLint · Prettier + `prettier-plugin-tailwindcss` · Turbopack           |
+| Layer         | Tool |
+| ------------- | ---- |
+| Application   | **TypeScript** UI (see `package.json` for runtime and UI dependencies) |
+| Styling       | Token-driven CSS (`src/app/globals.css`, route-level stylesheets) |
+| Smooth scroll | **Lenis** (synced with GSAP ticker) |
+| Animation     | **GSAP 3** · `ScrollTrigger` · `SplitText` · UI animation helpers |
+| 3D / WebGL    | **Three.js** · scene helpers · post-processing |
+| UI motion     | **Motion** — micro-interactions |
+| Tooling       | ESLint · Prettier · bundled dev tooling |
 
 ## Folder structure
 
 ```
 src/
-  app/                  Next.js App Router (layout, page, globals)
+  app/                  Route modules (layout, page, globals)
   components/
     layout/             Nav, Footer, chrome
     sections/           Hero, Marquee, Manifesto, Services, Work...
-    three/              R3F scenes, shared Canvas wrapper
+    three/              WebGL scenes, shared Canvas wrapper
   content/              Central content config (copy, nav, social)
   hooks/                Small reusable hooks
   lib/                  utils, gsap registration
   providers/            Lenis smooth-scroll provider
 public/
   renders/              Blender-exported PNGs (hero & case-study art)
-  models/               GLB/GLTF assets for R3F
+  models/               GLB/GLTF assets for WebGL
 ```
 
 ## Design tokens
@@ -48,22 +48,39 @@ Typography: **Instrument Serif** (display), **Inter** (body), **Geist Mono**.
 ## Commands
 
 ```bash
-npm run dev      # Start dev server (Turbopack) — http://localhost:3000
-npm run build    # Production build
-npm run start    # Start production server
-npm run lint     # Lint
+npm run dev        # Local preview
+npm run build      # Production build
+npm run start      # Production server
+npm run lint       # ESLint
+npm run wp:handoff # WordPress: sync v6 CSS + vendor JS + Bricks JSON (run before every deploy)
+
+# Cloudflare (OpenNext — full Next.js on Workers; see below)
+npm run cf:build    # Build worker bundle (.open-next/)
+npm run cf:preview # Build + run in local Workers runtime (workerd)
+npm run cf:deploy  # Build + deploy (needs `wrangler login` and account)
 ```
 
-## Building the site
+**Cloudflare:** This app is a full-stack Next.js app (`/api/contact`, SSG routes). Cloudflare’s supported path is **[Workers + `@opennextjs/cloudflare`](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/)**, not a static **Pages** export.
 
-1. **Hero** — placeholder ambient gradient now; drop an R3F <Canvas/>
-   rendering `FloatingOrb` or the exported Blender GLB to finish.
+1. Install [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) (already a dev dependency) and run `npx wrangler login` once.
+2. Set secrets for production contact email: `npx wrangler secret put RESEND_API_KEY` (and optionally `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`).
+3. Run `npm run cf:deploy` — ships to the Worker named **`profuzion-studio`** in `wrangler.jsonc`. Attach a custom domain under **Workers & Pages** → your worker → **Triggers** → **Custom Domains**.
+4. CI: use **[Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/)** or GitHub Actions with build command `npm run cf:build` / deploy `npm run cf:deploy`; provide the same env vars Cloudflare needs at build time ([OpenNext env guide](https://opennext.js.org/cloudflare/howtos/env-vars)).
+
+Canonical URLs in `src/content/site.ts` use `https://profuzionstudio.com`; update `site.url` (or move it to an env) when pointing a workers.dev preview at SEO metadata.
+
+Other script names are in **`package.json`**.
+
+## WordPress / Bricks (v2 handoff)
+
+**Deploy kit (v6):** `tools/wordpress/BRICKS-DEPLOY-KIT-V6.md` — **Three.js halftone** + **GSAP**, Bricks header/footer/home/case, **ACF Pro**, CPT, BEM + ACSS. Run **`npm run wp:handoff`** before deploy. Older notes: `BRICKS-DEPLOY-KIT.md`.
+
+1. **Hero** — placeholder ambient gradient now; add a WebGL `<canvas>` / scene when ready.
 2. **Work** — currently previews the existing glass‑sphere renders in
    `public/renders/`. Replace with real case studies.
-3. **3D integration** — import the Blender output as `.glb` into
-   `public/models/` then load via drei's `useGLTF`.
-4. **Motion language** — all scroll animations are registered via
-   `@gsap/react`'s `useGSAP` so they auto-cleanup and sync with Lenis.
+3. **3D integration** — import Blender output as `.glb` into
+   `public/models/` then load in-scene.
+4. **Motion language** — scroll timelines are registered with GSAP helpers so they auto-cleanup and sync with Lenis.
 
 ## Principles
 

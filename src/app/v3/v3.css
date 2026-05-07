@@ -1,0 +1,322 @@
+/* Profuzion · v3 — "The Letter".
+ *
+ * The most minimal expression of the studio: cream paper, ink type,
+ * Instrument Serif throughout, one hairline motif, one underline-on-hover
+ * call-to-action. No imagery. No buttons with fills. No scroll choreography.
+ *
+ * Tokens (route-scoped to `.profuzion-v3`):
+ *   --v-paper      → warm cream canvas
+ *   --v-ink        → near-black, the only "color"
+ *   --v-stone      → muted text (use sparingly)
+ *   --v-rule       → 1px hairline at ~10% opacity
+ *
+ * The italic IS the accent. There is no second color.
+ */
+
+.profuzion-v3 {
+  /* Surfaces */
+  --v-paper: #f4f1ea;
+  --v-paper-warm: #efe8d8;
+
+  /* Ink */
+  --v-ink: #0b0b0f;
+  --v-ink-soft: #1c1c22;
+
+  /* Muted */
+  --v-stone: #7a766c;
+  --v-stone-light: #a8a397;
+
+  /* Rules */
+  --v-rule: rgba(11, 11, 15, 0.10);
+  --v-rule-strong: rgba(11, 11, 15, 0.22);
+
+  /* Type */
+  --v-serif: var(--font-display), "Instrument Serif", "Garamond", Georgia, serif;
+  --v-mono: var(--font-mono), ui-monospace, monospace;
+
+  /* Easing */
+  --v-eo: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  background: var(--v-paper);
+  color: var(--v-ink);
+  font-family: var(--v-serif);
+  font-feature-settings:
+    "ss01" on,
+    "liga" on,
+    "calt" on;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection — invert ink/paper */
+.profuzion-v3 ::selection {
+  background: var(--v-ink);
+  color: var(--v-paper);
+}
+
+/* Anchor reset within v3 — no underline by default */
+.profuzion-v3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ───────────────────────── Type ───────────────────────── */
+
+.profuzion-v3 .v-meta {
+  font-family: var(--v-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--v-stone);
+  font-weight: 400;
+}
+
+.profuzion-v3 .v-display {
+  font-family: var(--v-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2.75rem, 8vw, 7rem);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  color: var(--v-ink);
+}
+
+.profuzion-v3 .v-italic {
+  font-style: italic;
+}
+
+.profuzion-v3 .v-h2 {
+  font-family: var(--v-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  color: var(--v-ink);
+}
+
+.profuzion-v3 .v-lede {
+  font-family: var(--v-serif);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--v-ink-soft);
+  letter-spacing: -0.005em;
+}
+
+.profuzion-v3 .v-body {
+  font-family: var(--v-serif);
+  font-weight: 400;
+  font-size: clamp(1.125rem, 1.35vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--v-ink-soft);
+  letter-spacing: -0.003em;
+}
+
+.profuzion-v3 .v-sig {
+  font-family: var(--v-serif);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.4vw, 1.35rem);
+  color: var(--v-ink);
+  letter-spacing: -0.002em;
+}
+
+/* ───────────────────────── Lists ───────────────────────── */
+
+/* Two-column "label · description" rows that read like a colophon. */
+.profuzion-v3 .v-list {
+  display: grid;
+  gap: 0.9rem 2.5rem;
+  grid-template-columns: minmax(8rem, 14rem) 1fr;
+  align-items: baseline;
+}
+
+.profuzion-v3 .v-list__row {
+  display: contents;
+}
+
+.profuzion-v3 .v-list__label {
+  font-family: var(--v-serif);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.35vw, 1.3rem);
+  color: var(--v-ink);
+  letter-spacing: -0.003em;
+}
+
+.profuzion-v3 .v-list__desc {
+  font-family: var(--v-serif);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--v-stone);
+  letter-spacing: -0.002em;
+}
+
+/* Three-column case row: name · year · descriptor. */
+.profuzion-v3 .v-cases {
+  display: grid;
+  gap: 0.9rem 2.5rem;
+  grid-template-columns: minmax(10rem, 16rem) auto 1fr;
+  align-items: baseline;
+}
+
+.profuzion-v3 .v-cases__row {
+  display: contents;
+}
+
+.profuzion-v3 .v-cases__name {
+  font-family: var(--v-serif);
+  font-size: clamp(1.125rem, 1.35vw, 1.3rem);
+  color: var(--v-ink);
+  letter-spacing: -0.003em;
+}
+
+.profuzion-v3 .v-cases__year {
+  font-family: var(--v-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--v-stone);
+}
+
+.profuzion-v3 .v-cases__desc {
+  font-family: var(--v-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: var(--v-stone);
+  letter-spacing: -0.002em;
+}
+
+/* Mobile collapse for both lists */
+@media (max-width: 640px) {
+  .profuzion-v3 .v-list,
+  .profuzion-v3 .v-cases {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .profuzion-v3 .v-list__row,
+  .profuzion-v3 .v-cases__row {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .profuzion-v3 .v-cases__row {
+    grid-template-columns: 1fr auto;
+  }
+  .profuzion-v3 .v-cases__desc {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ───────────────────────── Hairline ───────────────────────── */
+
+.profuzion-v3 .v-rule {
+  height: 1px;
+  width: 100%;
+  background: var(--v-rule);
+  transform-origin: left;
+  animation: v-rule-draw 1.6s var(--v-eo) both;
+}
+
+/* ───────────────────────── CTA ───────────────────────── */
+
+.profuzion-v3 .v-cta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45em;
+  font-family: var(--v-serif);
+  font-style: italic;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  color: var(--v-ink);
+  position: relative;
+  letter-spacing: -0.005em;
+  padding-bottom: 6px;
+}
+
+.profuzion-v3 .v-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--v-ink);
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 480ms var(--v-eo);
+}
+
+.profuzion-v3 .v-cta:hover::after,
+.profuzion-v3 .v-cta:focus-visible::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.profuzion-v3 .v-cta:hover .v-cta__arrow,
+.profuzion-v3 .v-cta:focus-visible .v-cta__arrow {
+  transform: translateX(6px);
+}
+
+.profuzion-v3 .v-cta__arrow {
+  display: inline-block;
+  transition: transform 480ms var(--v-eo);
+}
+
+.profuzion-v3 .v-cta:focus-visible {
+  outline: none;
+}
+
+/* Quiet inline links inside paragraphs */
+.profuzion-v3 .v-link {
+  color: inherit;
+  border-bottom: 1px solid var(--v-rule-strong);
+  padding-bottom: 1px;
+  transition: border-color 240ms var(--v-eo);
+}
+.profuzion-v3 .v-link:hover {
+  border-bottom-color: var(--v-ink);
+}
+
+/* ───────────────────────── Animations ───────────────────────── */
+
+@keyframes v-rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes v-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.profuzion-v3 .v-fadein {
+  animation: v-fade-in 1.4s var(--v-eo) both;
+}
+
+.profuzion-v3 .v-fadein--delay-1 {
+  animation-delay: 0.15s;
+}
+.profuzion-v3 .v-fadein--delay-2 {
+  animation-delay: 0.3s;
+}
+.profuzion-v3 .v-fadein--delay-3 {
+  animation-delay: 0.45s;
+}
+
+/* Reduced motion — collapse all animation */
+@media (prefers-reduced-motion: reduce) {
+  .profuzion-v3 *,
+  .profuzion-v3 *::after,
+  .profuzion-v3 *::before {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

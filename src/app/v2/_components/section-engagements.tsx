@@ -201,20 +201,16 @@ export function SectionEngagements() {
                 href="#contact"
                 data-cursor
                 data-cursor-label={e.primary ? "book" : "start"}
-                className="mt-8 inline-flex items-center justify-between gap-3 rounded-full border px-5 py-3 transition-all duration-200"
-                style={{
-                  borderColor: e.primary
-                    ? "var(--p-amber)"
-                    : "var(--p-ink)",
-                  background: e.primary ? "var(--p-amber)" : "transparent",
-                  color: e.primary ? "var(--p-on-signal)" : "var(--p-ink)",
-                  fontFamily: "var(--p-sans)",
-                  fontSize: 14,
-                  fontWeight: 500,
-                }}
+                className={
+                  e.primary
+                    ? "btn--primary mt-8 inline-flex w-full justify-between"
+                    : "btn--base btn--outline mt-8 inline-flex w-full justify-between"
+                }
               >
                 {e.cta}
-                <span aria-hidden>→</span>
+                <span className="pfz-btn-arrow" aria-hidden>
+                  →
+                </span>
               </a>
             </article>
           ))}

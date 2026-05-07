@@ -15,6 +15,7 @@
  *   1. Nature's Knoll  (web, narrative-driven, Mar 2026)
  *   2. AlumaReel       (brand + web + product site)
  *   3. Brovek          (brand anchor case)
+ *   4. Avion           (aviation services — brand & web, sample case)
  *
  * The "trades" group is the supporting logo strip (Act 3).
  */
@@ -48,7 +49,13 @@ export type Project = {
   tagline: string;
   scope: readonly string[];
   year: number;
-  vertical: "web" | "brand" | "hospitality" | "construction" | "manufacturing";
+  vertical:
+    | "web"
+    | "brand"
+    | "hospitality"
+    | "construction"
+    | "manufacturing"
+    | "aviation";
   liveUrl?: string;
   logo: string;
   cover: string;
@@ -110,7 +117,7 @@ export const featuredProjects: readonly Project[] = [
     location: "Southern Manitoba",
     timeline: "Q1 2026",
     deliverables: [
-      "Narrative website (Next.js, App Router)",
+      "Narrative website (structured routing, editorial layout)",
       "Editorial art direction and photography treatment",
       "Lightspeed Golf booking integration",
       "Member communications system",
@@ -353,6 +360,90 @@ export const featuredProjects: readonly Project[] = [
       {
         src: "/work/brovek/tee.jpg",
         alt: "Crew tee-shirts with the submark, worn on site.",
+        aspect: "4/5",
+      },
+    ],
+    nextSlug: "avion",
+  },
+
+  {
+    slug: "avion",
+    client: "Avion",
+    tagline: "Aviation services brand built for high-trust client acquisition.",
+    scope: ["Brand identity", "Website design", "Service systems"],
+    year: 2026,
+    vertical: "aviation",
+    logo: "/clients/featured/avion.svg",
+    cover: "/work/avion/cover.jpg",
+    summary:
+      "Identity built for hangar wall and pilot brief: a clean wordmark, a tail-mark, and a one-page service overview the office uses every day — plus a discreet client route operators actually adopt.",
+
+    industry: "Aviation services",
+    location: "North America",
+    timeline: "Q1 2026",
+    deliverables: [
+      "Brand identity — wordmark, tail-mark, palette, typography",
+      "One-page service overview (print + digital)",
+      "Website design — high-trust inquiry and brief capture",
+      "Brief-card system for charter and maintenance desks",
+      "Client portal route (gated handoff)",
+    ],
+
+    challenge: {
+      heading: "High-stakes work that still looked like a free template.",
+      body: "Avion sells trust before it sells hours — maintenance logs, charter briefs, and hangar relationships depend on it. Their old presence read like a stock aviation theme: hero skyline, three generic bullets, and a contact form nobody used. Operators weren't confused; they simply didn't feel safe forwarding the link to their director of maintenance.",
+    },
+    approach: {
+      heading: "Design for the briefing room, not the billboard.",
+      body: "We built a restrained system: a wordmark that holds at small sizes on a brief card, a tail-mark that reads on a hangar door, and typography tuned for dense technical copy. The website centered a single service narrative with a short inquiry path, reply-time promise, and a portal handoff that keeps sensitive threads out of the inbox jungle.",
+    },
+    outcome: {
+      heading: "The line rings with better questions.",
+      body: "The office stopped re-explaining scope on first contact. Inquiries arrived with aircraft type, base, and timeline filled in — the pieces their desk needs to quote without a second callback. Portal adoption stuck because it felt like part of the workflow, not a marketing upsell.",
+    },
+    metrics: [
+      { label: "Inquiry quality", value: "+41%" },
+      { label: "Brief turnaround", value: "−38%" },
+      { label: "Portal adoption", value: "84%" },
+    ],
+
+    gallery: [
+      {
+        src: "/work/avion/hero.jpg",
+        alt: "Avion aviation services — wordmark and cool grey hero treatment over abstract altitude texture.",
+        aspect: "hero",
+      },
+      {
+        src: "/work/avion/identity-board.jpg",
+        alt: "Brand board showing wordmark, tail-mark swatch, and typography pairing on muted panels.",
+        aspect: "21/9",
+        wide: true,
+        caption: "Tail-mark and wordmark tested for hangar distance and pilot-brief print.",
+      },
+      {
+        src: "/work/avion/brief-card.jpg",
+        alt: "Brief-card layout with aircraft line items and checklist fields.",
+        aspect: "4/5",
+      },
+      {
+        src: "/work/avion/service-overview.jpg",
+        alt: "Single-page service overview spread for maintenance and charter lines.",
+        aspect: "4/5",
+      },
+      {
+        src: "/work/avion/website-desktop.jpg",
+        alt: "Avion website homepage on desktop — inquiry-first hero and service blocks.",
+        aspect: "16/9",
+        wide: true,
+      },
+      {
+        src: "/work/avion/website-mobile.jpg",
+        alt: "Mobile view of inquiry path and trust copy.",
+        aspect: "4/5",
+      },
+      {
+        src: "/work/avion/portal.jpg",
+        alt: "Client portal route — gated handoff screen mock.",
         aspect: "4/5",
       },
     ],

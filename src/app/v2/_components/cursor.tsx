@@ -68,7 +68,7 @@ export function ProfuzionCursor() {
         ringRef.current.style.width = `${size}px`;
         ringRef.current.style.height = `${size}px`;
         ringRef.current.style.background = hot.current
-          ? "var(--p-amber)"
+          ? "var(--primary)"
           : "transparent";
         ringRef.current.style.borderColor = hot.current
           ? "transparent"
@@ -113,7 +113,7 @@ export function ProfuzionCursor() {
         <div
           ref={labelRef}
           className="absolute inset-0 grid place-items-center text-[10px] font-medium tracking-[0.16em] uppercase opacity-0 transition-opacity duration-200"
-          style={{ color: "var(--p-on-signal)" }}
+          style={{ color: "var(--on-primary)" }}
         />
       </div>
       <div
@@ -121,7 +121,7 @@ export function ProfuzionCursor() {
         aria-hidden
         className="pointer-events-none fixed left-0 top-0 z-[60] hidden h-1 w-1 rounded-full md:block"
         style={{
-          background: "var(--p-amber)",
+          background: "var(--primary)",
           willChange: "transform, opacity",
           transition: "opacity 200ms cubic-bezier(.2,.8,.2,1)",
         }}

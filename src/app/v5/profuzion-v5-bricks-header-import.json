@@ -1,0 +1,94 @@
+{
+  "content": [
+    {
+      "id": "v5-hdr-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "v5-hdr-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "",
+        "_padding": {
+          "top": "0",
+          "right": "24",
+          "bottom": "0",
+          "left": "24"
+        }
+      },
+      "label": "v5 · HEADER template — Bricks: set type = Header. Classes on section: pfz-site-header (see GLOBAL-CLASSES-BRICKS.md). ACSS: flex utilities on row."
+    },
+    {
+      "id": "v5-hdr-c",
+      "name": "container",
+      "parent": "v5-hdr-s",
+      "children": [
+        "v5-hdr-brand",
+        "v5-hdr-nav",
+        "v5-hdr-cta-row"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "Header inner (max-width 1480)"
+    },
+    {
+      "id": "v5-hdr-brand",
+      "name": "heading",
+      "parent": "v5-hdr-c",
+      "children": [],
+      "settings": {
+        "tag": "div",
+        "text": "PZ — Profuzion\n(Link logo block to home or #top on one-pager. Classes: pfz-site-header__brand, text-mono uppercase)"
+      },
+      "label": "Logo / wordmark"
+    },
+    {
+      "id": "v5-hdr-nav",
+      "name": "text-basic",
+      "parent": "v5-hdr-c",
+      "children": [],
+      "settings": {
+        "text": "Center nav — replace with Bricks Nav Menu or buttons (ACSS text links + hover).\n\nIndustries → #industries\nAbout → #about\nBranding → #branding\nWebsites → #websites\nProcess → #process\nPricing → #engagements\n\nCase-study variant: logo → home URL; add “Selected work” → /work/"
+      },
+      "label": "Nav cluster"
+    },
+    {
+      "id": "v5-hdr-cta-row",
+      "name": "container",
+      "parent": "v5-hdr-c",
+      "children": [
+        "v5-hdr-btn"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        }
+      },
+      "label": "CTA wrap"
+    },
+    {
+      "id": "v5-hdr-btn",
+      "name": "button",
+      "parent": "v5-hdr-cta-row",
+      "children": [],
+      "settings": {
+        "text": "Book a call"
+      },
+      "label": "btn btn--primary (ACSS) → #contact. Optional: btn--outline on ghost secondary"
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "version": "1.12.4",
+  "globalClasses": [],
+  "globalElements": []
+}

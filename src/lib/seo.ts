@@ -185,9 +185,21 @@ export function buildWorkSchema() {
   };
 }
 
+/** Options for case-study pages under alternate paths (e.g. v2 concept). */
+export type ProjectPageSeoOpts = {
+  /** Path prefix before slug — default `/work`, use `/v2/work` for v2. */
+  pathPrefix?: string;
+  /** Breadcrumb URL for the work index step — default homepage #work. */
+  workIndexUrl?: string;
+};
+
 /* ── Per-project CreativeWork schema for /work/[slug] ───────── */
-export function buildProjectSchema(project: Project) {
-  const url = `${BASE}/work/${project.slug}`;
+export function buildProjectSchema(
+  project: Project,
+  opts?: ProjectPageSeoOpts,
+) {
+  const prefix = opts?.pathPrefix ?? "/work";
+  const url = `${BASE}${prefix}/${project.slug}`;
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -217,7 +229,13 @@ export function buildProjectSchema(project: Project) {
   };
 }
 
-export function buildProjectBreadcrumbs(project: Project) {
+export function buildProjectBreadcrumbs(
+  project: Project,
+  opts?: ProjectPageSeoOpts,
+) {
+  const prefix = opts?.pathPrefix ?? "/work";
+  const workIndexUrl = opts?.workIndexUrl ?? `${BASE}/#work`;
+  const itemUrl = `${BASE}${prefix}/${project.slug}`;
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -232,13 +250,13 @@ export function buildProjectBreadcrumbs(project: Project) {
         "@type": "ListItem",
         position: 2,
         name: "Selected work",
-        item: `${BASE}/#work`,
+        item: workIndexUrl,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: project.client,
-        item: `${BASE}/work/${project.slug}`,
+        item: itemUrl,
       },
     ],
   };

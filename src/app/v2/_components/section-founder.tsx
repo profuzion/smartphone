@@ -119,12 +119,12 @@ export function SectionFounder() {
 
             <a
               href="#contact"
-              className="p-btn p-btn--ghost mt-10 inline-flex"
+              className="btn--base btn--outline mt-10 inline-flex"
               data-cursor
               data-cursor-label="write"
             >
               Write me directly
-              <span className="p-arrow">→</span>
+              <span className="pfz-btn-arrow">→</span>
             </a>
           </div>
         </div>

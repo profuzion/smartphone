@@ -1,0 +1,13 @@
+# Copy this file to deploy-cloudways.local.ps1 (same folder). That file is gitignored.
+# Cloudways: Server → Master Credentials (IP, SSH user, port). Application → path ends in .../public_html
+
+$env:CW_DEPLOY_SSH_HOST = '203.0.113.50'
+$env:CW_DEPLOY_SSH_PORT = '28222'
+$env:CW_DEPLOY_SSH_USER = 'master_xxxxxxxx'
+$env:CW_DEPLOY_REMOTE_PUBLIC_HTML = '/home/master/applications/xxxxxxxx/public_html'
+
+# Optional if scp upload to $HOME failed before:
+# $env:CW_DEPLOY_REMOTE_SCRATCH_DIR = '/home/master/applications/xxxxxxxx/public_html/wp-content'
+
+# Optional: skip WP-CLI on server (upload theme only)
+# $env:CW_DEPLOY_SKIP_AUTO_FINALIZE = '1'

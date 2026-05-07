@@ -17,7 +17,7 @@
   3) Copy this file to deploy-over-ssh.ps1, fill the variables, run from project root.
      (deploy-over-ssh.ps1 is gitignored so you can put real hosts there.)
 
-  Next.js: either upload a static export (out/) or build on the server. This script
+  Preview / static hosting: either upload a static export folder or build on the server. This script
   syncs a local folder to a remote path — adjust $LocalSource to match your process.
 #>
 
@@ -26,7 +26,7 @@ $ErrorActionPreference = "Stop"
 # --- set these (or copy to deploy-over-ssh.ps1) ---
 $RemoteHost = "mysite"   # or user@IP from ssh config; see Host above
 $RemotePath = "/var/www/html"   # must exist; trailing slash not required
-# Folder to upload after build, e.g. "out" for `next build` with static export
+# Folder to upload after build, e.g. "out" after a static export build
 $LocalSource = Join-Path (Split-Path $PSScriptRoot -Parent) "out"
 
 # --- build (optional) ---

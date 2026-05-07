@@ -21,7 +21,7 @@ export const origin = {
     },
   ],
   thesis:
-    "Profuzion Studio is where professional craft meets the fusion of minds. Every project is a partnership — owner, designer, and now AI — forged into one clear brand.",
+    "Profuzion empowers Manitoba businesses — where professional craft meets the fusion of minds. Every project pairs local insight with transformative design: owner, designer, and now AI, forged into one clear brand.",
 } as const;
 
 export const acts = {
@@ -43,7 +43,7 @@ export const acts = {
      */
     keywordLine:
       "Brand design and website design in Winkler, Manitoba — since 1999.",
-    subhead: `Profuzion Studio is the longest-running brand and website design studio in Winkler, Morden, and the Pembina Valley. Founded by ${site.founder.name} in 1999, we design brands and websites that earn their keep on the road, on the phone, and on the page.`,
+    subhead: `For Manitoba owners ready to grow — we are the longest-running brand and website design studio in Winkler, Morden, and the Pembina Valley. Founded by ${site.founder.name} in 1999, we build brands and websites that earn attention on the road, on the phone, and on the page.`,
     primaryCta: { label: "See selected work", href: "#work" },
     secondaryCta: { label: "Start a project", href: "#contact" },
   },
@@ -55,7 +55,7 @@ export const acts = {
     h2: "Why most brands go unnoticed.",
     headline: "Good work gets missed when it looks like everyone else's.",
     body:
-      "The Pembina Valley is full of honest businesses doing excellent work. Too many of them are wearing the same clip-art logo, the same template site, the same tired tagline. The problem isn't the craft — the problem is the blur.",
+      "Manitoba and the Pembina Valley are full of honest businesses doing excellent work — yet many blend in: the same clipart logo, the same template site, the same forgettable tagline. The problem isn't the craft — it's standing out.",
   },
 
   act3: {

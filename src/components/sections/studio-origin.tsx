@@ -55,7 +55,7 @@ export function StudioOrigin() {
           {/*
            * Portrait frame. Stays graceful without an asset so the
            * studio-origin block reads well until the owner drops the
-           * real headshot at /public/images/lowell-headshot.jpg — then
+           * real headshot at /public/images/lowell-headshot.png — then
            * swap back to a `<Image>` with that src.
            */}
           <figure

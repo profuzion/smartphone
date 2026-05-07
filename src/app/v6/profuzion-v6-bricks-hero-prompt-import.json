@@ -1,0 +1,272 @@
+{
+  "content": [
+    {
+      "id": "pz-hp-s",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "pz-hp-c"
+      ],
+      "settings": {
+        "tag": "section",
+        "_cssId": "top",
+        "_cssGlobalClasses": [
+          "section",
+          "section--hero",
+          "bg-base",
+          "pad-section-xxl",
+          "border-b",
+          "border-primary-trans-30"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--section"
+      },
+      "label": "Hero (class-toggle prompt) — HTML id: top"
+    },
+    {
+      "id": "pz-hp-c",
+      "name": "container",
+      "parent": "pz-hp-s",
+      "children": [
+        "pz-hp-grid"
+      ],
+      "settings": {
+        "_width": "100%",
+        "_maxWidth": "1480",
+        "_margin": {
+          "right": "auto",
+          "left": "auto"
+        },
+        "_cssGlobalClasses": [
+          "container",
+          "container--wide",
+          "px-m"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--container"
+      },
+      "label": "Shell"
+    },
+    {
+      "id": "pz-hp-grid",
+      "name": "block",
+      "parent": "pz-hp-c",
+      "children": [
+        "pz-hp-copy",
+        "pz-hp-med"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "hero",
+          "hero--v2",
+          "hero__grid",
+          "grid",
+          "grid-2",
+          "gap-l",
+          "items-center"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--block"
+      },
+      "label": "Hero grid"
+    },
+    {
+      "id": "pz-hp-copy",
+      "name": "block",
+      "parent": "pz-hp-grid",
+      "children": [
+        "pz-hp-eye",
+        "pz-hp-h1",
+        "pz-hp-sub",
+        "pz-hp-act",
+        "pz-hp-prf"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "hero__copy",
+          "flex",
+          "flex-col",
+          "gap-m"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--block"
+      },
+      "label": "Copy column"
+    },
+    {
+      "id": "pz-hp-eye",
+      "name": "text",
+      "parent": "pz-hp-copy",
+      "children": [],
+      "settings": {
+        "tag": "p",
+        "text": "",
+        "_cssGlobalClasses": [
+          "text-xs",
+          "text-neutral-light",
+          "mb-s"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--text"
+      },
+      "label": "Eyebrow (DD)"
+    },
+    {
+      "id": "pz-hp-h1",
+      "name": "heading",
+      "parent": "pz-hp-copy",
+      "children": [],
+      "settings": {
+        "tag": "h1",
+        "text": "",
+        "_cssGlobalClasses": [
+          "heading-xl",
+          "text-shade",
+          "u-max-width-heading",
+          "mb-m"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--heading"
+      },
+      "label": "Headline (DD)"
+    },
+    {
+      "id": "pz-hp-sub",
+      "name": "text",
+      "parent": "pz-hp-copy",
+      "children": [],
+      "settings": {
+        "tag": "p",
+        "text": "",
+        "_cssGlobalClasses": [
+          "text-l",
+          "text-neutral-light",
+          "u-max-width-read",
+          "mb-xl"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--text"
+      },
+      "label": "Subtitle (DD)"
+    },
+    {
+      "id": "pz-hp-act",
+      "name": "block",
+      "parent": "pz-hp-copy",
+      "children": [
+        "pz-hp-b1",
+        "pz-hp-b2"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "hero__actions",
+          "flex",
+          "flex-wrap-wrap",
+          "gap-m",
+          "items-center"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--block"
+      },
+      "label": "CTA row"
+    },
+    {
+      "id": "pz-hp-b1",
+      "name": "button",
+      "parent": "pz-hp-act",
+      "children": [],
+      "settings": {
+        "text": "",
+        "link": {
+          "type": "external",
+          "url": "#contact",
+          "newTab": false
+        },
+        "_cssGlobalClasses": [
+          "hero__cta",
+          "btn",
+          "btn-action"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--button"
+      },
+      "label": "Primary CTA (set link in Bricks)"
+    },
+    {
+      "id": "pz-hp-b2",
+      "name": "button",
+      "parent": "pz-hp-act",
+      "children": [],
+      "settings": {
+        "text": "",
+        "link": {
+          "type": "external",
+          "url": "#branding",
+          "newTab": false
+        },
+        "_cssGlobalClasses": [
+          "hero__cta",
+          "hero__cta--ghost",
+          "btn",
+          "btn--outline-neutral"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--button"
+      },
+      "label": "Secondary CTA (set link in Bricks)"
+    },
+    {
+      "id": "pz-hp-prf",
+      "name": "text",
+      "parent": "pz-hp-copy",
+      "children": [],
+      "settings": {
+        "tag": "p",
+        "text": "",
+        "_cssGlobalClasses": [
+          "text-xs",
+          "text-neutral-light",
+          "mt-l"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--text"
+      },
+      "label": "Proof line (optional / DD)"
+    },
+    {
+      "id": "pz-hp-med",
+      "name": "block",
+      "parent": "pz-hp-grid",
+      "children": [
+        "pz-hp-img"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "hero__media",
+          "u-radius-lg",
+          "u-border-subtle",
+          "u-shadow-soft",
+          "u-media-ratio"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--block"
+      },
+      "label": "Media wrap"
+    },
+    {
+      "id": "pz-hp-img",
+      "name": "image",
+      "parent": "pz-hp-med",
+      "children": [],
+      "settings": {
+        "image": {
+          "external": false,
+          "filename": "",
+          "id": 0,
+          "size": "large",
+          "full": "",
+          "url": ""
+        },
+        "_cssGlobalClasses": [
+          "w-full",
+          "object-cover",
+          "u-radius-lg"
+        ],
+        "_cssClasses": "pfz-bricks-ui pfz-bricks-ui--image"
+      },
+      "label": "Hero image (set media / DD)"
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "version": "1.15.0",
+  "globalClasses": [],
+  "globalElements": []
+}

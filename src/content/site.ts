@@ -17,19 +17,20 @@ export const site = {
     givenName: "Lowell",
     familyName: "Klassen",
     jobTitle: "Brand Partner and Founder",
-    headshot: "/images/lowell-headshot.jpg",
+    headshot: "/images/lowell-headshot.png",
   },
   foundingYear: 1999,
   yearsInBusiness: 27,
   brandsDelivered: 200,
 
-  tagline: "Where Professional meets the Fusion of minds.",
+  tagline:
+    "Transformative brand and website design — empowered by local expertise.",
   shortDescription:
-    "The longest-running brand and website design studio in Winkler, Manitoba and the Pembina Valley. Founded in 1999 by Lowell Klassen.",
+    "We empower Manitoba businesses with thoughtful brand design, website design, and digital experiences built to support growth and community impact. The longest-running brand and website design studio in Winkler, Manitoba and the Pembina Valley. Founded in 1999 by Lowell Klassen.",
 
   /** The five Defensible Claims — render verbatim across the site. */
   claims: [
-    "Profuzion Studio has been designing brands and websites in Winkler, Manitoba since 1999.",
+    "Profuzion Studio has been designing brands and websites in Winkler, Manitoba since 1999 — creative, reliable work rooted in the local landscape.",
     "With 27 years of practice, Profuzion Studio is the longest-running brand and website design studio in the Pembina Valley.",
     "Founded by Lowell Klassen in 1999, Profuzion Studio has delivered over 200 brand identities and websites for owners across Manitoba.",
     "Profuzion Studio is the only Winkler design studio offering website AI integration and custom chatbots built on a 27-year design foundation.",

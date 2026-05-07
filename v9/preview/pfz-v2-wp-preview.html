@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Profuzion v9 — static Bricks preview (copied from v2 wp preview)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="pfs-logo-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="pfz-v2-wp.css" />
+    <style>
+      .pfz {
+        --font-manrope: "Manrope", system-ui, sans-serif;
+        --font-display: "Instrument Serif", Georgia, serif;
+        --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      }
+    </style>
+  </head>
+  <body class="pfz">
+    <!--
+      PREVIEW ONLY — not a Bricks upload target.
+      Production: import profuzion-v6-bricks-*-import.json and build layout with Bricks native
+      elements + child theme CSS/JS (see src/app/v2/BRICKS-COPY-PASTE.md). No React/Tailwind here.
+    -->
+    <!-- Site loader — static mirror of Next site-loader choreography (vanilla markup + pfz-v2-wp.css) -->
+    <div class="pz-site-loader" role="status" aria-live="polite" aria-label="Profuzion Studio loading">
+      <div
+        class="pz-site-loader__mist"
+        aria-hidden="true"
+        style="
+          position: absolute;
+          inset: -20%;
+          background: radial-gradient(ellipse 55% 45% at 50% 38%, rgba(182, 255, 56, 0.09) 0%, transparent 55%),
+            radial-gradient(ellipse 80% 50% at 30% 70%, rgba(182, 255, 56, 0.04) 0%, transparent 50%),
+            radial-gradient(ellipse 90% 80% at 50% 100%, #0a0a0b 0%, #050507 45%, #020203 100%);
+        "
+      ></div>
+      <div class="pz-site-loader__dots pz-site-loader__dots--lime" aria-hidden="true"></div>
+      <div class="pz-site-loader__dots pz-site-loader__dots--bone" aria-hidden="true"></div>
+      <div
+        class="pz-site-loader__vignette"
+        aria-hidden="true"
+        style="
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 120% 100% at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+          pointer-events: none;
+        "
+      ></div>
+      <div class="pz-site-loader__lines" aria-hidden="true">
+        <span class="pz-site-loader__hline" data-dir="lr" style="top: 10%; animation: pzLoaderHSliceLR 2.35s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: 0s"></span>
+        <span class="pz-site-loader__hline" data-dir="rl" style="top: 22%; animation: pzLoaderHSliceRL 2.65s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: 0.5s"></span>
+        <span class="pz-site-loader__hline" data-dir="rl" style="top: 34%; animation: pzLoaderHSliceRL 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: 0.1s"></span>
+        <span class="pz-site-loader__hline" data-dir="rl" style="top: 62%; animation: pzLoaderHSliceRL 2.45s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: 0.25s"></span>
+        <span class="pz-site-loader__hline" data-dir="lr" style="top: 76%; animation: pzLoaderHSliceLR 2.7s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: 0.6s"></span>
+        <span class="pz-site-loader__hline" data-dir="rl" style="top: 88%; animation: pzLoaderHSliceRL 2.55s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: 0.4s"></span>
+      </div>
+      <div aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent); opacity: 0.85"></div>
+      <div class="pz-site-loader__content">
+        <div class="pz-site-loader__lockup">
+          <div class="pz-site-loader__sigil-stage">
+            <div class="pz-site-loader__sigil-glow" aria-hidden="true"></div>
+            <div class="pz-site-loader__orbit" aria-hidden="true"></div>
+            <img class="pz-site-loader__mark-img" src="pfs-loader-mark.svg" width="380" height="380" alt="" decoding="async" />
+          </div>
+          <img class="pz-site-loader__word-img" src="pfs-loader-wordmark.svg" width="928" height="94" alt="" decoding="async" aria-hidden="true" />
+          <p class="pz-site-loader__tagline pfz-eyebrow pfz-eyebrow--bare">
+            Brand &amp; Website design. <span class="pz-site-loader__tagline-accent">Mastered.</span>
+          </p>
+        </div>
+      </div>
+      <div aria-hidden="true" style="position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--border); z-index: 5">
+        <div class="pz-site-loader__bar" style="height: 100%; width: 100%"></div>
+      </div>
+    </div>
+
+    <div class="pfz-cursor-ring" aria-hidden="true"><span class="pfz-cursor-ring__label"></span></div>
+    <div class="pfz-cursor-dot" aria-hidden="true"></div>
+
+    <header class="pfz-home__nav-wrap" data-nav-root>
+      <div class="pfz-home__nav">
+        <a href="#top" class="pfz-home__nav-lockup" data-cursor data-cursor-label="top" aria-label="Profuzion — top">
+          <img
+            class="pfz-home__nav-wordmark"
+            src="pfs-logo-horizontal-light-v2.svg"
+            width="240"
+            height="31"
+            alt=""
+            decoding="async"
+            aria-hidden="true"
+          />
+        </a>
+        <ul class="pfz-home__nav-pills" data-nav-pills>
+          <li><a href="#industries" data-section="industries" data-cursor data-cursor-label="industries">Industries</a></li>
+          <li><a href="#about" data-section="about" data-cursor data-cursor-label="about">About</a></li>
+          <li><a href="#branding" data-section="branding" data-cursor data-cursor-label="branding">Branding</a></li>
+          <li><a href="#websites" data-section="websites" data-cursor data-cursor-label="websites">Websites</a></li>
+          <li><a href="#process" data-section="process" data-cursor data-cursor-label="process">Process</a></li>
+          <li><a href="#engagements" data-section="engagements" data-cursor data-cursor-label="pricing">Pricing</a></li>
+          <li><a href="#contact" data-section="contact" data-cursor data-cursor-label="contact">Contact</a></li>
+        </ul>
+        <div class="pfz-home__nav-actions">
+          <a href="#contact" class="btn--secondary pfz-home__nav-cta" data-cursor data-cursor-label="book"
+            >Book a call <span class="pfz-btn-arrow">→</span></a
+          >
+          <button
+            type="button"
+            class="pfz-home__nav-toggle"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="pfz-nav-sheet"
+            aria-label="Open menu"
+          >
+            <span class="pfz-home__nav-toggle-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="pfz-home__nav-scrim" data-nav-scrim aria-hidden="true"></div>
+      <div
+        id="pfz-nav-sheet"
+        class="pfz-home__nav-sheet"
+        data-nav-sheet
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+      >
+        <nav class="pfz-home__nav-sheet-scroll" aria-label="Page sections">
+          <ul class="pfz-home__nav-sheet-list">
+            <li>
+              <a href="#industries" data-section="industries" data-nav-sheet-link data-cursor data-cursor-label="industries">Industries</a>
+            </li>
+            <li>
+              <a href="#about" data-section="about" data-nav-sheet-link data-cursor data-cursor-label="about">About</a>
+            </li>
+            <li>
+              <a href="#branding" data-section="branding" data-nav-sheet-link data-cursor data-cursor-label="branding">Branding</a>
+            </li>
+            <li>
+              <a href="#websites" data-section="websites" data-nav-sheet-link data-cursor data-cursor-label="websites">Websites</a>
+            </li>
+            <li>
+              <a href="#process" data-section="process" data-nav-sheet-link data-cursor data-cursor-label="process">Process</a>
+            </li>
+            <li>
+              <a href="#engagements" data-section="engagements" data-nav-sheet-link data-cursor data-cursor-label="pricing">Pricing</a>
+            </li>
+            <li>
+              <a href="#contact" data-section="contact" data-nav-sheet-link data-cursor data-cursor-label="contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="pfz-home__nav-sheet-foot">
+          <a href="#contact" class="btn--secondary pfz-home__nav-sheet-cta" data-nav-sheet-link data-cursor data-cursor-label="book"
+            >Book a call <span class="pfz-btn-arrow">→</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- §1 Hero -->
+      <section id="top" class="pfz-home__hero">
+        <div class="pfz-home__hero-halftone-fallback" aria-hidden="true"></div>
+        <canvas class="pfz-home__hero-halftone-canvas" aria-hidden="true"></canvas>
+        <div class="pfz-home__hero-darken" aria-hidden="true"></div>
+        <div class="pfz-home__hero-top-fade" aria-hidden="true"></div>
+        <div class="pfz-home__hero-void" aria-hidden="true"></div>
+        <div class="pfz-home__hero-bottom-fade" aria-hidden="true"></div>
+
+        <div class="pfz-home__hero-inner">
+          <div class="pfz-home__hero-meta">
+            <p class="pfz-eyebrow">Winkler, Manitoba · since 1999 · v2</p>
+            <p class="pfz-eyebrow pfz-eyebrow--primary"><span class="pfz-home__avail-dot" aria-hidden="true"></span>now booking summer 2026</p>
+          </div>
+          <div class="pfz-home__hero-headline">
+            <h1 class="pfz-display pfz-display--xl pfz-home__hero-h1">
+              <span data-hero-word style="--i: 0">Brand</span> <span data-hero-word style="--i: 1">&amp;</span> <span data-hero-word style="--i: 2">Website</span> <span data-hero-word style="--i: 3">design</span><span data-hero-word style="--i: 4">.</span><br />
+              <span data-hero-word class="pfz-italic" style="--i: 5; color: var(--primary)">Mastered</span><span data-hero-word style="--i: 6">.</span>
+            </h1>
+            <p class="pfz-lede pfz-home__hero-lede">
+              Profuzion is the quiet design studio in Winkler, Manitoba — the one local
+              <span style="color: var(--contrast); font-weight: 500">industry, construction, food production, and e-commerce</span> send their best referrals to. Brands and websites built to read the way you sound across the desk.
+            </p>
+            <div class="pfz-home__hero-cta">
+              <a href="#contact" class="btn--secondary" data-cursor data-cursor-label="book">Book a 30-min call <span class="pfz-btn-arrow">→</span></a>
+              <a href="#branding" class="btn--base btn--outline" data-cursor data-cursor-label="see">See the work <span class="pfz-btn-arrow">↓</span></a>
+            </div>
+          </div>
+          <div class="pfz-home__hero-bottom">
+            <div class="pfz-home__hero-vlist">
+              <span>Industrial</span><span>Contractors</span><span>Food Producers</span><span>E-commerce Sellers</span>
+            </div>
+            <p class="pfz-home__hero-scroll">scroll ↓ · <strong>Brand &amp; Website design. Mastered.</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- §2 Industries -->
+      <section id="industries" class="pfz-home__sec pfz-home__sec-pad">
+        <div class="pfz-rule"></div>
+        <div class="pfz-home__shell">
+          <div class="pfz-home__meta-row pfz-home__meta-row--gap-lg">
+            <div data-scroll-reveal>
+              <p class="pfz-eyebrow pfz-eyebrow--primary">// who we are for</p>
+              <h2 class="pfz-display pfz-display--lg pfz-home__meta-h2">Four types of owners who<br />keep coming back to us.</h2>
+            </div>
+            <p class="pfz-body pfz-home__meta-body" data-scroll-reveal>
+              We don't pretend to be every studio for every business. These four verticals share something we've spent twenty-five years getting right — trust, said quietly.
+            </p>
+          </div>
+          <div class="pfz-home__ind-body">
+            <ul class="pfz-home__ind-list">
+              <li>
+                <button type="button" class="pfz-home__ind-row is-active" data-cursor data-cursor-label="reveal" data-industry="industrial">
+                  <span class="pfz-home__ind-row-num">01</span>
+                  <span class="pfz-home__ind-row-label">Industrial</span>
+                  <span class="pfz-home__ind-row-meta">viewing</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="pfz-home__ind-row" data-cursor data-cursor-label="reveal" data-industry="contractors">
+                  <span class="pfz-home__ind-row-num">02</span>
+                  <span class="pfz-home__ind-row-label">Contractors</span>
+                  <span class="pfz-home__ind-row-meta">view</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="pfz-home__ind-row" data-cursor data-cursor-label="reveal" data-industry="food">
+                  <span class="pfz-home__ind-row-num">03</span>
+                  <span class="pfz-home__ind-row-label">Food Producers</span>
+                  <span class="pfz-home__ind-row-meta">view</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="pfz-home__ind-row" data-cursor data-cursor-label="reveal" data-industry="ecommerce">
+                  <span class="pfz-home__ind-row-num">04</span>
+                  <span class="pfz-home__ind-row-label">E-commerce Sellers</span>
+                  <span class="pfz-home__ind-row-meta">view</span>
+                </button>
+              </li>
+            </ul>
+            <div class="pfz-home__ind-preview-col">
+              <article class="pfz-card pfz-home__ind-preview pfz-fadeup" data-industry-panel="industrial" data-hue="#3a4a5c">
+                <div class="pfz-home__ind-preview-bg" style="background: radial-gradient(ellipse 60% 80% at 80% 20%, #3a4a5c33, transparent 60%), radial-gradient(ellipse 80% 60% at 10% 90%, #3a4a5c1f, transparent 65%), repeating-radial-gradient(circle at 50% 50%, #3a4a5c0c 0px, #3a4a5c0c 1px, transparent 1px, transparent 14px)"></div>
+                <div class="pfz-home__ind-preview-inner">
+                  <div class="pfz-home__ind-preview-top">
+                    <p class="pfz-home__ind-preview-kicker">↳ industrial</p>
+                    <span class="pfz-home__ind-preview-dot" style="background: #3a4a5c; box-shadow: 0 0 14px 2px #3a4a5c88"></span>
+                  </div>
+                  <h3 class="pfz-home__ind-preview-h3">Capability that shows up in the spec sheet.</h3>
+                  <ul class="pfz-home__ind-preview-deliv">
+                    <li>Tradeshow and facility systems</li>
+                    <li>Product-line architecture for distributors</li>
+                    <li>Audit-ready safety and quality narrative</li>
+                    <li>Technical and catalog writing</li>
+                    <li>Hiring and talent microsites</li>
+                  </ul>
+                  <p class="pfz-home__ind-preview-proof">&ldquo;For plant managers and owners who get understood the first time.&rdquo;</p>
+                </div>
+              </article>
+
+              <article class="pfz-card pfz-home__ind-preview pfz-fadeup" data-industry-panel="contractors" hidden>
+                <div class="pfz-home__ind-preview-bg" style="background: radial-gradient(ellipse 60% 80% at 80% 20%, #7d665033, transparent 60%), radial-gradient(ellipse 80% 60% at 10% 90%, #7d66501f, transparent 65%), repeating-radial-gradient(circle at 50% 50%, #7d66500c 0px, #7d66500c 1px, transparent 1px, transparent 14px)"></div>
+                <div class="pfz-home__ind-preview-inner">
+                  <div class="pfz-home__ind-preview-top">
+                    <p class="pfz-home__ind-preview-kicker">↳ contractors</p>
+                    <span class="pfz-home__ind-preview-dot" style="background: #7d6650; box-shadow: 0 0 14px 2px #7d665088"></span>
+                  </div>
+                  <h3 class="pfz-home__ind-preview-h3">Bids, crews, and a name on the side of the shop.</h3>
+                  <ul class="pfz-home__ind-preview-deliv">
+                    <li>Truck, yard, and crew apparel systems</li>
+                    <li>Estimate and bid presentation templates</li>
+                    <li>Local project galleries and case pages</li>
+                    <li>Warranty and change-order clarity in writing</li>
+                    <li>Trade school and hiring outreach</li>
+                  </ul>
+                  <p class="pfz-home__ind-preview-proof">&ldquo;For firms that live and die on callbacks.&rdquo;</p>
+                </div>
+              </article>
+
+              <article class="pfz-card pfz-home__ind-preview pfz-fadeup" data-industry-panel="food" hidden>
+                <div class="pfz-home__ind-preview-bg" style="background: radial-gradient(ellipse 60% 80% at 80% 20%, #b8583833, transparent 60%), radial-gradient(ellipse 80% 60% at 10% 90%, #b858381f, transparent 65%), repeating-radial-gradient(circle at 50% 50%, #b858380c 0px, #b858380c 1px, transparent 1px, transparent 14px)"></div>
+                <div class="pfz-home__ind-preview-inner">
+                  <div class="pfz-home__ind-preview-top">
+                    <p class="pfz-home__ind-preview-kicker">↳ food producers</p>
+                    <span class="pfz-home__ind-preview-dot" style="background: #b85838; box-shadow: 0 0 14px 2px #b8583888"></span>
+                  </div>
+                  <h3 class="pfz-home__ind-preview-h3">Provenance people can read on the label.</h3>
+                  <ul class="pfz-home__ind-preview-deliv">
+                    <li>Label and case-pack design systems</li>
+                    <li>Wholesale and distributor sheets</li>
+                    <li>Origin, allergen, and compliance copy</li>
+                    <li>Field-to-facility story on the site</li>
+                    <li>Co-packer and export-facing PDFs</li>
+                  </ul>
+                  <p class="pfz-home__ind-preview-proof">&ldquo;For teams who need trust before the first bite.&rdquo;</p>
+                </div>
+              </article>
+
+              <article class="pfz-card pfz-home__ind-preview pfz-fadeup" data-industry-panel="ecommerce" hidden>
+                <div class="pfz-home__ind-preview-bg" style="background: radial-gradient(ellipse 60% 80% at 80% 20%, #5a6a5233, transparent 60%), radial-gradient(ellipse 80% 60% at 10% 90%, #5a6a521f, transparent 65%), repeating-radial-gradient(circle at 50% 50%, #5a6a520c 0px, #5a6a520c 1px, transparent 1px, transparent 14px)"></div>
+                <div class="pfz-home__ind-preview-inner">
+                  <div class="pfz-home__ind-preview-top">
+                    <p class="pfz-home__ind-preview-kicker">↳ e-commerce sellers</p>
+                    <span class="pfz-home__ind-preview-dot" style="background: #5a6a52; box-shadow: 0 0 14px 2px #5a6a5288"></span>
+                  </div>
+                  <h3 class="pfz-home__ind-preview-h3">A shop that doesn't feel like a template.</h3>
+                  <ul class="pfz-home__ind-preview-deliv">
+                    <li>DTC and marketplace listing strategy</li>
+                    <li>Product and bundle page system</li>
+                    <li>Email and post-purchase flows</li>
+                    <li>Review and UGC in the right places</li>
+                    <li>Return and policy copy that still sounds human</li>
+                  </ul>
+                  <p class="pfz-home__ind-preview-proof">&ldquo;For owners who A/B test but don't sound like a help desk.&rdquo;</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- §About -->
+      <section id="about" class="pfz-home__sec pfz-home__sec-pad">
+        <div class="pfz-rule"></div>
+        <div class="pfz-home__shell">
+          <div class="pfz-home__about-grid" style="display: grid; gap: 3rem; align-items: center">
+            <div data-scroll-reveal style="min-height: 320px; background: var(--base-light); border-radius: 18px; border: 1px solid var(--border-strong)" aria-label="Founder portrait placeholder"></div>
+            <div data-scroll-reveal>
+              <p class="pfz-eyebrow pfz-eyebrow--primary">// about</p>
+              <h2 class="pfz-display pfz-display--lg" style="margin-top: 0.75rem">One studio. One person on the call.</h2>
+              <p class="pfz-body" style="margin-top: 1rem">Founder story and portrait — mirror <code>section-founder.tsx</code> in Bricks with your image and ACF fields.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- §Branding — logo wall + 4 spreads (parity with section-branding.tsx / site.ts brandingCases) -->
+      <section id="branding" class="pfz-home__sec pfz-home__sec--ink pfz-home__sec-pad">
+        <div class="pfz-home__shell">
+          <div class="pfz-home__brand-meta-row">
+            <div data-scroll-reveal>
+              <p class="pfz-eyebrow pfz-eyebrow--primary">// brand systems</p>
+              <h2 class="pfz-display pfz-display--lg" style="margin-top: 0.75rem; max-width: 36rem; color: var(--contrast)">
+                Identities built to <span class="pfz-italic" style="color: var(--primary)">outlive</span> the launch.
+              </h2>
+            </div>
+            <p class="pfz-body" data-scroll-reveal style="max-width: 28rem; color: var(--contrast-muted)">
+              We treat a brand like a long-form decision. Every system we ship comes with a one-page voice doc — so the people we hand it to never stop sounding like themselves.
+            </p>
+          </div>
+
+          <div class="pfz-home__brand-wall" data-scroll-reveal>
+            <div class="pfz-home__brand-wall-cell" data-cursor data-cursor-label="alumareel">
+              <div class="pfz-home__brand-wall-name">AlumaReel</div>
+              <div class="pfz-home__brand-wall-foot">
+                <span class="pfz-home__brand-wall-foot-ind">Aluminum reel manufacturing</span>
+                <span class="pfz-home__brand-wall-foot-yr">2025</span>
+              </div>
+            </div>
+            <div class="pfz-home__brand-wall-cell" data-cursor data-cursor-label="brovek">
+              <div class="pfz-home__brand-wall-name">Brovek</div>
+              <div class="pfz-home__brand-wall-foot">
+                <span class="pfz-home__brand-wall-foot-ind">Construction · trades</span>
+                <span class="pfz-home__brand-wall-foot-yr">2024</span>
+              </div>
+            </div>
+            <div class="pfz-home__brand-wall-cell" data-cursor data-cursor-label="nature's knoll">
+              <div class="pfz-home__brand-wall-name">Nature's Knoll</div>
+              <div class="pfz-home__brand-wall-foot">
+                <span class="pfz-home__brand-wall-foot-ind">Non-profit golf</span>
+                <span class="pfz-home__brand-wall-foot-yr">2026</span>
+              </div>
+            </div>
+            <div class="pfz-home__brand-wall-cell" data-cursor data-cursor-label="keystone & co.">
+              <div class="pfz-home__brand-wall-name">Keystone &amp; Co.</div>
+              <div class="pfz-home__brand-wall-foot">
+                <span class="pfz-home__brand-wall-foot-ind">Law · partnership</span>
+                <span class="pfz-home__brand-wall-foot-yr">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <ul class="pfz-home__brand-list">
+            <li data-scroll-reveal data-brand-spread>
+              <article class="pfz-home__brand-spread">
+                <div class="pfz-home__brand-spread-mono">
+                  <div class="pfz-home__brand-mono">
+                    <div
+                      class="pfz-home__brand-mono-bg"
+                      style="
+                        background:
+                          radial-gradient(ellipse 70% 60% at 30% 30%, rgba(201, 83, 28, 0.2), transparent 70%),
+                          radial-gradient(ellipse 80% 60% at 80% 80%, rgba(156, 150, 139, 0.15), transparent 70%),
+                          var(--base-light);
+                      "
+                    ></div>
+                    <div
+                      class="pfz-home__brand-mono-overlay"
+                      aria-hidden="true"
+                      style="
+                        background-image: radial-gradient(circle at 1px 1px, rgba(201, 83, 28, 0.4) 1px, transparent 1.5px);
+                        background-size: 16px 16px;
+                      "
+                    ></div>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--tl" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--tr" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--bl" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--br" aria-hidden="true"></span>
+                    <div class="pfz-home__brand-mono-meta pfz-home__brand-mono-meta--tl">
+                      <span>profuzion / brand</span>
+                      <span>aluminum reel manufacturing</span>
+                    </div>
+                    <div class="pfz-home__brand-mono-meta pfz-home__brand-mono-meta--tr">case 25-ALU</div>
+                    <div class="pfz-home__brand-mono-glyph">
+                      <span style="text-shadow: 0 0 80px rgba(201, 83, 28, 0.4)">AR<span class="pfz-display__accent">.</span></span>
+                    </div>
+                    <div class="pfz-home__brand-mono-pal" aria-hidden="true">
+                      <span style="background: #0f0e0c"></span><span style="background: #9c968b"></span><span style="background: #c9531c"></span>
+                    </div>
+                    <div class="pfz-home__brand-mono-deliv">3 deliverables</div>
+                  </div>
+                </div>
+                <div class="pfz-home__brand-spread-detail">
+                  <p class="pfz-eyebrow pfz-eyebrow--primary">↳ case · 01</p>
+                  <h3 class="pfz-home__brand-spread-h3">AlumaReel<span class="pfz-display__accent">.</span></h3>
+                  <p class="pfz-home__brand-spread-tag">An engineered brand for an engineered product.</p>
+                  <dl class="pfz-home__brand-spread-dl">
+                    <div>
+                      <dt>industry</dt>
+                      <dd>Aluminum reel manufacturing</dd>
+                    </div>
+                    <div>
+                      <dt>year</dt>
+                      <dd>2025</dd>
+                    </div>
+                  </dl>
+                  <p class="pfz-home__brand-spread-summary">
+                    Wordmark, monogram, palette, typography, voice — routed to a website, a sell sheet, and a CAD-driven render pipeline.
+                  </p>
+                  <p class="pfz-home__brand-spread-pal-label">palette</p>
+                  <div class="pfz-home__brand-spread-pal" aria-hidden="true">
+                    <span style="background: #0f0e0c"></span><span style="background: #9c968b"></span><span style="background: #c9531c"></span>
+                  </div>
+                  <p class="pfz-home__brand-spread-type-label">typography</p>
+                  <div class="pfz-home__brand-spread-typepair">
+                    <span class="pfz-home__brand-spread-typepair-italic">Aa</span>
+                    <span class="pfz-home__brand-spread-typepair-display">Söhne Breit</span>
+                    <span style="color: var(--contrast-muted-mid)">·</span>
+                    <span class="pfz-home__brand-spread-typepair-body">Söhne Buch</span>
+                  </div>
+                  <ul class="pfz-home__brand-spread-deliv">
+                    <li>Identity system</li>
+                    <li>Render pipeline</li>
+                    <li>Sell sheet</li>
+                  </ul>
+                  <a href="#contact" class="pfz-home__brand-spread-cta" data-cursor data-cursor-label="open">Read the case →</a>
+                </div>
+              </article>
+            </li>
+
+            <li data-scroll-reveal data-brand-spread>
+              <article class="pfz-home__brand-spread pfz-home__brand-spread--flip">
+                <div class="pfz-home__brand-spread-mono">
+                  <div class="pfz-home__brand-mono">
+                    <div
+                      class="pfz-home__brand-mono-bg"
+                      style="
+                        background:
+                          radial-gradient(ellipse 70% 60% at 30% 30%, rgba(242, 238, 229, 0.2), transparent 70%),
+                          radial-gradient(ellipse 80% 60% at 80% 80%, rgba(201, 83, 28, 0.15), transparent 70%),
+                          var(--base-light);
+                      "
+                    ></div>
+                    <div
+                      class="pfz-home__brand-mono-overlay"
+                      aria-hidden="true"
+                      style="
+                        background-image: radial-gradient(circle at 1px 1px, rgba(242, 238, 229, 0.4) 1px, transparent 1.5px);
+                        background-size: 16px 16px;
+                      "
+                    ></div>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--tl" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--tr" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--bl" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--br" aria-hidden="true"></span>
+                    <div class="pfz-home__brand-mono-meta pfz-home__brand-mono-meta--tl">
+                      <span>profuzion / brand</span>
+                      <span>construction · trades</span>
+                    </div>
+                    <div class="pfz-home__brand-mono-meta pfz-home__brand-mono-meta--tr">case 24-BRO</div>
+                    <div class="pfz-home__brand-mono-glyph">
+                      <span style="text-shadow: 0 0 80px rgba(242, 238, 229, 0.4)">BV<span class="pfz-display__accent">.</span></span>
+                    </div>
+                    <div class="pfz-home__brand-mono-pal" aria-hidden="true">
+                      <span style="background: #1c1b18"></span><span style="background: #c9531c"></span><span style="background: #f2eee5"></span>
+                    </div>
+                    <div class="pfz-home__brand-mono-deliv">3 deliverables</div>
+                  </div>
+                </div>
+                <div class="pfz-home__brand-spread-detail">
+                  <p class="pfz-eyebrow pfz-eyebrow--primary">↳ case · 02</p>
+                  <h3 class="pfz-home__brand-spread-h3">Brovek<span class="pfz-display__accent">.</span></h3>
+                  <p class="pfz-home__brand-spread-tag">A brand built to wear work boots.</p>
+                  <dl class="pfz-home__brand-spread-dl">
+                    <div>
+                      <dt>industry</dt>
+                      <dd>Construction · trades</dd>
+                    </div>
+                    <div>
+                      <dt>year</dt>
+                      <dd>2024</dd>
+                    </div>
+                  </dl>
+                  <p class="pfz-home__brand-spread-summary">
+                    Confident, no-nonsense identity — wordmark, monogram, document system, and a vehicle wrap that reads at 70 km/h.
+                  </p>
+                  <p class="pfz-home__brand-spread-pal-label">palette</p>
+                  <div class="pfz-home__brand-spread-pal" aria-hidden="true">
+                    <span style="background: #1c1b18"></span><span style="background: #c9531c"></span><span style="background: #f2eee5"></span>
+                  </div>
+                  <p class="pfz-home__brand-spread-type-label">typography</p>
+                  <div class="pfz-home__brand-spread-typepair">
+                    <span class="pfz-home__brand-spread-typepair-italic">Aa</span>
+                    <span class="pfz-home__brand-spread-typepair-display">GT America Mono</span>
+                    <span style="color: var(--contrast-muted-mid)">·</span>
+                    <span class="pfz-home__brand-spread-typepair-body">GT America</span>
+                  </div>
+                  <ul class="pfz-home__brand-spread-deliv">
+                    <li>Mark + monogram</li>
+                    <li>Vehicle livery</li>
+                    <li>Document kit</li>
+                  </ul>
+                  <a href="#contact" class="pfz-home__brand-spread-cta" data-cursor data-cursor-label="open">Read the case →</a>
+                </div>
+              </article>
+            </li>
+
+            <li data-scroll-reveal data-brand-spread>
+              <article class="pfz-home__brand-spread">
+                <div class="pfz-home__brand-spread-mono">
+                  <div class="pfz-home__brand-mono">
+                    <div
+                      class="pfz-home__brand-mono-bg"
+                      style="
+                        background:
+                          radial-gradient(ellipse 70% 60% at 30% 30%, rgba(242, 238, 229, 0.2), transparent 70%),
+                          radial-gradient(ellipse 80% 60% at 80% 80%, rgba(155, 136, 104, 0.15), transparent 70%),
+                          var(--base-light);
+                      "
+                    ></div>
+                    <div
+                      class="pfz-home__brand-mono-overlay"
+                      aria-hidden="true"
+                      style="
+                        background-image: radial-gradient(circle at 1px 1px, rgba(242, 238, 229, 0.4) 1px, transparent 1.5px);
+                        background-size: 16px 16px;
+                      "
+                    ></div>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--tl" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--tr" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--bl" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--br" aria-hidden="true"></span>
+                    <div class="pfz-home__brand-mono-meta pfz-home__brand-mono-meta--tl">
+                      <span>profuzion / brand</span>
+                      <span>non-profit golf</span>
+                    </div>
+                    <div class="pfz-home__brand-mono-meta pfz-home__brand-mono-meta--tr">case 26-NAT</div>
+                    <div class="pfz-home__brand-mono-glyph">
+                      <span style="text-shadow: 0 0 80px rgba(242, 238, 229, 0.4)">NK<span class="pfz-display__accent">.</span></span>
+                    </div>
+                    <div class="pfz-home__brand-mono-pal" aria-hidden="true">
+                      <span style="background: #2a3a28"></span><span style="background: #9b8868"></span><span style="background: #f2eee5"></span>
+                    </div>
+                    <div class="pfz-home__brand-mono-deliv">3 deliverables</div>
+                  </div>
+                </div>
+                <div class="pfz-home__brand-spread-detail">
+                  <p class="pfz-eyebrow pfz-eyebrow--primary">↳ case · 03</p>
+                  <h3 class="pfz-home__brand-spread-h3">Nature's Knoll<span class="pfz-display__accent">.</span></h3>
+                  <p class="pfz-home__brand-spread-tag">A century of local memory, set in editorial type.</p>
+                  <dl class="pfz-home__brand-spread-dl">
+                    <div>
+                      <dt>industry</dt>
+                      <dd>Non-profit golf</dd>
+                    </div>
+                    <div>
+                      <dt>year</dt>
+                      <dd>2026</dd>
+                    </div>
+                  </dl>
+                  <p class="pfz-home__brand-spread-summary">
+                    Restored mark, an editorial voice document, and a member-facing identity that reads as well at 11pt as at 110pt.
+                  </p>
+                  <p class="pfz-home__brand-spread-pal-label">palette</p>
+                  <div class="pfz-home__brand-spread-pal" aria-hidden="true">
+                    <span style="background: #2a3a28"></span><span style="background: #9b8868"></span><span style="background: #f2eee5"></span>
+                  </div>
+                  <p class="pfz-home__brand-spread-type-label">typography</p>
+                  <div class="pfz-home__brand-spread-typepair">
+                    <span class="pfz-home__brand-spread-typepair-italic">Aa</span>
+                    <span class="pfz-home__brand-spread-typepair-display">GT Sectra</span>
+                    <span style="color: var(--contrast-muted-mid)">·</span>
+                    <span class="pfz-home__brand-spread-typepair-body">GT Walsheim</span>
+                  </div>
+                  <ul class="pfz-home__brand-spread-deliv">
+                    <li>Mark restoration</li>
+                    <li>Voice document</li>
+                    <li>Member system</li>
+                  </ul>
+                  <a href="#contact" class="pfz-home__brand-spread-cta" data-cursor data-cursor-label="open">Read the case →</a>
+                </div>
+              </article>
+            </li>
+
+            <li data-scroll-reveal data-brand-spread>
+              <article class="pfz-home__brand-spread pfz-home__brand-spread--flip">
+                <div class="pfz-home__brand-spread-mono">
+                  <div class="pfz-home__brand-mono">
+                    <div
+                      class="pfz-home__brand-mono-bg"
+                      style="
+                        background:
+                          radial-gradient(ellipse 70% 60% at 30% 30%, rgba(242, 238, 229, 0.2), transparent 70%),
+                          radial-gradient(ellipse 80% 60% at 80% 80%, rgba(165, 152, 130, 0.15), transparent 70%),
+                          var(--base-light);
+                      "
+                    ></div>
+                    <div
+                      class="pfz-home__brand-mono-overlay"
+                      aria-hidden="true"
+                      style="
+                        background-image: radial-gradient(circle at 1px 1px, rgba(242, 238, 229, 0.4) 1px, transparent 1.5px);
+                        background-size: 16px 16px;
+                      "
+                    ></div>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--tl" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--tr" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--bl" aria-hidden="true"></span>
+                    <span class="pfz-home__brand-mono-bracket pfz-home__brand-mono-bracket--br" aria-hidden="true"></span>
+                    <div class="pfz-home__brand-mono-meta pfz-home__brand-mono-meta--tl">
+                      <span>profuzion / brand</span>
+                      <span>law · partnership</span>
+                    </div>
+                    <div class="pfz-home__brand-mono-meta pfz-home__brand-mono-meta--tr">case 26-CON</div>
+                    <div class="pfz-home__brand-mono-glyph">
+                      <span style="text-shadow: 0 0 80px rgba(242, 238, 229, 0.4); font-size: clamp(5rem, 14vw, 12rem)">K&amp;Co<span class="pfz-display__accent">.</span></span>
+                    </div>
+                    <div class="pfz-home__brand-mono-pal" aria-hidden="true">
+                      <span style="background: #1c2230"></span><span style="background: #a59882"></span><span style="background: #f2eee5"></span>
+                    </div>
+                    <div class="pfz-home__brand-mono-deliv">3 deliverables</div>
+                  </div>
+                </div>
+                <div class="pfz-home__brand-spread-detail">
+                  <p class="pfz-eyebrow pfz-eyebrow--primary">↳ case · 04</p>
+                  <h3 class="pfz-home__brand-spread-h3">Keystone &amp; Co.<span class="pfz-display__accent">.</span></h3>
+                  <p class="pfz-home__brand-spread-tag">A law firm that writes the way it advises.</p>
+                  <dl class="pfz-home__brand-spread-dl">
+                    <div>
+                      <dt>industry</dt>
+                      <dd>Law · partnership</dd>
+                    </div>
+                    <div>
+                      <dt>year</dt>
+                      <dd>2026</dd>
+                    </div>
+                  </dl>
+                  <p class="pfz-home__brand-spread-summary">
+                    A serif-led identity built for trust and longevity — a wordmark, partner monograms, and a long-form firm history.
+                  </p>
+                  <p class="pfz-home__brand-spread-pal-label">palette</p>
+                  <div class="pfz-home__brand-spread-pal" aria-hidden="true">
+                    <span style="background: #1c2230"></span><span style="background: #a59882"></span><span style="background: #f2eee5"></span>
+                  </div>
+                  <p class="pfz-home__brand-spread-type-label">typography</p>
+                  <div class="pfz-home__brand-spread-typepair">
+                    <span class="pfz-home__brand-spread-typepair-italic">Aa</span>
+                    <span class="pfz-home__brand-spread-typepair-display">Tiempos Headline</span>
+                    <span style="color: var(--contrast-muted-mid)">·</span>
+                    <span class="pfz-home__brand-spread-typepair-body">Söhne Buch</span>
+                  </div>
+                  <ul class="pfz-home__brand-spread-deliv">
+                    <li>Wordmark + crest</li>
+                    <li>Firm history</li>
+                    <li>Stationery</li>
+                  </ul>
+                  <a href="#contact" class="pfz-home__brand-spread-cta" data-cursor data-cursor-label="book">Discuss this direction →</a>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- §Websites — parity with section-websites.tsx -->
+      <section id="websites" class="pfz-home__sec pfz-home__sec-pad" data-web-root>
+        <div class="pfz-home__shell">
+          <div class="pfz-home__meta-row pfz-home__meta-row--gap-lg">
+            <div data-scroll-reveal>
+              <p class="pfz-eyebrow pfz-eyebrow--primary">// websites in production</p>
+              <h2 class="pfz-display pfz-display--lg pfz-home__meta-h2">
+                Sites that <span class="pfz-italic" style="color: var(--primary)">close</span> the call.
+              </h2>
+            </div>
+            <p class="pfz-body pfz-home__meta-body" data-scroll-reveal>
+              Built for performance. Tuned for Core Web Vitals, AI search, and the owner who has to update the rates page herself on a Tuesday at 10pm.
+            </p>
+          </div>
+
+          <div class="pfz-home__web-grid">
+            <div class="pfz-home__web-sticky-col">
+              <div class="pfz-home__web-sticky">
+                <div class="pfz-browser">
+                  <div class="pfz-browser__bar">
+                    <span class="pfz-browser__dot" style="background: #e26b49"></span>
+                    <span class="pfz-browser__dot" style="background: #e3b04b"></span>
+                    <span class="pfz-browser__dot" style="background: #7a9f5f"></span>
+                    <span class="pfz-browser__url" data-web-url>naturesknoll.ca</span>
+                  </div>
+                  <div class="pfz-browser__body">
+                    <div data-web-mock-layer class="is-active" aria-hidden="false" style="padding: 8px 10px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; background: radial-gradient(ellipse 70% 50% at 50% 28%, #5a7a4a 0%, #2a3a28 55%, #182018 100%); color: rgba(242, 238, 229, 0.93); font-size: 9px">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px">
+                        <span style="font-family: var(--text-serif); font-style: italic; font-size: 10px">Nature&apos;s Knoll</span>
+                        <span style="font-family: var(--text-sans); font-weight: 500; font-size: 8px; padding: 3px 8px; border-radius: 999px; background: rgba(242, 238, 229, 0.95); color: #2a3a28">Book →</span>
+                      </div>
+                      <p style="font-family: var(--text-mono); font-size: 7px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.72; margin: 0 0 4px">↳ nine holes · pembina valley</p>
+                      <div style="font-family: var(--text-serif); font-style: italic; font-size: clamp(11px, 2.2vw, 16px); line-height: 0.98; max-width: 15ch">The hidden gem you haven&apos;t played yet.</div>
+                      <div style="margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding-top: 6px">
+                        <div style="height: 22px; border-radius: 4px; background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(255, 255, 255, 0.1)"></div>
+                        <div style="height: 22px; border-radius: 4px; background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(255, 255, 255, 0.1)"></div>
+                        <div style="height: 22px; border-radius: 4px; background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(255, 255, 255, 0.1)"></div>
+                      </div>
+                    </div>
+                    <div data-web-mock-layer aria-hidden="true" style="padding: 8px 10px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; background: #f4efe5; color: #0f0e0c; font-size: 9px">
+                      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(15, 14, 12, 0.1); padding-bottom: 6px; margin-bottom: 6px">
+                        <span style="font-family: var(--text-sans); font-weight: 700; font-size: 9px; letter-spacing: 0.06em">ALUMAREEL</span>
+                        <span style="background: #c9531c; color: #f4efe5; font-size: 7px; padding: 3px 7px; font-family: var(--text-sans); font-weight: 500; border-radius: 2px">Quote</span>
+                      </div>
+                      <p style="font-family: var(--text-mono); font-size: 7px; letter-spacing: 0.12em; color: #56524a; margin: 0 0 4px">↳ AR-100 · made in MB</p>
+                      <div style="font-family: var(--text-sans); font-weight: 600; font-size: clamp(10px, 2vw, 14px); line-height: 0.98; max-width: 13ch">The aluminum reel rebuilt from the bearing out.</div>
+                      <div style="margin-top: auto; display: flex; gap: 6px; align-items: center">
+                        <div style="flex: 1; height: 56px; border-radius: 4px; background: radial-gradient(circle at 30% 30%, #c9c5bd, #1c1b18 75%)"></div>
+                      </div>
+                    </div>
+                    <div data-web-mock-layer aria-hidden="true" style="padding: 8px 10px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; background: #f7f3ea; color: #1c2230; font-size: 9px">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px">
+                        <span style="font-family: var(--text-serif); font-size: 9px; letter-spacing: 0.14em">KEYSTONE &amp; CO.</span>
+                      </div>
+                      <p style="font-family: var(--text-mono); font-size: 7px; letter-spacing: 0.2em; text-transform: uppercase; color: #7a6f5e; margin: 0 0 6px">WINKLER · PEMBINA VALLEY</p>
+                      <div style="font-family: var(--text-serif); font-size: clamp(11px, 2.2vw, 15px); line-height: 1; max-width: 14ch; color: #1c2230">Quiet counsel. Loud results.</div>
+                      <div style="margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding-top: 6px">
+                        <div style="border-top: 1px solid rgba(28, 34, 48, 0.15); padding-top: 4px; font-family: var(--text-serif); font-size: 8px">Family</div>
+                        <div style="border-top: 1px solid rgba(28, 34, 48, 0.15); padding-top: 4px; font-family: var(--text-serif); font-size: 8px">Corporate</div>
+                        <div style="border-top: 1px solid rgba(28, 34, 48, 0.15); padding-top: 4px; font-family: var(--text-serif); font-size: 8px">Estates</div>
+                        <div style="border-top: 1px solid rgba(28, 34, 48, 0.15); padding-top: 4px; font-family: var(--text-serif); font-size: 8px">Real estate</div>
+                      </div>
+                    </div>
+                    <div data-web-mock-layer aria-hidden="true" style="padding: 8px 10px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; background: #f4efe5; color: #1c1b18; font-size: 9px">
+                      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(15, 14, 12, 0.1); padding-bottom: 6px">
+                        <span style="font-family: var(--text-sans); font-weight: 600; font-size: 10px">Pembina Realty</span>
+                        <span style="background: #7d6650; color: #f4efe5; font-size: 7px; padding: 3px 8px; border-radius: 999px; font-weight: 500">Map</span>
+                      </div>
+                      <p style="font-family: var(--text-serif); font-style: italic; font-size: 8px; color: #7a6f5e; margin: 6px 0 2px">This week in the valley</p>
+                      <div style="font-family: var(--text-sans); font-weight: 500; font-size: clamp(9px, 1.8vw, 13px); line-height: 1; max-width: 16ch">Twelve homes, written by people who&apos;ve walked them.</div>
+                      <div style="margin-top: auto; height: 48px; border-radius: 4px; background: #e6dfd0; border: 1px solid rgba(125, 102, 80, 0.25); position: relative">
+                        <span style="position: absolute; left: 6px; top: 5px; font-family: var(--text-mono); font-size: 7px; color: #56524a">map · pins</span>
+                      </div>
+                    </div>
+                    <div data-web-mock-layer aria-hidden="true" style="padding: 8px 10px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; background: #0f0e0c; color: #f4efe5; font-size: 9px">
+                      <div style="display: flex; justify-content: space-between; align-items: center">
+                        <span style="font-family: var(--text-sans); font-weight: 700; font-size: 9px; letter-spacing: 0.16em">NORTHPOINT</span>
+                        <span style="background: #b85838; color: #0f0e0c; font-size: 7px; padding: 3px 8px; border-radius: 999px; font-weight: 600">First class →</span>
+                      </div>
+                      <p style="font-family: var(--text-mono); font-size: 7px; letter-spacing: 0.14em; opacity: 0.55; margin: 6px 0 4px">SCHEDULE · THIS WEEK</p>
+                      <div style="font-family: var(--text-sans); font-weight: 600; font-size: clamp(11px, 2.2vw, 15px); line-height: 0.96; max-width: 13ch">Train hard. Sound human.</div>
+                      <div style="margin-top: auto; display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; padding: 5px; border-radius: 4px; background: rgba(244, 239, 229, 0.05); border: 1px solid rgba(244, 239, 229, 0.12)">
+                        <span style="font-family: var(--text-mono); font-size: 6px; text-align: center; opacity: 0.5">M</span>
+                        <span style="font-family: var(--text-mono); font-size: 6px; text-align: center; opacity: 0.5">T</span>
+                        <span style="font-family: var(--text-mono); font-size: 6px; text-align: center; opacity: 0.5">W</span>
+                        <span style="font-family: var(--text-mono); font-size: 6px; text-align: center; opacity: 0.5">T</span>
+                        <span style="font-family: var(--text-mono); font-size: 6px; text-align: center; opacity: 0.5">F</span>
+                        <span style="font-family: var(--text-mono); font-size: 6px; text-align: center; opacity: 0.5">S</span>
+                        <span style="font-family: var(--text-mono); font-size: 6px; text-align: center; opacity: 0.5">S</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pfz-home__web-progress" data-web-progress-wrap>
+                  <ul>
+                    <li class="is-active"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <p class="pfz-home__web-progress-counter" data-web-counter>case 01 / 05</p>
+                </div>
+              </div>
+            </div>
+
+            <ol class="pfz-home__web-slot-list">
+              <li class="pfz-home__web-slot" data-web-slot data-idx="0" data-url="naturesknoll.ca">
+                <div class="pfz-home__web-slot-mobile">
+                  <div class="pfz-browser">
+                    <div class="pfz-browser__bar">
+                      <span class="pfz-browser__dot" style="background: #e26b49"></span>
+                      <span class="pfz-browser__dot" style="background: #e3b04b"></span>
+                      <span class="pfz-browser__dot" style="background: #7a9f5f"></span>
+                      <span class="pfz-browser__url">naturesknoll.ca</span>
+                    </div>
+                    <div class="pfz-browser__body">
+                      <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 28%, #5a7a4a 0%, #2a3a28 55%, #182018 100%)"></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="pfz-eyebrow pfz-eyebrow--primary">
+                  ↳ web · 01 · <span style="color: var(--contrast-muted-mid)">2026</span>
+                </p>
+                <h3 class="pfz-home__web-slot-h3">Nature&apos;s Knoll Golf Course</h3>
+                <p class="pfz-home__web-slot-tag">A nine-hole story, shot like a film.</p>
+                <p class="pfz-home__web-slot-outcome">
+                  A scroll-narrative homepage with a three-minute course film and Lightspeed booking integration in a single screen.
+                </p>
+                <dl class="pfz-home__web-slot-metrics">
+                  <div>
+                    <dt>Booking screens</dt>
+                    <dd>4 → 1</dd>
+                  </div>
+                  <div>
+                    <dt>LCP</dt>
+                    <dd>2.1s</dd>
+                  </div>
+                  <div>
+                    <dt>Course film</dt>
+                    <dd>3:00</dd>
+                  </div>
+                </dl>
+                <div class="pfz-home__web-slot-foot">
+                  <span class="pfz-home__web-chip">Hospitality · golf</span>
+                  <a href="#contact" class="pfz-home__web-cta" data-cursor data-cursor-label="open">Read the case →</a>
+                </div>
+              </li>
+              <li class="pfz-home__web-slot" data-web-slot data-idx="1" data-url="alumareel.com">
+                <div class="pfz-home__web-slot-mobile">
+                  <div class="pfz-browser">
+                    <div class="pfz-browser__bar">
+                      <span class="pfz-browser__dot" style="background: #e26b49"></span>
+                      <span class="pfz-browser__dot" style="background: #e3b04b"></span>
+                      <span class="pfz-browser__dot" style="background: #7a9f5f"></span>
+                      <span class="pfz-browser__url">alumareel.com</span>
+                    </div>
+                    <div class="pfz-browser__body">
+                      <div style="position: absolute; inset: 0; background: #f4efe5"></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="pfz-eyebrow pfz-eyebrow--primary">
+                  ↳ web · 02 · <span style="color: var(--contrast-muted-mid)">2025</span>
+                </p>
+                <h3 class="pfz-home__web-slot-h3">AlumaReel</h3>
+                <p class="pfz-home__web-slot-tag">Catalogue product, finished site.</p>
+                <p class="pfz-home__web-slot-outcome">
+                  A product-first homepage that closes — anchored by CAD-driven renders that ship from the same files the shop floor uses.
+                </p>
+                <dl class="pfz-home__web-slot-metrics">
+                  <div>
+                    <dt>Render → site</dt>
+                    <dd>48h</dd>
+                  </div>
+                  <div>
+                    <dt>Variants</dt>
+                    <dd>unlimited</dd>
+                  </div>
+                  <div>
+                    <dt>Brand assets</dt>
+                    <dd>27</dd>
+                  </div>
+                </dl>
+                <div class="pfz-home__web-slot-foot">
+                  <span class="pfz-home__web-chip">Manufacturing · product</span>
+                  <a href="#contact" class="pfz-home__web-cta" data-cursor data-cursor-label="open">Read the case →</a>
+                </div>
+              </li>
+              <li class="pfz-home__web-slot" data-web-slot data-idx="2" data-url="keystone.law">
+                <div class="pfz-home__web-slot-mobile">
+                  <div class="pfz-browser">
+                    <div class="pfz-browser__bar">
+                      <span class="pfz-browser__dot" style="background: #e26b49"></span>
+                      <span class="pfz-browser__dot" style="background: #e3b04b"></span>
+                      <span class="pfz-browser__dot" style="background: #7a9f5f"></span>
+                      <span class="pfz-browser__url">keystone.law</span>
+                    </div>
+                    <div class="pfz-browser__body">
+                      <div style="position: absolute; inset: 0; background: #f7f3ea"></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="pfz-eyebrow pfz-eyebrow--primary">
+                  ↳ web · 03 · <span style="color: var(--contrast-muted-mid)">2026</span>
+                </p>
+                <h3 class="pfz-home__web-slot-h3">Keystone &amp; Co.</h3>
+                <p class="pfz-home__web-slot-tag">A firm site that reads like a partnership letter.</p>
+                <p class="pfz-home__web-slot-outcome">
+                  Editorial firm history, partner-led practice pages, and an intake flow built like a private consultation, not a form.
+                </p>
+                <dl class="pfz-home__web-slot-metrics">
+                  <div>
+                    <dt>Bounce</dt>
+                    <dd>−42%</dd>
+                  </div>
+                  <div>
+                    <dt>Intake friction</dt>
+                    <dd>−5 fields</dd>
+                  </div>
+                  <div>
+                    <dt>Time on page</dt>
+                    <dd>+3:11</dd>
+                  </div>
+                </dl>
+                <div class="pfz-home__web-slot-foot">
+                  <span class="pfz-home__web-chip">Law · concept</span>
+                  <a href="#contact" class="pfz-home__web-cta" data-cursor data-cursor-label="book">Discuss this direction →</a>
+                </div>
+              </li>
+              <li class="pfz-home__web-slot" data-web-slot data-idx="3" data-url="pembinarealty.ca">
+                <div class="pfz-home__web-slot-mobile">
+                  <div class="pfz-browser">
+                    <div class="pfz-browser__bar">
+                      <span class="pfz-browser__dot" style="background: #e26b49"></span>
+                      <span class="pfz-browser__dot" style="background: #e3b04b"></span>
+                      <span class="pfz-browser__dot" style="background: #7a9f5f"></span>
+                      <span class="pfz-browser__url">pembinarealty.ca</span>
+                    </div>
+                    <div class="pfz-browser__body">
+                      <div style="position: absolute; inset: 0; background: #f4efe5"></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="pfz-eyebrow pfz-eyebrow--primary">
+                  ↳ web · 04 · <span style="color: var(--contrast-muted-mid)">2026</span>
+                </p>
+                <h3 class="pfz-home__web-slot-h3">Pembina Realty</h3>
+                <p class="pfz-home__web-slot-tag">Listings that feel like the place.</p>
+                <p class="pfz-home__web-slot-outcome">
+                  Listing-led discovery, editorial property write-ups, and a search experience that respects how buyers actually browse.
+                </p>
+                <dl class="pfz-home__web-slot-metrics">
+                  <div>
+                    <dt>Listings → tours</dt>
+                    <dd>+38%</dd>
+                  </div>
+                  <div>
+                    <dt>Saved searches</dt>
+                    <dd>+2.6×</dd>
+                  </div>
+                  <div>
+                    <dt>Map vs list</dt>
+                    <dd>61 / 39</dd>
+                  </div>
+                </dl>
+                <div class="pfz-home__web-slot-foot">
+                  <span class="pfz-home__web-chip">Real estate · concept</span>
+                  <a href="#contact" class="pfz-home__web-cta" data-cursor data-cursor-label="book">Discuss this direction →</a>
+                </div>
+              </li>
+              <li class="pfz-home__web-slot" data-web-slot data-idx="4" data-url="northpoint.fit">
+                <div class="pfz-home__web-slot-mobile">
+                  <div class="pfz-browser">
+                    <div class="pfz-browser__bar">
+                      <span class="pfz-browser__dot" style="background: #e26b49"></span>
+                      <span class="pfz-browser__dot" style="background: #e3b04b"></span>
+                      <span class="pfz-browser__dot" style="background: #7a9f5f"></span>
+                      <span class="pfz-browser__url">northpoint.fit</span>
+                    </div>
+                    <div class="pfz-browser__body">
+                      <div style="position: absolute; inset: 0; background: #0f0e0c"></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="pfz-eyebrow pfz-eyebrow--primary">
+                  ↳ web · 05 · <span style="color: var(--contrast-muted-mid)">2026</span>
+                </p>
+                <h3 class="pfz-home__web-slot-h3">Northpoint Fitness</h3>
+                <p class="pfz-home__web-slot-tag">Energy without the screaming.</p>
+                <p class="pfz-home__web-slot-outcome">
+                  Schedule-first homepage, coach pages with intro reels, and a class-pack flow that doesn&apos;t bury the price.
+                </p>
+                <dl class="pfz-home__web-slot-metrics">
+                  <div>
+                    <dt>First-class signup</dt>
+                    <dd>+74%</dd>
+                  </div>
+                  <div>
+                    <dt>Drop-off</dt>
+                    <dd>−51%</dd>
+                  </div>
+                  <div>
+                    <dt>Mobile share</dt>
+                    <dd>82%</dd>
+                  </div>
+                </dl>
+                <div class="pfz-home__web-slot-foot">
+                  <span class="pfz-home__web-chip">Fitness · concept</span>
+                  <a href="#contact" class="pfz-home__web-cta" data-cursor data-cursor-label="book">Discuss this direction →</a>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- §Process — full timeline + scroll-scrub rail (parity with section-process.tsx) -->
+      <section id="process" class="pfz-home__sec pfz-home__sec-pad" data-pr-root>
+        <div class="pfz-rule" aria-hidden="true"></div>
+        <div class="pfz-home__shell">
+          <div class="pfz-home__meta-row pfz-home__meta-row--gap-lg">
+            <div data-scroll-reveal>
+              <p class="pfz-eyebrow pfz-eyebrow--primary">// how we work</p>
+              <h2 class="pfz-display pfz-display--lg pfz-home__meta-h2">
+                Five rounds. No<br />
+                surprise invoices.
+              </h2>
+            </div>
+            <p class="pfz-body pfz-home__meta-body" data-scroll-reveal>
+              We work in fixed phases on a scoped quote. You see the studio brief in week one, the first design rounds in week three, and a launched site somewhere between week six and eight.
+            </p>
+          </div>
+
+          <div class="pfz-home__proc-grid">
+            <div class="pfz-home__proc-rail" aria-hidden="true">
+              <div class="pfz-home__proc-rail-fill" data-pr-rail-fill></div>
+            </div>
+            <ol class="pfz-home__proc-list">
+              <li class="pfz-home__proc-row" data-pr-row>
+                <div data-pr-num>
+                  <span class="pfz-home__proc-num">01 · Listen</span>
+                  <p class="pfz-home__proc-name">Listen</p>
+                  <p class="pfz-home__proc-duration">Week 1</p>
+                </div>
+                <div>
+                  <h3 class="pfz-display pfz-home__proc-h3" data-pr-head>We start at the desk you actually work from.</h3>
+                  <p class="pfz-home__proc-body" data-pr-body>
+                    Two long conversations. We learn how you sound to a referral, what your worst client taught you, and what you want to be three years from now.
+                  </p>
+                  <ul class="pfz-home__proc-bullets">
+                    <li data-pr-bullet>Founder interview</li>
+                    <li data-pr-bullet>Audience read-throughs</li>
+                    <li data-pr-bullet>Audit of current touchpoints</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="pfz-home__proc-row" data-pr-row>
+                <div data-pr-num>
+                  <span class="pfz-home__proc-num">02 · Frame</span>
+                  <p class="pfz-home__proc-name">Frame</p>
+                  <p class="pfz-home__proc-duration">Weeks 2–3</p>
+                </div>
+                <div>
+                  <h3 class="pfz-display pfz-home__proc-h3" data-pr-head>
+                    Positioning, voice, and the shape of the work<span class="pfz-italic" style="color: var(--primary)">.</span>
+                  </h3>
+                  <p class="pfz-home__proc-body" data-pr-body>
+                    We write the studio brief — one page, no decks. It names the audience, the shape of the brand, and the three things the website has to earn.
+                  </p>
+                  <ul class="pfz-home__proc-bullets">
+                    <li data-pr-bullet>Studio brief (1 page)</li>
+                    <li data-pr-bullet>Voice document</li>
+                    <li data-pr-bullet>Sitemap and message hierarchy</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="pfz-home__proc-row" data-pr-row>
+                <div data-pr-num>
+                  <span class="pfz-home__proc-num">03 · Design</span>
+                  <p class="pfz-home__proc-name">Design</p>
+                  <p class="pfz-home__proc-duration">Weeks 3–6</p>
+                </div>
+                <div>
+                  <h3 class="pfz-display pfz-home__proc-h3" data-pr-head>Identity and screens — drawn together, not in series.</h3>
+                  <p class="pfz-home__proc-body" data-pr-body>
+                    Brand system and website design happen on the same canvas. A wordmark earns its weight by working at 11pt in a footer and 110pt on a vehicle.
+                  </p>
+                  <ul class="pfz-home__proc-bullets">
+                    <li data-pr-bullet>Mark, palette, typography</li>
+                    <li data-pr-bullet>Page-by-page art direction</li>
+                    <li data-pr-bullet>Two rounds of revisions</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="pfz-home__proc-row" data-pr-row>
+                <div data-pr-num>
+                  <span class="pfz-home__proc-num">04 · Ship</span>
+                  <p class="pfz-home__proc-name">Ship</p>
+                  <p class="pfz-home__proc-duration">Weeks 6–8</p>
+                </div>
+                <div>
+                  <h3 class="pfz-display pfz-home__proc-h3" data-pr-head>
+                    Built, tested, indexed, handed over<span class="pfz-italic" style="color: var(--primary)">.</span>
+                  </h3>
+                  <p class="pfz-home__proc-body" data-pr-body>
+                    Built to modern performance standards, tuned for Core Web Vitals, structured for AI search and Google. We hand over a site you can update without us.
+                  </p>
+                  <ul class="pfz-home__proc-bullets">
+                    <li data-pr-bullet>Performance + accessibility pass</li>
+                    <li data-pr-bullet>SEO + AEO setup</li>
+                    <li data-pr-bullet>Owner training</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="pfz-home__proc-row" data-pr-row>
+                <div data-pr-num>
+                  <span class="pfz-home__proc-num">05 · Tend</span>
+                  <p class="pfz-home__proc-name">Tend</p>
+                  <p class="pfz-home__proc-duration">Ongoing (optional)</p>
+                </div>
+                <div>
+                  <h3 class="pfz-display pfz-home__proc-h3" data-pr-head>Quarterly rounds keep the work earning its keep.</h3>
+                  <p class="pfz-home__proc-body" data-pr-body>
+                    Most owners stay on a small monthly retainer for content updates, evergreen SEO, and a quarterly health check. No tickets, no surprise invoices.
+                  </p>
+                  <ul class="pfz-home__proc-bullets">
+                    <li data-pr-bullet>Quarterly content rounds</li>
+                    <li data-pr-bullet>Performance + AEO maintenance</li>
+                    <li data-pr-bullet>Direct line to the founder</li>
+                  </ul>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- §Engagements — parity with section-engagements.tsx / site.ts engagements -->
+      <section id="engagements" class="pfz-home__sec pfz-home__sec-pad pfz-home__sec--paper-light">
+        <div class="pfz-rule" aria-hidden="true"></div>
+        <div class="pfz-home__shell">
+          <div class="pfz-home__meta-row">
+            <div data-scroll-reveal>
+              <p class="pfz-eyebrow pfz-eyebrow--primary">// engagements</p>
+              <h2 class="pfz-display pfz-display--lg pfz-home__meta-h2">
+                Three ways to <span class="pfz-italic" style="color: var(--primary)">start</span>.
+              </h2>
+            </div>
+            <p class="pfz-body pfz-home__meta-body" data-scroll-reveal>
+              Most owners book the full project. Some start with the brand and add the site later. Tend is for the long haul — quarterly rounds, no tickets.
+            </p>
+          </div>
+
+          <div class="pfz-home__eng-grid">
+            <article class="pfz-home__eng-card" data-eng-card data-scroll-reveal style="--eng-i: 0">
+              <h3>Brand system</h3>
+              <p class="pfz-home__eng-card-meta">
+                <span class="pfz-home__eng-card-duration">4–6 weeks</span>
+                <span class="pfz-home__eng-card-meta-sep" aria-hidden="true">·</span>
+                <span class="pfz-home__eng-card-shape">fixed-scope quote</span>
+              </p>
+              <p>
+                Founder interview, positioning, mark, palette, typography, voice document, and a one-page studio brief. Everything you need to brief the next thing yourself.
+              </p>
+              <ul>
+                <li>Founder interview + audit</li>
+                <li>Mark + monogram</li>
+                <li>Palette + typography</li>
+                <li>Voice document</li>
+                <li>Stationery starter kit</li>
+              </ul>
+              <a href="#contact" class="pfz-home__eng-card-cta" data-cursor data-cursor-label="start">Start the brand →</a>
+            </article>
+
+            <article
+              class="pfz-home__eng-card pfz-home__eng-card--primary"
+              data-eng-card
+              data-scroll-reveal
+              style="--eng-i: 1"
+            >
+              <span class="pfz-home__eng-card-fav">Studio favourite</span>
+              <h3>Brand &amp; website</h3>
+              <p class="pfz-home__eng-card-meta">
+                <span class="pfz-home__eng-card-duration">8–10 weeks</span>
+                <span class="pfz-home__eng-card-meta-sep" aria-hidden="true">·</span>
+                <span class="pfz-home__eng-card-shape">fixed-scope quote · most owners start here</span>
+              </p>
+              <p>
+                The full project. Brand system + a high-performance website built to perform — Core Web Vitals, AI search, Google Business, the works.
+              </p>
+              <ul>
+                <li>Everything in Brand system</li>
+                <li>Sitemap + message hierarchy</li>
+                <li>Page-by-page art direction</li>
+                <li>Production build + CMS</li>
+                <li>Performance + SEO + AEO</li>
+              </ul>
+              <a href="#contact" class="pfz-home__eng-card-cta" data-cursor data-cursor-label="book">Book the project →</a>
+            </article>
+
+            <article class="pfz-home__eng-card" data-eng-card data-scroll-reveal style="--eng-i: 2">
+              <h3>Tend (retainer)</h3>
+              <p class="pfz-home__eng-card-meta">
+                <span class="pfz-home__eng-card-duration">Monthly</span>
+                <span class="pfz-home__eng-card-meta-sep" aria-hidden="true">·</span>
+                <span class="pfz-home__eng-card-shape">small monthly retainer</span>
+              </p>
+              <p>
+                Quarterly content rounds, evergreen SEO, performance maintenance, and a direct line to the founder. No tickets, no surprise invoices.
+              </p>
+              <ul>
+                <li>Quarterly content updates</li>
+                <li>Evergreen SEO + AEO</li>
+                <li>Performance reviews</li>
+                <li>Direct founder access</li>
+              </ul>
+              <a href="#contact" class="pfz-home__eng-card-cta" data-cursor data-cursor-label="add">Add Tend →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- §Quote — // founder voice (parity with section-quote.tsx / pullQuote) -->
+      <section class="pfz-home__quote" data-quote-root aria-labelledby="quote-heading">
+        <div class="pfz-rule" aria-hidden="true"></div>
+        <div class="pfz-home__shell pfz-home__quote-inner">
+          <p class="pfz-eyebrow pfz-eyebrow--primary pfz-home__quote-eyebrow" id="quote-heading">// founder voice</p>
+          <blockquote class="pfz-home__quote-block" style="margin: 0">
+            <p class="pfz-home__quote-text">
+              <span class="pfz-home__quote-mark" aria-hidden="true">&ldquo;</span><span data-quote-word>We</span><span data-quote-word>don&apos;t</span><span data-quote-word>sell</span><span data-quote-word>websites.</span><span data-quote-word>We</span><span data-quote-word>design</span><span data-quote-word>the</span><span data-quote-word>version</span><span data-quote-word>of</span><span data-quote-word>you</span><span data-quote-word>that</span><span data-quote-word>earns</span><span data-quote-word>the</span><span data-quote-word>next</span><span data-quote-word>call</span><span data-quote-word>—</span><span data-quote-word>and</span><span data-quote-word>then</span><span data-quote-word>we</span><span data-quote-word>make</span><span data-quote-word>sure</span><span data-quote-word>the</span><span data-quote-word>site</span><span data-quote-word>is</span><span data-quote-word>the</span><span data-quote-word>easy</span><span data-quote-word>part.</span><span class="pfz-home__quote-mark" aria-hidden="true">&rdquo;</span>
+            </p>
+            <footer class="pfz-home__quote-foot">
+              <p class="pfz-home__quote-foot-cite">Profuzion · founder voice doc, v3</p>
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- §CTA — In Bricks: wrap the right column in .pfz-home__cta-form and use native Form element (see BRICKS-COPY-PASTE.md). -->
+      <section id="contact" class="pfz-home__sec pfz-home__sec-pad">
+        <div class="pfz-rule" aria-hidden="true"></div>
+        <div class="pfz-home__shell" data-scroll-reveal>
+          <div class="pfz-home__cta-grid">
+            <div>
+              <p class="pfz-eyebrow pfz-eyebrow--primary">// start a conversation</p>
+              <h2 class="pfz-display pfz-display--lg pfz-home__cta-h2">
+                Ready when <span class="pfz-italic" style="color: var(--primary)">you</span> are.
+              </h2>
+              <p class="pfz-body" style="margin-top: 1.5rem; max-width: 28rem">
+                The fastest way to start is a 30-minute call. No pitch deck. We ask three questions, you
+                ask three, we both leave with a clear next step.
+              </p>
+              <ul class="pfz-home__cta-list">
+                <li>
+                  <a href="mailto:hello@profuzionstudio.com" style="display: contents" data-cursor data-cursor-label="direct">
+                    <span class="label">Direct</span>
+                    <span class="val">hello@profuzionstudio.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+12043626171" style="display: contents" data-cursor data-cursor-label="phone">
+                    <span class="label">Phone</span>
+                    <span class="val">204.362.6171</span>
+                  </a>
+                </li>
+                <li>
+                  <span class="label">Studio</span>
+                  <span class="val">Winkler, Manitoba · R6W 0P4</span>
+                </li>
+                <li>
+                  <span class="label">Hours</span>
+                  <span class="val">Mon–Thu, 9–5 CT · Friday, by appointment</span>
+                </li>
+              </ul>
+              <div class="pfz-home__cta-booking" aria-hidden="true">
+                <span class="pfz-home__cta-booking-dot"></span>
+                <span class="pfz-home__cta-booking-label">now booking summer 2026</span>
+              </div>
+            </div>
+            <div>
+              <div class="pfz-home__cta-form">
+                <div class="pfz-home__cta-form-bar">
+                  <span class="l">→ new project intake</span>
+                  <span class="r">reply ≤ 1 day</span>
+                </div>
+                <!-- Reference-only markup; replace with Bricks → Form inside .pfz-home__cta-form -->
+                <form class="pfz-home__cta-fields" action="#" method="post" onsubmit="return false;" aria-label="New project intake (demo)">
+                  <div class="pfz-home__cta-form-row2">
+                    <label class="pfz-home__cta-field">
+                      <span class="pfz-home__cta-field-label">Your name <span class="pfz-home__cta-req">*</span></span>
+                      <input name="name" type="text" autocomplete="name" placeholder="Lowell" required />
+                    </label>
+                    <label class="pfz-home__cta-field">
+                      <span class="pfz-home__cta-field-label">Email <span class="pfz-home__cta-req">*</span></span>
+                      <input name="email" type="email" autocomplete="email" placeholder="you@firm.ca" required />
+                    </label>
+                  </div>
+                  <label class="pfz-home__cta-field">
+                    <span class="pfz-home__cta-field-label">Business · location</span>
+                    <input name="business" type="text" autocomplete="organization" placeholder="Keystone & Co. · Winkler MB" />
+                  </label>
+                  <label class="pfz-home__cta-field">
+                    <span class="pfz-home__cta-field-label">What&apos;s the project? (optional)</span>
+                    <textarea name="project" rows="4" placeholder="Rebrand + new firm site. Need to launch by August."></textarea>
+                  </label>
+                  <div class="pfz-home__cta-hp" aria-hidden="true">
+                    <input name="company" tabindex="-1" autocomplete="off" />
+                  </div>
+                  <div class="pfz-home__cta-form-footer">
+                    <p class="pfz-home__cta-form-micro">no automated reply · founder writes back</p>
+                    <button type="submit" class="btn--primary" data-cursor data-cursor-label="send">
+                      Send<span class="pfz-btn-arrow">→</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pfz-home__foot pfz-section pfz-section--ink">
+      <div class="pfz-home__foot-inner">
+        <div class="pfz-home__foot-top">
+          <h2 class="pfz-display pfz-home__foot-mark">
+            Profuzion<span class="pfz-display__accent">.</span>
+          </h2>
+          <ul class="pfz-home__foot-meta">
+            <li>Winkler, Manitoba · Pembina Valley</li>
+            <li>since 1999</li>
+            <li class="is-availability">now booking summer 2026</li>
+          </ul>
+        </div>
+
+        <div class="pfz-rule pfz-rule--ink pfz-home__foot-rule" aria-hidden="true"></div>
+
+        <div class="pfz-home__foot-cols">
+          <div class="pfz-home__foot-col">
+            <p class="pfz-home__foot-col-label">Navigate</p>
+            <ul>
+              <li><a href="#industries" data-cursor data-cursor-label="navigate">Industries</a></li>
+              <li><a href="#about" data-cursor data-cursor-label="navigate">About</a></li>
+              <li><a href="#branding" data-cursor data-cursor-label="navigate">Branding</a></li>
+              <li><a href="#websites" data-cursor data-cursor-label="navigate">Websites</a></li>
+              <li><a href="#process" data-cursor data-cursor-label="navigate">Process</a></li>
+              <li><a href="#engagements" data-cursor data-cursor-label="navigate">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="pfz-home__foot-col">
+            <p class="pfz-home__foot-col-label">Contact</p>
+            <ul>
+              <li><a href="mailto:hello@profuzionstudio.com" data-cursor data-cursor-label="contact">hello@profuzionstudio.com</a></li>
+              <li><a href="tel:+12043626171" data-cursor data-cursor-label="contact">204.362.6171</a></li>
+              <li><a href="#contact" data-cursor data-cursor-label="contact">Book a call →</a></li>
+            </ul>
+          </div>
+          <div class="pfz-home__foot-col">
+            <p class="pfz-home__foot-col-label">Studio</p>
+            <ul>
+              <li><a href="/" data-cursor data-cursor-label="studio">Profuzion v1 (live)</a></li>
+              <li><a href="https://instagram.com/profuzion" rel="noopener noreferrer" target="_blank" data-cursor data-cursor-label="studio">Instagram</a></li>
+              <li><a href="https://linkedin.com/in/lowellklassen" rel="noopener noreferrer" target="_blank" data-cursor data-cursor-label="studio">LinkedIn</a></li>
+              <li><a href="https://github.com/profuzion" rel="noopener noreferrer" target="_blank" data-cursor data-cursor-label="studio">GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pfz-home__foot-bot">
+          <p>© <span id="pfz-foot-year">2026</span> Profuzion Studio · R6W 0P4 · Winkler, Manitoba</p>
+          <p>Concept · v2 · <span id="pfz-foot-date">2026-04-30</span></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="pfz-v2-wp.js"></script>
+    <script>
+      /* Industry panel visibility: [hidden] + display for browsers that ignore hidden on grid */
+      (function () {
+        var section = document.getElementById("industries");
+        if (!section) return;
+        function sync() {
+          section.querySelectorAll("[data-industry-panel]").forEach(function (p) {
+            if (p.hidden) p.style.display = "none";
+            else p.style.display = "";
+          });
+        }
+        var obs = new MutationObserver(sync);
+        section.querySelectorAll("[data-industry-panel]").forEach(function (p) {
+          obs.observe(p, { attributes: true, attributeFilter: ["hidden"] });
+        });
+        sync();
+      })();
+      /* Industry row meta label text */
+      (function () {
+        var section = document.getElementById("industries");
+        if (!section) return;
+        var rows = section.querySelectorAll(".pfz-home__ind-row");
+        function update() {
+          rows.forEach(function (row) {
+            var meta = row.querySelector(".pfz-home__ind-row-meta");
+            if (!meta) return;
+            meta.textContent = row.classList.contains("is-active") ? "viewing" : "view";
+          });
+        }
+        var obs = new MutationObserver(update);
+        rows.forEach(function (row) {
+          obs.observe(row, { attributes: true, attributeFilter: ["class"] });
+        });
+        update();
+      })();
+      (function () {
+        var y = document.getElementById("pfz-foot-year");
+        var d = document.getElementById("pfz-foot-date");
+        function tick() {
+          if (y) y.textContent = String(new Date().getFullYear());
+          if (d) d.textContent = new Date().toISOString().slice(0, 10);
+        }
+        tick();
+        setInterval(tick, 30000);
+      })();
+    </script>
+  </body>
+</html>

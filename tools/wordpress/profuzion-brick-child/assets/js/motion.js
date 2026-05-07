@@ -14,12 +14,15 @@
 	var gsap = window.gsap;
 	gsap.registerPlugin(window.ScrollTrigger);
 
-	var wrap = document.querySelector(".profuzion-v2");
+	var wrap = document.querySelector(".pfz");
 	if (!wrap) {
 		return;
 	}
 
-	var nodes = wrap.querySelectorAll("[data-pz-fade]");
+	/* Exclude preview cards + web slots — layout/interaction owns height & transforms */
+	var nodes = wrap.querySelectorAll(
+		"[data-pz-fade]:not(.pfz-home__ind-preview-card):not(.pfz-home__web-slot)",
+	);
 	if (!nodes.length) {
 		return;
 	}

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Profuzion v2 — Bricks / WordPress preview (vanilla)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="pfs-logo-mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="pfz-v2-wp.css" />
     <style>
       .pfz {
@@ -20,7 +21,12 @@
     </style>
   </head>
   <body class="pfz">
-    <!-- Site loader — same structure as src/app/v2/_components/site-loader.tsx -->
+    <!--
+      PREVIEW ONLY — not a Bricks upload target.
+      Production: import profuzion-v6-bricks-*-import.json and build layout with Bricks native
+      elements + child theme CSS/JS (see src/app/v2/BRICKS-COPY-PASTE.md). No React/Tailwind here.
+    -->
+    <!-- Site loader — static mirror of Next site-loader choreography (vanilla markup + pfz-v2-wp.css) -->
     <div class="pz-site-loader" role="status" aria-live="polite" aria-label="Profuzion Studio loading">
       <div
         class="pz-site-loader__mist"
@@ -55,18 +61,16 @@
       </div>
       <div aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent); opacity: 0.85"></div>
       <div class="pz-site-loader__content">
-        <div class="pz-site-loader__mark">
-          <span class="pz-site-loader__mono" aria-hidden="true"
-            >PZ<span class="pz-site-loader__ping"></span
-          ></span>
-          <div class="pz-site-loader__type">
-            <span style="font-family: var(--text-sans); font-weight: 500; font-size: clamp(1.25rem, 3.2vw, 1.65rem); letter-spacing: -0.04em; color: var(--contrast); line-height: 1.05"
-              >Profuzion<span style="margin-left: 0.35em; font-family: var(--text-mono); font-size: 0.55em; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--contrast-muted-mid)">studio</span></span
-            >
-            <p class="pfz-eyebrow" style="color: var(--contrast-muted); max-width: 28ch; margin: 0; line-height: 1.45; font-size: 10.5px; letter-spacing: 0.18em">
-              Brand &amp; Website design for owners who want to stand out.
-            </p>
+        <div class="pz-site-loader__lockup">
+          <div class="pz-site-loader__sigil-stage">
+            <div class="pz-site-loader__sigil-glow" aria-hidden="true"></div>
+            <div class="pz-site-loader__orbit" aria-hidden="true"></div>
+            <img class="pz-site-loader__mark-img" src="pfs-loader-mark.svg" width="380" height="380" alt="" decoding="async" />
           </div>
+          <img class="pz-site-loader__word-img" src="pfs-loader-wordmark.svg" width="928" height="94" alt="" decoding="async" aria-hidden="true" />
+          <p class="pz-site-loader__tagline pfz-eyebrow pfz-eyebrow--bare">
+            Brand &amp; Website design. <span class="pz-site-loader__tagline-accent">Mastered.</span>
+          </p>
         </div>
       </div>
       <div aria-hidden="true" style="position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--border); z-index: 5">
@@ -77,21 +81,81 @@
     <div class="pfz-cursor-ring" aria-hidden="true"><span class="pfz-cursor-ring__label"></span></div>
     <div class="pfz-cursor-dot" aria-hidden="true"></div>
 
-    <header class="pfz-home__nav-wrap">
+    <header class="pfz-home__nav-wrap" data-nav-root>
       <div class="pfz-home__nav">
-        <a href="#top" class="pfz-home__nav-lockup" data-cursor data-cursor-label="top">
-          <span class="pfz-home__nav-mono" aria-hidden="true">PZ</span>
-          <span class="pfz-home__nav-name">Profuzion<span class="pfz-home__nav-version">v2</span></span>
+        <a href="#top" class="pfz-home__nav-lockup" data-cursor data-cursor-label="top" aria-label="Profuzion — top">
+          <img
+            class="pfz-home__nav-wordmark"
+            src="pfs-logo-horizontal-light-v2.svg"
+            width="240"
+            height="31"
+            alt=""
+            decoding="async"
+            aria-hidden="true"
+          />
         </a>
-        <ul class="pfz-home__nav-pills">
-          <li><a href="#industries" data-cursor data-cursor-label="industries">Industries</a></li>
-          <li><a href="#about" data-cursor data-cursor-label="about">About</a></li>
-          <li><a href="#branding" data-cursor data-cursor-label="branding">Branding</a></li>
-          <li><a href="#websites" data-cursor data-cursor-label="websites">Websites</a></li>
-          <li><a href="#process" data-cursor data-cursor-label="process">Process</a></li>
-          <li><a href="#engagements" data-cursor data-cursor-label="pricing">Pricing</a></li>
+        <ul class="pfz-home__nav-pills" data-nav-pills>
+          <li><a href="#industries" data-section="industries" data-cursor data-cursor-label="industries">Industries</a></li>
+          <li><a href="#about" data-section="about" data-cursor data-cursor-label="about">About</a></li>
+          <li><a href="#branding" data-section="branding" data-cursor data-cursor-label="branding">Branding</a></li>
+          <li><a href="#websites" data-section="websites" data-cursor data-cursor-label="websites">Websites</a></li>
+          <li><a href="#process" data-section="process" data-cursor data-cursor-label="process">Process</a></li>
+          <li><a href="#engagements" data-section="engagements" data-cursor data-cursor-label="pricing">Pricing</a></li>
         </ul>
-        <a href="#contact" class="btn--secondary pfz-home__nav-cta" data-cursor data-cursor-label="book">Book a call</a>
+        <div class="pfz-home__nav-actions">
+          <a href="#contact" class="btn--secondary pfz-home__nav-cta" data-cursor data-cursor-label="book"
+            >Book a call <span class="pfz-btn-arrow">→</span></a
+          >
+          <button
+            type="button"
+            class="pfz-home__nav-toggle"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="pfz-nav-sheet"
+            aria-label="Open menu"
+          >
+            <span class="pfz-home__nav-toggle-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="pfz-home__nav-scrim" data-nav-scrim aria-hidden="true"></div>
+      <div
+        id="pfz-nav-sheet"
+        class="pfz-home__nav-sheet"
+        data-nav-sheet
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+      >
+        <nav class="pfz-home__nav-sheet-scroll" aria-label="Page sections">
+          <ul class="pfz-home__nav-sheet-list">
+            <li>
+              <a href="#industries" data-section="industries" data-nav-sheet-link data-cursor data-cursor-label="industries">Industries</a>
+            </li>
+            <li>
+              <a href="#about" data-section="about" data-nav-sheet-link data-cursor data-cursor-label="about">About</a>
+            </li>
+            <li>
+              <a href="#branding" data-section="branding" data-nav-sheet-link data-cursor data-cursor-label="branding">Branding</a>
+            </li>
+            <li>
+              <a href="#websites" data-section="websites" data-nav-sheet-link data-cursor data-cursor-label="websites">Websites</a>
+            </li>
+            <li>
+              <a href="#process" data-section="process" data-nav-sheet-link data-cursor data-cursor-label="process">Process</a>
+            </li>
+            <li>
+              <a href="#engagements" data-section="engagements" data-nav-sheet-link data-cursor data-cursor-label="pricing">Pricing</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="pfz-home__nav-sheet-foot">
+          <a href="#contact" class="btn--secondary pfz-home__nav-sheet-cta" data-nav-sheet-link data-cursor data-cursor-label="book"
+            >Book a call <span class="pfz-btn-arrow">→</span></a
+          >
+        </div>
       </div>
     </header>
 
@@ -99,6 +163,7 @@
       <!-- §1 Hero -->
       <section id="top" class="pfz-home__hero">
         <div class="pfz-home__hero-halftone-fallback" aria-hidden="true"></div>
+        <canvas class="pfz-home__hero-halftone-canvas" aria-hidden="true"></canvas>
         <div class="pfz-home__hero-darken" aria-hidden="true"></div>
         <div class="pfz-home__hero-top-fade" aria-hidden="true"></div>
         <div class="pfz-home__hero-void" aria-hidden="true"></div>
@@ -111,10 +176,8 @@
           </div>
           <div class="pfz-home__hero-headline">
             <h1 class="pfz-display pfz-display--xl pfz-home__hero-h1">
-              <span data-hero-word style="--i: 0">Brand</span> <span data-hero-word style="--i: 1">&amp;</span> <span data-hero-word style="--i: 2">Website</span> <span data-hero-word style="--i: 3">design</span><br />
-              <span data-hero-word style="--i: 4">for</span> <span data-hero-word style="--i: 5">owners</span> <span data-hero-word style="--i: 6">who</span> <span data-hero-word style="--i: 7">want</span> <span data-hero-word style="--i: 8">to</span><br />
-              <span data-hero-word class="pfz-italic" style="--i: 9; color: var(--primary)">stand</span>
-              <span data-hero-word class="pfz-italic" style="--i: 10; color: var(--primary)">out</span><span data-hero-word style="--i: 11">.</span>
+              <span data-hero-word style="--i: 0">Brand</span> <span data-hero-word style="--i: 1">&amp;</span> <span data-hero-word style="--i: 2">Website</span> <span data-hero-word style="--i: 3">design</span><span data-hero-word style="--i: 4">.</span><br />
+              <span data-hero-word class="pfz-italic" style="--i: 5; color: var(--primary)">Mastered</span><span data-hero-word style="--i: 6">.</span>
             </h1>
             <p class="pfz-lede pfz-home__hero-lede">
               Profuzion is the quiet design studio in Winkler, Manitoba — the one local
@@ -129,7 +192,7 @@
             <div class="pfz-home__hero-vlist">
               <span>Industrial</span><span>Contractors</span><span>Food Producers</span><span>E-commerce Sellers</span>
             </div>
-            <p class="pfz-home__hero-scroll">scroll ↓ · <strong>Brand &amp; Website design for owners who want to stand out.</strong></p>
+            <p class="pfz-home__hero-scroll">scroll ↓ · <strong>Brand &amp; Website design. Mastered.</strong></p>
           </div>
         </div>
       </section>
@@ -1255,18 +1318,55 @@
       </section>
     </main>
 
-    <footer class="pfz-home__foot">
+    <footer class="pfz-home__foot pfz-section pfz-section--ink">
       <div class="pfz-home__foot-inner">
         <div class="pfz-home__foot-top">
-          <p class="pfz-home__foot-mark">Profu<span class="pfz-display__accent">z</span>ion</p>
+          <h2 class="pfz-display pfz-home__foot-mark">
+            Profuzion<span class="pfz-display__accent">.</span>
+          </h2>
           <ul class="pfz-home__foot-meta">
-            <li><a href="#contact" data-cursor data-cursor-label="contact">Contact</a></li>
-            <li><a href="#industries" data-cursor data-cursor-label="work">Work</a></li>
+            <li>Winkler, Manitoba · Pembina Valley</li>
+            <li>since 1999</li>
+            <li class="is-availability">now booking summer 2026</li>
           </ul>
         </div>
+
+        <div class="pfz-rule pfz-rule--ink pfz-home__foot-rule" aria-hidden="true"></div>
+
+        <div class="pfz-home__foot-cols">
+          <div class="pfz-home__foot-col">
+            <p class="pfz-home__foot-col-label">Navigate</p>
+            <ul>
+              <li><a href="#industries" data-cursor data-cursor-label="navigate">Industries</a></li>
+              <li><a href="#about" data-cursor data-cursor-label="navigate">About</a></li>
+              <li><a href="#branding" data-cursor data-cursor-label="navigate">Branding</a></li>
+              <li><a href="#websites" data-cursor data-cursor-label="navigate">Websites</a></li>
+              <li><a href="#process" data-cursor data-cursor-label="navigate">Process</a></li>
+              <li><a href="#engagements" data-cursor data-cursor-label="navigate">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="pfz-home__foot-col">
+            <p class="pfz-home__foot-col-label">Contact</p>
+            <ul>
+              <li><a href="mailto:hello@profuzionstudio.com" data-cursor data-cursor-label="contact">hello@profuzionstudio.com</a></li>
+              <li><a href="tel:+12043626171" data-cursor data-cursor-label="contact">204.362.6171</a></li>
+              <li><a href="#contact" data-cursor data-cursor-label="contact">Book a call →</a></li>
+            </ul>
+          </div>
+          <div class="pfz-home__foot-col">
+            <p class="pfz-home__foot-col-label">Studio</p>
+            <ul>
+              <li><a href="/" data-cursor data-cursor-label="studio">Profuzion v1 (live)</a></li>
+              <li><a href="https://instagram.com/profuzion" rel="noopener noreferrer" target="_blank" data-cursor data-cursor-label="studio">Instagram</a></li>
+              <li><a href="https://linkedin.com/in/lowellklassen" rel="noopener noreferrer" target="_blank" data-cursor data-cursor-label="studio">LinkedIn</a></li>
+              <li><a href="https://github.com/profuzion" rel="noopener noreferrer" target="_blank" data-cursor data-cursor-label="studio">GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+
         <div class="pfz-home__foot-bot">
-          <span>© 2026 Profuzion Studio</span>
-          <span>Winkler, Manitoba</span>
+          <p>© <span id="pfz-foot-year">2026</span> Profuzion Studio · R6W 0P4 · Winkler, Manitoba</p>
+          <p>Concept · v2 · <span id="pfz-foot-date">2026-04-30</span></p>
         </div>
       </div>
     </footer>
@@ -1306,6 +1406,16 @@
           obs.observe(row, { attributes: true, attributeFilter: ["class"] });
         });
         update();
+      })();
+      (function () {
+        var y = document.getElementById("pfz-foot-year");
+        var d = document.getElementById("pfz-foot-date");
+        function tick() {
+          if (y) y.textContent = String(new Date().getFullYear());
+          if (d) d.textContent = new Date().toISOString().slice(0, 10);
+        }
+        tick();
+        setInterval(tick, 30000);
       })();
     </script>
   </body>

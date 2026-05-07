@@ -1,13 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useId, useState } from "react";
-import { studio } from "../_lib/site";
-
 /**
  * Profuzion · v2 — sticky nav.
  *
  * Three regions (desktop, lg+):
- *   • Left: monogram + studio mark
+ *   • Left: horizontal wordmark
  *   • Center: section pills (active state in amber)
  *   • Right: "Book a call" CTA (pill, chartreuse on hover)
  *
@@ -24,6 +22,7 @@ const LINKS = [
   { id: "websites", label: "Websites" },
   { id: "process", label: "Process" },
   { id: "engagements", label: "Pricing" },
+  { id: "contact", label: "Contact" },
 ] as const;
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -32,21 +31,21 @@ function MenuIcon({ open }: { open: boolean }) {
       <span
         className="absolute left-0 right-0 top-0 h-0.5 rounded-full transition-transform duration-200"
         style={{
-          background: "var(--p-ink)",
+          background: "var(--contrast)",
           transform: open ? "translateY(9px) rotate(45deg)" : "none",
         }}
       />
       <span
         className="absolute left-0 right-0 top-2 h-0.5 rounded-full transition-opacity duration-200"
         style={{
-          background: "var(--p-ink)",
+          background: "var(--contrast)",
           opacity: open ? 0 : 1,
         }}
       />
       <span
         className="absolute left-0 right-0 top-4 h-0.5 rounded-full transition-transform duration-200"
         style={{
-          background: "var(--p-ink)",
+          background: "var(--contrast)",
           transform: open ? "translateY(-9px) rotate(-45deg)" : "none",
         }}
       />
@@ -134,7 +133,7 @@ export function ProfuzionNav() {
             ? "rgba(10, 10, 12, 0.82)"
             : "transparent",
         borderBottom: navScrim
-          ? "1px solid var(--p-rule)"
+          ? "1px solid var(--border)"
           : "1px solid transparent",
       }}
     >
@@ -144,42 +143,18 @@ export function ProfuzionNav() {
           href="#top"
           data-cursor
           data-cursor-label="top"
-          className="group inline-flex items-center gap-3"
+          className="group inline-flex min-w-0 shrink items-center gap-3"
+          aria-label="Profuzion — top"
         >
-          <span
+          <img
+            src="/pfs-logo-horizontal-light-v2.svg"
+            alt=""
+            width={240}
+            height={31}
+            decoding="async"
+            className="h-[1.5rem] w-auto max-w-[min(220px,58vw)] object-contain object-left -ml-[7px] sm:h-[1.625rem] lg:h-[1.75rem] lg:max-w-[min(260px,36vw)]"
             aria-hidden
-            className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105"
-            style={{
-              background: "var(--p-paper-2)",
-              color: "var(--p-ink)",
-              fontFamily: "var(--p-sans)",
-              fontWeight: 600,
-              fontSize: 12,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {studio.monogram}
-            <span
-              aria-hidden
-              className="absolute -right-1 -bottom-1 h-2 w-2 rounded-full"
-              style={{ background: "var(--p-amber)" }}
-            />
-          </span>
-          <span
-            className="hidden whitespace-nowrap text-[15px] font-medium tracking-[-0.01em] sm:inline-block"
-            style={{ color: "var(--p-ink)" }}
-          >
-            Profuzion
-            <span
-              className="ml-1 text-[12px] tracking-[0.16em] uppercase"
-              style={{
-                color: "var(--p-stone-mid)",
-                fontFamily: "var(--p-mono)",
-              }}
-            >
-              v2
-            </span>
-          </span>
+          />
         </a>
 
         {/* Center pills */}
@@ -194,11 +169,11 @@ export function ProfuzionNav() {
                   data-cursor-label={l.label.toLowerCase()}
                   className="relative inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 transition-colors duration-200"
                   style={{
-                    fontFamily: "var(--p-sans)",
+                    fontFamily: "var(--text-sans)",
                     fontSize: 13.5,
                     fontWeight: 500,
                     letterSpacing: "-0.005em",
-                    color: isActive ? "var(--p-ink)" : "var(--p-stone)",
+                    color: isActive ? "var(--contrast)" : "var(--contrast-muted)",
                   }}
                 >
                   <span
@@ -206,10 +181,10 @@ export function ProfuzionNav() {
                     className="inline-block h-1.5 w-1.5 rounded-full transition-all duration-200"
                     style={{
                       background: isActive
-                        ? "var(--p-amber)"
+                        ? "var(--primary)"
                         : "rgba(255,255,255,0.2)",
                       boxShadow: isActive
-                        ? "0 0 8px 1px var(--p-amber-glow)"
+                        ? "0 0 8px 1px var(--primary-glow)"
                         : "none",
                     }}
                   />
@@ -223,21 +198,21 @@ export function ProfuzionNav() {
         {/* CTA — desktop; mobile lives in the sheet */}
         <a
           href="#contact"
-          className="p-btn hidden lg:inline-flex"
+          className="btn--secondary hidden lg:inline-flex"
           data-cursor
           data-cursor-label="book"
         >
           Book a call
-          <span className="p-arrow">→</span>
+          <span className="pfz-btn-arrow">→</span>
         </a>
 
         <button
           type="button"
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full border transition-colors duration-200 lg:hidden"
           style={{
-            borderColor: "var(--p-rule-strong)",
-            color: "var(--p-ink)",
-            background: "var(--p-paper-2)",
+            borderColor: "var(--border-strong)",
+            color: "var(--contrast)",
+            background: "var(--base-light)",
           }}
           onClick={() => setMenuOpen((o) => !o)}
           aria-expanded={menuOpen}
@@ -264,7 +239,7 @@ export function ProfuzionNav() {
           aria-label="Site navigation"
           style={{
             background: "rgba(5, 5, 7, 0.98)",
-            borderTop: "1px solid var(--p-rule)",
+            borderTop: "1px solid var(--border)",
             boxShadow: "0 -20px 60px -20px rgba(0,0,0,0.5)",
           }}
         >
@@ -284,13 +259,13 @@ export function ProfuzionNav() {
                       onClick={closeMenu}
                       className="flex items-center gap-3 rounded-xl px-3 py-3.5 transition-colors duration-200"
                       style={{
-                        fontFamily: "var(--p-sans)",
+                        fontFamily: "var(--text-sans)",
                         fontSize: "1.05rem",
                         fontWeight: 500,
                         letterSpacing: "-0.01em",
-                        color: isActive ? "var(--p-ink)" : "var(--p-stone)",
+                        color: isActive ? "var(--contrast)" : "var(--contrast-muted)",
                         background: isActive
-                          ? "var(--p-paper-2)"
+                          ? "var(--base-light)"
                           : "transparent",
                       }}
                     >
@@ -299,10 +274,10 @@ export function ProfuzionNav() {
                         className="inline-block h-2 w-2 shrink-0 rounded-full transition-all duration-200"
                         style={{
                           background: isActive
-                            ? "var(--p-amber)"
+                            ? "var(--primary)"
                             : "rgba(255,255,255,0.2)",
                           boxShadow: isActive
-                            ? "0 0 10px 1px var(--p-amber-glow)"
+                            ? "0 0 10px 1px var(--primary-glow)"
                             : "none",
                         }}
                       />
@@ -315,17 +290,17 @@ export function ProfuzionNav() {
           </nav>
           <div
             className="shrink-0 border-t p-6"
-            style={{ borderColor: "var(--p-rule)" }}
+            style={{ borderColor: "var(--border)" }}
           >
             <a
               href="#contact"
-              className="p-btn w-full justify-center"
+              className="btn--secondary w-full justify-center"
               data-cursor
               data-cursor-label="book"
               onClick={closeMenu}
             >
               Book a call
-              <span className="p-arrow">→</span>
+              <span className="pfz-btn-arrow">→</span>
             </a>
           </div>
         </div>
